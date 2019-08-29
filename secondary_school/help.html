@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>School Management System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS >
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous"-->
+    <link rel='stylesheet' href='../scripts/bootstrap/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='../scripts/bootstrap/css/main.css'>
+
+</head>
+<body>
+  <div class="container">
+
+    <div class="container text-justify text-wrap">
+    
+      <h1>Help File</h1>
+    
+      <div id="introduction">
+        School Management System is a software designed to help in proper management of our school.
+        <p>
+          It offers the following features:
+          <ul>
+            <li><a href="#student_portal">Student Management Portal</a></li>
+            <li><a href="#staff_portal">Staff Management Portal</a></li>
+            <li><a href="#message_portal">Message Portal</a></li>
+            <li><a href="#sales_portal">Sales/Inventory Portal</a></li>
+            <li><a href="#fees_portal">Fees Portal</a></li>
+            <li><a href="#misc_portal">Miscellaneous Portal</a></li>
+          </ul>
+        </p>
+    
+        <div class="image-div">
+          <img src="../images/manual_images/features.png"  class="image"/>
+          <div class="image-label">Features offered in the school management system</div>
+        </div>
+      </div>
+    
+    
+      <ol style="list-style:decimal;">
+    
+        <li id="student_portal">
+          <h2>Student Management Portal</h2>
+          This portal is meant to carter for the needs of the students and their proper and effective management.<br/>
+          
+          <div class="image-div">
+            <img src="../images/manual_images/student_portal.png" class="image" />
+            <div class="image-label">Student Management Portal</div>
+          </div>
+    
+          It provides the following tools
+    
+          <ul style="list-style:lower-alpha;">
+            <li id="admit_student">
+              <h3 class="inline">Admit Student Portal:</h3>
+              Here, new students can be registered. It carters for their registration and automatic placement in classes where they are admitted.<br/>
+              The details needed for their registration are as follows:
+              
+              <ol style="list-style:lower-roman;">
+                <li id="student_personal_details">
+                  <h4 style="margin-bottom:2px;">Personal details</h4>
+                  <ol style="list-style:circle;">
+                    <li>Surname<sup style="color:red;font-weight:bolder;">*</sup></li>
+                    <li>Othernames<sup style="color:red;font-weight:bolder;">*</sup></li>
+                    <li>Gender<sup style="color:red;font-weight:bolder;">*</sup></li>
+                    <li>Date of Birth<sup style="color:red;font-weight:bolder;">*</sup></li>
+                    <li>Nationality<sup style="color:red;font-weight:bolder;">*</sup></li>
+                    <li>State of Origin<sup style="color:red;font-weight:bolder;">*</sup></li>
+                    <li>LGA of Origin<sup style="color:red;font-weight:bolder;">*</sup></li>
+                    <li>Passport</li>
+                  </ol>
+                </li>
+    
+                <li id="student_contact_details">
+                  <h4 style="margin-bottom:2px;">Contact details</h4>
+                  <ol style="list-style:circle;">                
+                    <li>Parents/Guardian<sup style="color:red;font-weight:bolder;">*</sup></li>
+                    <li>Phone 1</li>
+                    <li>Phone 2</li>
+                    <li>Email</li>
+                    <li>Residential Address<sup style="color:red;font-weight:bolder;">*</sup></li>
+                    <li>Home Address</li>
+                  </ol>
+                </li>
+    
+                <li id="student_medical_details">
+                  <h4 style="margin-bottom:2px;">Medical Details</h4>
+                  <ol style="list-style:circle;">                
+                    <li>Disability</li>
+                    <li>Health Issue</li>
+                    <li>Description of Health Issue</li>
+                    <li>Genotype</li>
+                    <li>Blood Group</li>
+                  </ol>
+                </li>
+    
+                <li id="student_upload_doc">
+                  <h4 style="margin-bottom:2px;">Upload Documents</h4>
+                  <ol style="list-style:circle;">                
+                    <li>Birth Certificate</li>
+                    <li>Certificate of Origin</li>
+                    <li>Medical Certificate of Fitness</li>
+                    <li>medical Report</li>
+                  </ol>
+                </li>
+    
+                <li id="student_emergency_details">
+                  <h4 style="margin-bottom:2px;">Emergency Details</h4>
+                  <ol style="list-style:circle;">                
+                    <li>Family Doctor</li>
+                    <li>Family Hospital</li>
+                    <li>Family Hospital Address</li>
+                    <li>Family Doctor's Phone Number</li>
+                  </ol>
+                </li>
+    
+                <li id="student_class_details">
+                  <h4 style="margin-bottom:2px;">Class Details</h4>
+                  <ol style="list-style:circle;">                
+                    <li>Class Admitted<sup style="color:red;font-weight:bolder;">*</sup></li>
+                    <li>Session<sup style="color:red;font-weight:bolder;">*</sup></li>
+                    <li>Arm<sup style="color:red;font-weight:bolder;">*</sup></li>
+                    <li>Area of Specialization<sup style="color:red;font-weight:bolder;">*</sup></li>
+                    <li>Sport Group</li>
+                    <li>Previous School Attended (if any)</li>
+                  </ol>
+                </li>
+    
+              </ol>
+    
+              <section>
+                Fields marked <sup style="color:red;font-weight:bolder;">*</sup> are mandatory fields and values
+                must be supplied for them else the registration will not be completed.
+                <p>
+                  Provision has been made to display the number of students currently in any selected class and/or arm.<br/>
+                  This is to guide against overccrowding a class and/or arm  and to ensure putting a fixed number of students per class/arm. 
+                </p>
+              </section>
+    
+            </li>
+    
+            <li id="result_manager">
+              <h3>Result Manager:</h3>
+              This page is designed to manage result creation and computation.
+              Student's result sheet can also be viewed likewise class broadsheet.
+              <p>
+                Incorporated into this portal is the ability to create and view student attendance.<br/>
+                Attendance can only be marked by class teachers but its creation and viewing can be done by both class teachers and admin only.
+                Whereas, result creation, filling, computation as well as viewing can be done by both class teachers and admins and none other.
+              </p>
+              <p>
+                Aditionally, the admin can query to know the available result and attendance sheets
+              </p>
+    
+              <div class="image-div">
+                <img src="../images/manual_images/result_manager.png" class="image"/>
+                <div class="image-label">Student Result Manager</div>
+              </div>
+            </li>
+    
+            <li id="view_satudent_list">
+              <h3>View Student List:</h3>
+              Viewing student can be done by class basis or by viewing all the students at once.<br/>
+              Records of the total numbers of students available in the class and the number according to gender are displayed for easy querying.
+              <p>
+                This page provides features for viewing/editing student record.
+                Care should be taken while editing student class details, as a change in class or arm automatically removes the student and his/her record from the former class/arm to new class/arm.
+              </p>
+              <p>
+                This is useful if the intention is to change the student's class/arm or promote the student before the general third term promotion or correct an error that occured during registation.
+              </p>
+            </li>
+    
+            <li id="student_statistics">
+              <h3>Student Statistics:</h3>
+              Statistics of students is based on <b>age, state of origin and gender</b>.<br/>
+              This is displayed on a graph for easy viewing.
+              <div class="image-div">
+                <img src="../images/manual_images/gender_statistics.png" class="image">
+                <div class="image-label">Student gender statistics</div>
+              </div>
+            </li>
+    
+            <li id="expel_student">
+              <h3>Expel Student:</h3>
+              This makes provision for the expulsion of student from the school.<br/>
+              Once a student is expelled, his/her record is permanently deleted and can only be recovered from a backup file.<br/>
+              his underscores the importance of regurlarly backing up the database especially when a significant change has been made (e.g. at the end of every session/term).
+            </li>
+    
+            <li id="career_recommender">
+              <h3>Career Recommender</h3>
+              Career can be recommended for students using this portal. The student career recommender is the tool used in recommending career for students.<br/>
+              It makes use of the cognitive abilities of the students in its operation. Students in the junior secondary section are recommended to either untake courses in science,
+              arts or commercial based on their performance in subjects related to this fields.<br/>
+              <div class="image-div">
+                <img src="../images/manual_images/career_recomender.png" class="image">
+                <div class="image-label">Career recommender - junior</div>
+              </div>
+              The senior secondary students' recommendation is for courses they should take in their universities while furthering their studies.
+              <div class="image-div">
+                <img src="../images/manual_images/career_recomender.png" class="image">
+                <div class="image-label">Career recommender - senior</div>
+              </div>
+              <p>
+                Recommendations made by this app is not absolute and the students are under no obligations to accept it. Acceptance of recommendations made by the app is at student's or parent's risk.<br/>
+                To underscore this fact, the following notice/disclaimer has bee appended to the recommendation.
+                <blockquote>
+                  Our recommendation is based on your academic performance and is in no way a decision you are bound to accept.
+                  <p>
+                    You are free to discard our recommendation and pursue a careeer of your choice (that is if you have one already).<br/>
+                    However, following our recommendation is not bad since it reflects your current and future ability in various courses.
+                  </p>
+                  <p>
+                    <b>By this notice, we disclaim any liability that may be caused by following our recommendation.</b>
+                  </p>
+                  <p>
+                    Thanks.
+                  </p>
+    
+                </blockquote>
+              </p>
+            </li>
+    
+            <li id="performance_chart">
+              <h3>Performance Chart</h3>
+              This tool shows via a chart, the historical academic performance of students. This is to track students performance and enable the administration to make informed decisions and take appropriate actions towards the students as regards the students performance in the light of the observed trend.
+    
+              <div class="image-div">
+                <img src="../images/manual_images/performance_chart.png" class="image" />
+                <div class="image-label">Student performance chart</div>
+              </div>
+            </li>
+    
+            <li id="promote_students">
+              <h3>Promote Students</h3>
+              Students can be automatically promoted at the end of third when all results have been computed and distributed accordingly.
+              The promotion should be done before a new session is started and when the term result has been uploaded to the online server.
+              <p>
+                To prevent promoting student at any time other than third term, a confirmation is required before the promotion can be processed.
+                <div class="image-div">
+                  <img src="../images/manual_images/confirm_promotion.png" >
+                  <div class="image-label">Confirm Promotion dialog</div>
+                </div>
+                Care should be taken to click the promote button only at the end of third term when all the conditions outlined above has been met.
+              </p>
+              <p>
+                Once the promotion is done, students records are automatically moved to the next higher class. For graduating students,
+                their records are moved to the list of graduates produced by the school.
+              </p>
+            </li>
+    
+          </ul>
+    
+        </li>
+    
+        <li id="staff_portal">
+          <h2>Staff Management Portal</h2>
+          Like the student management portal, it is designed to carter for the managerial needs of staffs and provides similar features as those of the student management portal.<br/>
+          
+          <div class="image-div">
+            <img src="../images/manual_images/staff_portal.png" class="image">
+            <div class="image-label">Staff Management Portal</div>
+          </div>
+
+          It consists of:
+          
+          <ol style="list-style:lower-alpha">
+            <li>
+              <h3>Admit Staff</h3>
+    
+              <ol style="list-style:lower-roman;">
+                  <li id="staff_personal_details">
+                    <h4 style="margin-bottom:2px;">Personal details</h4>
+                    <ol style="list-style:circle;">
+                      <li>Surname<sup style="color:red;font-weight:bolder;">*</sup></li>
+                      <li>Othernames<sup style="color:red;font-weight:bolder;">*</sup></li>
+                      <li>Gender<sup style="color:red;font-weight:bolder;">*</sup></li>
+                      <li>Date of Birth<sup style="color:red;font-weight:bolder;">*</sup></li>
+                      <li>Nationality<sup style="color:red;font-weight:bolder;">*</sup></li>
+                      <li>State of Origin<sup style="color:red;font-weight:bolder;">*</sup></li>
+                      <li>LGA of Origin<sup style="color:red;font-weight:bolder;">*</sup></li>
+                      <li>Passport</li>
+                    </ol>
+                  </li>
+      
+                  <li id="staff_contact_details">
+                    <h4 style="margin-bottom:2px;">Contact details</h4>
+                    <ol style="list-style:circle;">                
+                      <li>Phone 1</li>
+                      <li>Phone 2</li>
+                      <li>Email</li>
+                      <li>Residential Address<sup style="color:red;font-weight:bolder;">*</sup></li>
+                      <li>Home Address</li>
+                    </ol>
+                  </li>
+      
+                  <li id="staff_medical_details">
+                    <h4 style="margin-bottom:2px;">Medical Details</h4>
+                    <ol style="list-style:circle;">                
+                      <li>Disability</li>
+                      <li>Health Issue</li>
+                      <li>Description of Health Issue</li>
+                      <li>Genotype</li>
+                      <li>Blood Group</li>
+                    </ol>
+                  </li>
+      
+                  <li id="staff_upload_doc">
+                    <h4 style="margin-bottom:2px;">Upload Documents</h4>
+                    <ol style="list-style:circle;">                
+                      <li>Curriculum Vitae</li>
+                      <li>Birth Certificate</li>
+                      <li>Certificate of Origin</li>
+                      <li>Medical Certificate of Fitness</li>
+                      <li>medical Report</li>
+                    </ol>
+                  </li>
+      
+                  <li id="student_bank_details">
+                    <h4 style="margin-bottom:2px;">Bank Details</h4>
+                    <ol style="list-style:circle;">                
+                      <li>Bank</li>
+                      <li>Account Number</li>
+                      <li>Account Name</li>
+                    </ol>
+                  </li>
+      
+                  <!-- <li id="student_emergency_details">
+                    <h4 style="margin-bottom:2px;">Emergency Details</h4>
+                    <ol style="list-style:circle;">                
+                      <li>Family Doctor</li>
+                      <li>Family Hospital</li>
+                      <li>Family Hospital Address</li>
+                      <li>Family Doctor's Phone Number</li>
+                    </ol>
+                  </li> -->
+      
+                  <li id="staff_school_details">
+                    <h4 style="margin-bottom:2px;">School Details</h4>
+                    <ol style="list-style:circle;">
+                      <li>Qualification</li>
+                      <li>Position</li>
+                        <ul>
+                          <li>Principal</li>
+                          <li>Vice Principal Administration</li>
+                          <li>Vice Principal Academic</li>
+                          <li>Bursar</li>
+                          <li>Cashier</li>
+                          <li>Boarding Master</li>
+                          <li>Boarding Mistress</li>
+                          <li>Secretary</li>
+                          <li>Clerical Officer</li>
+                        </ul>
+                      <li>Priviledge</li>
+                        <ul>
+                          <li>Teaching Staff</li>
+                          <li>Class Teacher</li>
+                          <li>Account</li>
+                          <li>Bursar</li>
+                          <li>Public Relations Officer</li>
+                          <li>Non-Teaching Staff</li>
+                        </ul>
+                      <li>Classs<samp style="color:red;font-weight:bolder;">&plus;</samp></li>
+                      <li>Arm<samp style="color:red;font-weight:bolder;">&plus;</samp></li>
+                      <li>Salary</li>
+                      <li>Next of Kin</li>
+                      <li>Relationship with Next of Kin</li>
+                      <li>Choose Password<sup style="color:red;font-weight:bolder;">*</sup></li>
+                      <li>Confirm Password<sup style="color:red;font-weight:bolder;">*</sup></li>
+                    </ol>
+                  </li>
+      
+                </ol>
+    
+                <section>
+                  <b>Note: </b>Fields marked <sup style="color:red;font-weight:bolder;">*</sup> are mandatory
+                  fields and values must be provided for them otherwise the registration will not be completed.
+                </section>
+    
+                <section>
+                  Fields marked <samp style="color:red;font-weight:bolder;">&plus;</samp> are displayed
+                  only when the class teacher privieldge is chosen. In this case, the class and
+                  the arm the teacher is to act as class teacher must be specified. A teacher can act as class teacher 
+                  for exactly one class only.
+                </section>
+    
+                <div style="margin-top:20px;">
+                  Once the submit button is clicked and the registration successful, another page is opened where 
+                  the staff will be assigned subjects and class to teach. This happens only when the staff is granted
+                  a teaching staff or a class-teacher priviledge. There is no restriction on the number of subjects a 
+                  staff can take. Subjects assigned to a staff here can be changed in the Miscellaneous portal.
+    
+                  <ol style="list-style:square;">
+                    <li>Class</li>
+                    <li>Arm</li>
+                    <li>Subject</li>
+                  </ol>
+
+                  <div class="image-div">
+                    <img src="../images/manual_images/staff_reg_done.png" class="image">
+                    <div class="image-label">Class allocation page for staff</div>
+                  </div>
+                </div>
+    
+            </li>
+            
+            <li>
+              <h3>Create Staff Attendance</h3>
+              This allows for the creation of staff attendance sheet for the term.
+            </li>
+    
+            <li>
+              <h3>View Staff Attendance</h3>
+              Here, the attendance sheet for staffs can be viewed.<br/>
+              Displayed on the attendance sheet are: staff records and the sign-in times of the staffs on different days. 
+
+              <div class="image-div">
+                <img src="../images/manual_images/view_staff_attendance.png" class="image">
+                <div class="image-label">Staff Attendance Sheet</div>
+              </div>              
+            </li>
+    
+            <li>
+              <h3>Staff Attendance</h3>
+              This makes provision for the signing-in of staffs. To sign-in, the username of staffs (which is their registration number) and their passwords are required.
+              Once the sign-in is successful, the attendance is auto-marked and there is no need to sign-out as the details provided are only used to mark the attendance sheet and not to sign-into the portal.
+              <p>
+                Displayed besides  and to the right of where staffs are to sign-in is a record of the staffs that heve signed-in and their sign-in times.
+              </p>
+
+              <div class="image-div">
+                <img src="../images/manual_images/staff_attendance_1.png" class="image">
+                <div class="image-label">Staff Attendance Portal</div>
+              </div>
+            </li>
+    
+            <li>
+              <h3>Query Staff</h3>
+              Staffs can be issued queries via email or text messages here.
+            </li>
+    
+            <li>
+              <h3>Change Staff Priviledge</h3>
+              This allows for changing a staff from one priviledge to another. A staff can be given admin priviledge here only.
+            </li>
+    
+            <li id="sack_staff">
+              <h3>Sack Staff</h3>
+              To sack a staff, the name of the staff is entered and once the staff has been found in the search result displayed beneath the search section,
+              the proceed button should be clicked. To ensure that a mistake is not made, a confirmation message is displayed to the user. The staff will only be sacked
+              if the confirmation dialog box is clicked in the affirmative. Otherwise, no action is taken against the staff.<br/>
+              Once a staff is successfully sacked, his/her details are permanently deleted and can only be recovered from a backup file. 
+            </li>
+    
+            <li id="change_staff_subject">
+              <h3>Change Staff Subject</h3>
+              The change staff subject page is used to change the subjects handled by teaching staff. It should be noted that class teachers are also teaching staff.
+              The list of subjects currently handled by the teacher is displayed with buttons for deleting these subjects.<br/>
+              A  confirmation dialog is displayed before deleting an existing subject handled by the teacher.<br/>
+              New subjects can be added as desired using the form directly below the table displaying the subjects currently handled by the teacher.
+              <p>
+                The subjects are auto-loaded as the class is chosen. This is to ensure that the correct subjects are chosen for the right class.
+              </p>
+              <div class="image-div">
+                <img src="../images/manual_images/edit_staff_subjects.png" alt="change staff asubject" class="image" />
+                <div class="image-label">Change class details sample page</div>
+              </div>  
+            </li>
+    
+            <li id="view_staff_list">
+              <h3>View Staff List</h3>
+              Here, the full list of staff employed in the school is displayed. Provision has been made for viewing and editing the record of each of the staff as desired.
+              The details of the staff can be printed while viewing. Editing should be done with the intention of correcting an error in the details entered during the 
+              registration of the staff.
+            </li>
+    
+            <li id="view_statistics_of_staff">
+              <h3>View Statistics of Staff</h3>
+              Staff Statistics like student statistics can be viewed on <b>"gender", "age", and "state"</b> basis.
+            </li>
+          </ol>
+        </li>
+    
+        <li id="message_portal">
+          <h2>Message Portal</h2>
+          This is strictly to send text messages or email to parents and/or staffs.
+          Messages can be sent to; all staffs and parents at once, only parents, 
+          only staffs, specific staffs, or specific parents. If the "To" field is set to "Some Parents",
+          the contact details of all the parents in the database is displayed in a table displayed beside 
+          the form to the its right. The same applies when the "To" field is set to "Some Staffs".
+
+          <div class="image-div">
+            <img src="../images/manual_images/message_portal.png" class="image">
+            <div class="image-label">Message Portal</div>
+          </div>
+          
+          Provision has also been made to
+          add the contacts of staffs and/or parents whose contacts details are not in the database when sending messages.
+          the details of such staffs and/or parents should be written in the "<b>Add emails not in selected list (one per line)</b>"
+          field or the "<b>Add numbers not in selected list (one per line)</b>" field.
+          <p>
+            The portal can also be used to send messages to other contacts not in database at all. To do this, the "To" field should be set to
+            either "Some Parents" or "Some Staffs". when this is done, no staff or parent contact shold be marked in the table displayed beside
+            this form and to the right of it. 
+          
+            <div class="image-div">
+              <img src="../images/manual_images/message_staff.png" style="width:800px;height:200px;">
+              <div class="image-label">Message Some Staff</div>
+            </div>
+          </p> 
+        </li>
+    
+        <li id="misc_portal">
+          <h2>Miscellaneous Portal</h2>
+          
+          <ol style="list-style:lower-alpha">
+            <li id="start_new_session">
+              <h3>Start New Session</h3>
+              This makes provision for starting a new academic session. A new academic session should only be begun at the end of third term when;
+              all the results have been computed and distributed to parents, uploaded to the online server, and all the students have been promoted to a new class.
+    
+            </li>
+    
+            <li id="backup_database">
+              <h3>Backup Database</h3>
+              Database should be backedup at regular intervals especially at the end of a term and/or session.
+            </li>
+    
+            <li id="restore_backup">
+              <h3>Restore Database</h3>
+              Backup database records can be restored as desired. The only precaution to be taken here is that, restoring a database deletes recents changes made to the database after the last backup.
+
+            </li>
+    
+            <li id="upload_result">
+              <h3>Upload Results</h3>
+              This button is used to upload results to the online server for parents to access. The upload is automatic and may take some time. Be sure to be connected to the internet before uploading result since the upload uses internet connection 
+              to connect to the online server.
+            </li>
+    
+            <li id="upload_attendance">
+              <h3>Upload Attendance</h3>
+              Uploading attendance should be done daily so that parents can see and know about their ward(s) whereabout daily as he ward(s) leaves for school.<br/>
+              This upload also makes use of internet connection to send the attendance to the online server, therefore, the computer should have internet access for this to work.
+            </li>
+    
+            <li id="change_resumption_date">
+              <h3>Change Resumption and Closing Dates</h3>
+              Closing and resumption dates can be changed using this tool. The current details are displayed and can be edited as required. The change is recorded once the submit button is clicked.
+              <br/>This change is reflected on the result sheet of the students.
+            </li>
+    
+            <li id="go_online">
+              <h3>Go online</h3>
+              This tool makes provision for accessing the online portalfrom the app. This also requires internet connection. In the online portal, results and attendance can be uploaded from there.
+            </li>
+    
+            <li id="add_arm">
+              <h3>Add Arm</h3>
+              This makes provision for adding more class arms as desired.
+            </li>
+    
+            <li id="edit_subjects">
+              <h3>Edit Subjects</h3>
+              Here, Subjects can be deleted and added as desired. a form is provided for adding new subjects and the subject type.
+              The type as used here relates to the set of students offering the subjects e.g general - for all students in the class, science - for science students only, etc.
+              The class is chosen and the subjects offered by the class is displayed with buttons for deleting the subjects beside each subject. A confirmation dialog box is displayed before any 
+              subject is deleted. 
+            </li>
+    
+            <li id="update_license">
+              <h3>Update License</h3>
+              The license for the software shall be updated using this page. The only field required here is the license key gotten from the software administrator.
+              This key should be copied and pasted on the textbox provided after which the update button is clicked. Once a valid license key is provided, the software will be updated accordingly
+              and made ready once again for use.
+            </li>
+    
+          </ol>
+        </li>
+    
+        <li id="fees_portal">
+          <h2>Fees Portal</h2>
+    
+          <ol style="list-style:lower-alpha">
+            <li id="setup_fees">
+              <h3>Setup Fees</h3>
+              In this page, fees for the current session and term for the various classes are setup.
+              This should be done before the creation of the fees table.
+            </li>
+            
+            <li id="create_fees_table">
+              <h3>Create Fees Table</h3>
+              Used for creating fees record table.
+            </li>
+            
+            <li id="record_fees">
+              <h3>Record Fees</h3>
+              Fees paid by students for the current term is recorded using this page. Accurate details should be provided as per the teller number and amount paid.
+              After the payment of the fees, the software automatically produces a reciept of fees payment recieved. This receipt can, of course, be printed and given to the student or the parent/guardian. 
+              Worthy of note is the fact that fees payment made are automatically recorded as sales by the software.
+            </li>
+            
+            <li id="view_fees_record">
+              <h3>View Fees Record</h3>
+              Fees paid by students for the current term can be viewed here. Also displayed together with this record is the debts owed by the students throughot his/her stay in the school.
+              <br/> It will be useful to view the amount owed by each student before proceeding to record the fees payed. Also, the record of the debts of the student can be viewed
+               and parents/guardain notified accordingly. 
+            </li>
+            
+            <li id="show_fees_debtors">
+              <h3>Show Debtors</h3>
+              A comprehensive list of all students indebted to the school is shown here. The record is an historical one as it shows the fees owed by students since their admission into the school.
+            </li>
+            
+          </ol>
+        </li>
+    
+        <li id="sales_portal">
+          <h2>Sales Portal</h2>
+    
+          <ol style="list-style:lower-alpha">
+            <li id="record_sales">
+              <h3>Record Sales</h3>
+              Used to record sales made. The app is designed such that items can be sold and by school and such sales managed by the app appropriately.
+              It should be noted that school fees payment made are automatically recorded by the portal as income in the sales record.
+              A receipt is issued at the end of every sales and can be printed.
+            </li>
+    
+            <li id="view_sales_record">
+              <h3>View Sales Record</h3>
+              Record of sales made can be viewed using this portal. The record is displayed for the chosen session and month.
+              The displayed record can be printed or exported in excel-format for viewing in microsoft excel.
+            </li>
+    
+            <li id="record_expenses">
+              <h3>Record Expenses</h3>
+              Expenses made by the school can be recorded and managed accordingly using this portal. 
+            </li>
+    
+            <li id="view_expense_record">
+              <h3>View Expense Record</h3>
+              Records of expenses recorded can be viewed on a per session per month basis. That is, for a selected session and month, the record of expense made is displayed.
+              Salary payment should be recorded as an expense.
+              Provision has been made to print this record or export to microsoft excel spreadsheet. 
+            </li>
+    
+            <li id="load_products">
+              <h3>Load Products</h3>
+              Products sold by the school can be recorded here. This makes for proper management of the items by the portal as the stocks can be queried to know the quantity 
+              left at any given time. This helps to alert for restocking as at when due.
+            </li>
+    
+            <li id="show_sales_debtors">
+              <h3>Show Debtors</h3>
+              A list of debtors is displayed here and provision made for paying their debts.
+            </li>
+    
+            <li id="view_summary_record">
+              <h3>View Summary Record</h3>
+              A comprenhensive account of sales and expenses made per session cna be viewed here. This makes provision for knowing when a profit is made or when the school is running at a loss.
+            </li>
+    
+            <li id="view_stocks">
+              <h3>View Stocks</h3>
+              Products available in the store can be viewed from this portal. THis helps the school to know when a product is no longer available and should be restocked.
+            </li>
+    
+          </ol>
+        </li>
+    
+      </ol>
+    </div>
+  </div>
+</body>
