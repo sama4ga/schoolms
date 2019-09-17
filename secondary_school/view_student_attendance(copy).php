@@ -369,7 +369,7 @@ function cal_day_of_week($day_of_week){
 
         echo "  <td style='font-weight:bold;'>".$no_of_times_present[$x]."</td>
                 <td style='font-weight:bold;'>".$no_of_times_absent[$x]."</td>
-                <td style='font-weight:bold;'>".$percent_present[$x]."%</td>        
+                <td style='font-weight:bold;'>".number_format($percent_present[$x],1)."%</td>        
               </tr>";
       } 
 
@@ -470,7 +470,7 @@ function cal_day_of_week($day_of_week){
     </tr>
 
     <tr>
-      <td>PDH</td>
+      <td>PHD</td>
       <td>Public Holiday</td>
     </tr>
 

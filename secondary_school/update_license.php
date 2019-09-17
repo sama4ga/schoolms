@@ -6,7 +6,7 @@ require "encrypt_decrypt.php";
   
 
 
-  /* $cleared = "false";
+  $cleared = "false";
   $result = $con->query("SELECT * FROM `school_info`");
   if ($result) {
     if ($result->num_rows > 0) {
@@ -17,24 +17,24 @@ require "encrypt_decrypt.php";
 
       
     }
-  } */
+  }
 
 
   // decrypt licence key
   
 
   /* $key = random_bytes(SODIUM_CRYPTO_SECRETBOX_KEYBYTES);
-  $message = "2019/09/06";
+  $message = "2020/09/06";
   $ciphertext = safeEncrypt($message,$key);
   $plaintext = safeDecrypt($ciphertext,$key);
 
   var_dump($ciphertext);
-  var_dump($plaintext); */
+  var_dump($plaintext);*/
 
 
 
- /* $message = "2019/09/06";
- var_dump(fnDecrypt("2ae75961098fe2fbf207025ebb75dc87:cd564ca932e66eb672a50229bb293c40:bc952a03efeef3b11aee7d6256930769bba9d1f7cc4bd5ce26aa011f4afe6b21"));
+/*  $message = "2020/09/06";
+ var_dump(fnEncrypt($message));
  */
 
  /* include_once("hashing_algorithm.php");
@@ -52,6 +52,8 @@ require "encrypt_decrypt.php";
     
     if ($result) {
       echo "<div>License successfully updated.</div>";
+     #  header("location:index.php");
+     echo "<a href='index.php' class='btn btn-md btn-success'>Click here to continue using the software</a>";
       exit();
     }else {
       //throw new Exception("Error Processing Request ".$con->error, 1);
