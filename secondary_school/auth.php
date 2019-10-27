@@ -1,9 +1,5 @@
 <?php
-if (session_status() == 1 ) {
-	session_start(); // 1=not running     2=running    
-}
-require_once("connect.php");
-
+session_start();
 ini_set('display_errors', 0);
 
 $username = 'Guest';
@@ -13,7 +9,7 @@ $auth= 'false';
 	//if(isset($_COOKIE['user']) && isset($_SESSION['priviledge']))
 	if(isset($_SESSION['user_id']) && isset($_SESSION['priviledge']))
 		{
-			
+
 			//$staff_id = $_COOKIE["user"];
 			$staff_id = $_SESSION["user_id"];
 			//$auth = "true";
@@ -33,14 +29,9 @@ $auth= 'false';
 									$priviledge = strtolower($row['priviledge']);
 									
 								}
-						//echo $priviledge;	
 							
-					}/* else{
-						echo "No user found";
-					} */
-		}else {
-			header("location:login.php");
-   		exit();
+							
+					}
 		}
 
 
