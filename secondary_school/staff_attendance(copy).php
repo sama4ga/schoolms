@@ -1,7 +1,11 @@
 <?php
+include_once("auth.php");
 
-// atendance by marking
-session_start();
+// attendance by marking
+if ($priviledge !== "admin") {
+  header("location:forbidden.php");
+   exit();
+}
 ini_set("TIME_ZONE","AFRICA/LAGOS");
 include_once("connect.php");
 include_once("head.php");

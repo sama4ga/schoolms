@@ -26,13 +26,14 @@
 			// execute the request
 			$response = curl_exec($ch);
 			//print($response);
-			if ($response == "done") {						
-				return "Attendance has been successfully uploaded<br/>";
-			}else {
-				return "There was an error uploading attendance ".$response."<br/>";
-			}
+			return $response;
+
+			
 
 		}
+
+
+
 
 
 		$msg = array();
@@ -43,7 +44,7 @@
 		$upas='';
 		
 		
-		echo "<div>Result upload in progress.<br/>Please wait....</div>";
+		echo "<div>Attendance upload in progress.<br/>Please wait....</div>";
 		
 		/* $upas= exo_get_protstring("str2");
 	$uname= exo_get_protstring("str1");
@@ -89,9 +90,11 @@
 
 			}else {
 				echo "No attendance sheet found for $term term $session academic session .<br/> ";
+				exit();
 			}
 		}else {
 			echo "Attendance have not been prepared for $term term $session academic session ".$con->error;
+			exit();
 		}
 
 		
@@ -103,14 +106,34 @@
 		//$dir = __DIR__."/dump/attendance/atd.sql";
 		
 		//$file_to_upload = "";
-		$url = "localhost/samaservices/samaservices/dmc/backup_result.php";
+		$url = "localhost/samaservices/samaservices_new/secondary/ijins/upload_attendance.php";
+		
+		$file_to_upload = "";
 		for ($i=0; $i < count($file); $i++) {
+
+			$file_to_upload .= "\"".$file[$i]."\" ";
+			
+		}
+
+		$dir = __DIR__."/dump/attendance/attendance".date("ymdhis").".sql";
+		$res=system("mysqldump -u root $dbname $file_to_upload > \"$dir\"");
+		//$file_to_upload .= "'".$file[$i]."'"." ";
+		$status = send_file($dir,$url,"attendance");
+		if ($status == "done") {						
+			echo "Attendance has been successfully uploaded<br/>";
+		}else {
+			echo $status."<br/>";
+		}
+
+
+
+		/* for ($i=0; $i < count($file); $i++) {
 			// send result
 			$dir = __DIR__."/dump/attendance/$file[$i].sql";
 			$res=system("mysqldump -u root $dbname \"$file[$i]\" > \"$dir\"");
 			//$file_to_upload .= "'".$file[$i]."'"." ";
 			echo send_file($dir,$url,"attendance");
-		}
+		} */
 //echo $file_to_upload;exit();
 
 		
@@ -121,14 +144,14 @@
 
 
 		// delete old backup files
-		/* if ($res == "") {
+		if ($res == "") {
 			
 			for ($i=2; $i < count($old_dump_files); $i++) {				
 				unlink("dump/attendance/".$old_dump_files[$i]);  
 			}
 
 
-		}	 */
+		}	
 		
 		
 

@@ -4,7 +4,7 @@
   <pos value='vp_admin'>Vice Principal Administration</pos>
   <pos value='vp_acad'>Vice Principal Academic</pos>
   <pos value='bursar'>Bursar</pos>
-  <pos value='cashier'>Cashier</pos>
+  <pos value='account'>Cashier</pos>
   <pos value='boarding_master'>Boarding Master</pos>
   <pos value='boarding_mistress'>Boarding Mistress</pos>
   <pos value='secretary'>Secretary</pos>

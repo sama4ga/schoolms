@@ -53,7 +53,8 @@ if ($result) {
 
     $female = $x - $male;
 
-    echo "<h2 align='center'>Showing List of Students</h2><p>
+    echo "<div style='margin-bottom:25px;'>
+          <h2 align='center'>Showing List of Students</h2><p>
           <div style='margin-bottom:30px;'>
             <div>Class: <b style='color:red;'>".strtoupper($_class)."</b></div>
             <div>Total in Class: <b style='color:red;'>".$x."</b></div>
@@ -100,7 +101,8 @@ if ($result) {
     echo "  </tbody>
           </table>
           
-          <a href='back.php' class='btn btn-warning form-control'>Back</a>";
+          <a href='back.php' class='btn btn-warning form-control'>Back</a>
+        </div>";
   }else{
     echo "<div>No student found in the database</div>";
   }

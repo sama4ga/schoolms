@@ -257,7 +257,7 @@ if ($result) {
 
 ?>
 
-<div class="container">
+<div class="container"  style="margin-bottom:25px;">
   <h3>Edit Student Data Portal</h3>
   <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])."?id=$std_id&former_class=$class&former_arm=$arm&std_reg_no=$student_reg_no"; ?>" enctype="multipart/form-data">
   

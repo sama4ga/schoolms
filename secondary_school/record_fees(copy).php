@@ -1,4 +1,9 @@
 <?php
+include_once("auth.php");
+if ($priviledge !== "bursar" || $priviledge !== "admin") {
+  header("location:forbidden.php");
+   exit();
+}
 include_once("head.php");
 require_once("connect.php");
 

@@ -1,7 +1,7 @@
 <?php
 require_once("connect.php");
 
-$data=$_GET['regno'];
+$data=mysqli_real_escape_string($con,$_GET['regno']);
 
 $result=$con->query("SELECT * FROM `student` WHERE `student_reg_no` = '$data' ");
 

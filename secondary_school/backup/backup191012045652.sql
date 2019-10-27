@@ -26,7 +26,7 @@ CREATE TABLE `arm` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `arm` varchar(5) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,28 +40,29 @@ INSERT INTO `arm` VALUES (1,'a'),(2,'b'),(3,'c');
 UNLOCK TABLES;
 
 --
--- Table structure for table `atd_student_2018_2019_second_jss 1_a`
+-- Table structure for table `atd_staff_2019_2020_first`
 --
 
-DROP TABLE IF EXISTS `atd_student_2018_2019_second_jss 1_a`;
+DROP TABLE IF EXISTS `atd_staff_2019_2020_first`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `atd_student_2018_2019_second_jss 1_a` (
-  `dd` date NOT NULL,
-  `1` varchar(2) NOT NULL DEFAULT '0',
-  `2` varchar(2) NOT NULL DEFAULT '0',
-  `3` varchar(2) NOT NULL DEFAULT '0',
-  UNIQUE KEY `dd` (`dd`)
+CREATE TABLE `atd_staff_2019_2020_first` (
+  `date` date NOT NULL,
+  `2` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `3` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `4` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  UNIQUE KEY `date` (`date`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `atd_student_2018_2019_second_jss 1_a`
+-- Dumping data for table `atd_staff_2019_2020_first`
 --
 
-LOCK TABLES `atd_student_2018_2019_second_jss 1_a` WRITE;
-/*!40000 ALTER TABLE `atd_student_2018_2019_second_jss 1_a` DISABLE KEYS */;
-/*!40000 ALTER TABLE `atd_student_2018_2019_second_jss 1_a` ENABLE KEYS */;
+LOCK TABLES `atd_staff_2019_2020_first` WRITE;
+/*!40000 ALTER TABLE `atd_staff_2019_2020_first` DISABLE KEYS */;
+INSERT INTO `atd_staff_2019_2020_first` VALUES ('2019-05-06','2019-05-06 20:37:46','0000-00-00 00:00:00','0000-00-00 00:00:00'),('2019-05-07','2019-05-10 15:38:36','2019-05-07 06:00:00','2019-05-07 06:00:00'),('2019-05-08','2019-05-10 15:39:07','2019-05-08 06:06:00','2019-05-08 06:08:00'),('2019-05-09','2019-05-10 15:39:32','2019-05-09 06:05:00','2019-05-09 06:10:00'),('2019-05-10','2019-05-10 15:38:07','2019-05-10 06:00:00','2019-05-10 06:00:00');
+/*!40000 ALTER TABLE `atd_staff_2019_2020_first` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -73,6 +74,8 @@ DROP TABLE IF EXISTS `atd_student_2019_2020_first_jss 1_a`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `atd_student_2019_2020_first_jss 1_a` (
   `dd` date NOT NULL,
+  `1` varchar(3) NOT NULL DEFAULT '0',
+  `2` varchar(2) NOT NULL DEFAULT '0',
   UNIQUE KEY `dd` (`dd`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -83,34 +86,35 @@ CREATE TABLE `atd_student_2019_2020_first_jss 1_a` (
 
 LOCK TABLES `atd_student_2019_2020_first_jss 1_a` WRITE;
 /*!40000 ALTER TABLE `atd_student_2019_2020_first_jss 1_a` DISABLE KEYS */;
+INSERT INTO `atd_student_2019_2020_first_jss 1_a` VALUES ('2019-05-06','1','1'),('2019-05-07','1','1');
 /*!40000 ALTER TABLE `atd_student_2019_2020_first_jss 1_a` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `atd_student_2019_2020_first_jss 2_a`
+-- Table structure for table `atd_student_2019_2020_second_jss 1_a`
 --
 
-DROP TABLE IF EXISTS `atd_student_2019_2020_first_jss 2_a`;
+DROP TABLE IF EXISTS `atd_student_2019_2020_second_jss 1_a`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `atd_student_2019_2020_first_jss 2_a` (
+CREATE TABLE `atd_student_2019_2020_second_jss 1_a` (
   `dd` date NOT NULL,
   `1` varchar(3) NOT NULL DEFAULT '0',
   `2` varchar(3) NOT NULL DEFAULT '0',
   `3` varchar(3) NOT NULL DEFAULT '0',
-  `4` varchar(2) NOT NULL DEFAULT '0',
+  `4` varchar(3) NOT NULL DEFAULT '0',
   UNIQUE KEY `dd` (`dd`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `atd_student_2019_2020_first_jss 2_a`
+-- Dumping data for table `atd_student_2019_2020_second_jss 1_a`
 --
 
-LOCK TABLES `atd_student_2019_2020_first_jss 2_a` WRITE;
-/*!40000 ALTER TABLE `atd_student_2019_2020_first_jss 2_a` DISABLE KEYS */;
-INSERT INTO `atd_student_2019_2020_first_jss 2_a` VALUES ('2019-01-07','1','1','1','0'),('2019-01-08','1','0','1','0'),('2019-01-09','1','1','1','0'),('2019-03-04','1','1','1','0'),('2019-03-05','1','1','1','0'),('2019-03-06','PHD','PHD','PHD','0'),('2019-03-07','MTB','MTB','MTB','0'),('2019-03-08','MTB','MTB','MTB','0'),('2019-03-11','1','1','0','0'),('2019-03-12','1','0','1','0'),('2019-03-13','1','1','1','0'),('2019-03-14','1','1','1','0'),('2019-03-15','1','1','1','0');
-/*!40000 ALTER TABLE `atd_student_2019_2020_first_jss 2_a` ENABLE KEYS */;
+LOCK TABLES `atd_student_2019_2020_second_jss 1_a` WRITE;
+/*!40000 ALTER TABLE `atd_student_2019_2020_second_jss 1_a` DISABLE KEYS */;
+INSERT INTO `atd_student_2019_2020_second_jss 1_a` VALUES ('2019-05-06','1','1','1','1'),('2019-05-07','1','1','1','1'),('2019-05-08','1','1','1','0'),('2019-05-09','1','1','1','1'),('2019-05-10','1','1','1','1'),('2019-05-13','0','1','1','1'),('2019-05-14','1','1','1','1'),('2019-05-15','1','1','1','1'),('2019-05-16','1','1','1','1'),('2019-05-17','1','1','1','1'),('2019-05-20','1','1','1','1'),('2019-05-21','1','1','1','1'),('2019-05-22','1','1','1','1'),('2019-05-23','1','1','1','1'),('2019-05-24','1','1','1','1'),('2019-05-27','PHD','PHD','PHD','PHD'),('2019-05-28','1','0','1','1'),('2019-05-29','1','1','0','1'),('2019-05-30','1','0','1','0'),('2019-05-31','1','1','1','1'),('2019-06-03','1','1','1','1'),('2019-06-04','1','1','1','1'),('2019-06-05','1','1','1','1'),('2019-06-06','1','1','1','1'),('2019-06-07','1','1','1','1'),('2019-06-10','1','1','1','1'),('2019-06-11','1','1','1','1'),('2019-06-12','PHD','PHD','PHD','PHD'),('2019-06-13','1','1','1','1'),('2019-06-14','1','1','1','1'),('2019-06-17','1','1','1','1'),('2019-06-18','1','1','0','1'),('2019-06-19','1','1','1','1'),('2019-06-20','1','1','1','1'),('2019-06-21','1','1','1','1'),('2019-06-24','1','1','1','1'),('2019-06-25','1','1','1','1'),('2019-06-26','1','1','1','1'),('2019-06-27','MTB','MTB','MTB','MTB'),('2019-06-28','MTB','MTB','MTB','MTB'),('2019-07-01','1','1','1','1'),('2019-07-02','1','1','1','1'),('2019-07-03','1','1','1','1'),('2019-07-04','1','1','1','1'),('2019-07-05','1','1','1','1'),('2019-07-08','1','1','1','0'),('2019-07-09','0','0','1','1'),('2019-07-10','1','0','1','1'),('2019-07-11','1','1','0','1'),('2019-07-12','1','1','1','0'),('2019-07-15','1','1','1','0'),('2019-07-16','1','1','1','1'),('2019-07-17','1','1','1','1'),('2019-07-18','1','1','1','1'),('2019-07-19','1','1','1','1');
+/*!40000 ALTER TABLE `atd_student_2019_2020_second_jss 1_a` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -165,18 +169,18 @@ CREATE TABLE `existing_result_sheets` (
 
 LOCK TABLES `existing_result_sheets` WRITE;
 /*!40000 ALTER TABLE `existing_result_sheets` DISABLE KEYS */;
-INSERT INTO `existing_result_sheets` VALUES ('res_id_2018_2019_first_jss 1_a','jss 1','first','2018_2019','a','0000-00-00','0000-00-00','0000-00-00','0000-00-00','',''),('res_id_2018_2019_second_jss 1_a','jss 1','second','2018_2019','a','0000-00-00','0000-00-00','0000-00-00','0000-00-00','',''),('res_id_2018_2019_third_jss 1_a','jss 1','third','2018_2019','a','2019-05-06','2019-07-26','2019-09-09','2019-12-13','','');
+INSERT INTO `existing_result_sheets` VALUES ('res_id_2019_2020_first_jss 1_a','jss 1','first','2019_2020','a','2019-09-16','2019-12-20','2020-01-13','2020-04-10','0',''),('res_id_2019_2020_second_jss 1_a','jss 1','second','2019_2020','a','2019-05-06','2019-07-26','2019-07-26','2019-07-26','0','');
 /*!40000 ALTER TABLE `existing_result_sheets` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `expenses_2019_2020_feb`
+-- Table structure for table `expenses_2019_2020_may`
 --
 
-DROP TABLE IF EXISTS `expenses_2019_2020_feb`;
+DROP TABLE IF EXISTS `expenses_2019_2020_may`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `expenses_2019_2020_feb` (
+CREATE TABLE `expenses_2019_2020_may` (
   `expense_id` int(11) NOT NULL AUTO_INCREMENT,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `description` varchar(200) NOT NULL,
@@ -186,16 +190,17 @@ CREATE TABLE `expenses_2019_2020_feb` (
   `amount_paid` int(11) NOT NULL,
   `balance` int(11) NOT NULL,
   PRIMARY KEY (`expense_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `expenses_2019_2020_feb`
+-- Dumping data for table `expenses_2019_2020_may`
 --
 
-LOCK TABLES `expenses_2019_2020_feb` WRITE;
-/*!40000 ALTER TABLE `expenses_2019_2020_feb` DISABLE KEYS */;
-/*!40000 ALTER TABLE `expenses_2019_2020_feb` ENABLE KEYS */;
+LOCK TABLES `expenses_2019_2020_may` WRITE;
+/*!40000 ALTER TABLE `expenses_2019_2020_may` DISABLE KEYS */;
+INSERT INTO `expenses_2019_2020_may` VALUES (1,'0000-00-00 00:00:00','Bought White Board Markers','',12,1000,0,0),(2,'2019-05-05 23:00:00','Bought White Board markers','Local store',12,1200,1200,0);
+/*!40000 ALTER TABLE `expenses_2019_2020_may` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -225,18 +230,18 @@ CREATE TABLE `fees` (
 
 LOCK TABLES `fees` WRITE;
 /*!40000 ALTER TABLE `fees` DISABLE KEYS */;
-INSERT INTO `fees` VALUES (1,20000,20000,20000,20000,20000,20000,'first','2018/2019'),(2,20000,20000,20000,20000,20000,20000,'first','2019/2020');
+INSERT INTO `fees` VALUES (1,20000,20000,20000,20000,20000,20000,'first','2019/2020'),(2,20000,20000,20000,20000,20000,20000,'second','2019/2020');
 /*!40000 ALTER TABLE `fees` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `fees_2018_2019`
+-- Table structure for table `fees_2019_2020_first`
 --
 
-DROP TABLE IF EXISTS `fees_2018_2019`;
+DROP TABLE IF EXISTS `fees_2019_2020_first`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `fees_2018_2019` (
+CREATE TABLE `fees_2019_2020_first` (
   `fees_id` int(10) NOT NULL AUTO_INCREMENT,
   `std_id` int(10) NOT NULL,
   `surname` varchar(250) NOT NULL,
@@ -257,23 +262,23 @@ CREATE TABLE `fees_2018_2019` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `fees_2018_2019`
+-- Dumping data for table `fees_2019_2020_first`
 --
 
-LOCK TABLES `fees_2018_2019` WRITE;
-/*!40000 ALTER TABLE `fees_2018_2019` DISABLE KEYS */;
-INSERT INTO `fees_2018_2019` VALUES (1,1,'Ojuola','Samuel Kehinde','JSS 2','A','first','20000','20000','10000','10000','5145756465JU','Access  Bank','2019-02-21','2019-02-20 23:34:18'),(2,2,'Anthony','Kehinde Ayo','JSS 2','A','first','20000','20000','15000','5000','EF56784','Keystone Bank','2019-03-22','2019-03-23 19:23:07');
-/*!40000 ALTER TABLE `fees_2018_2019` ENABLE KEYS */;
+LOCK TABLES `fees_2019_2020_first` WRITE;
+/*!40000 ALTER TABLE `fees_2019_2020_first` DISABLE KEYS */;
+INSERT INTO `fees_2019_2020_first` VALUES (1,1,'Afiakinye','Maurice Oscar','JSS 1','A','','','','15000','','5145756465RJP','First Bank Nig. Plc.','2019-05-06','2019-05-06 22:06:20'),(2,1,'Afiakinye','Maurice Oscar','JSS 1','A','','','','5000','','5145756465RJP','Keystone Bank','2019-05-21','2019-05-21 16:21:58');
+/*!40000 ALTER TABLE `fees_2019_2020_first` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `fees_2019_2020`
+-- Table structure for table `fees_2019_2020_second`
 --
 
-DROP TABLE IF EXISTS `fees_2019_2020`;
+DROP TABLE IF EXISTS `fees_2019_2020_second`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `fees_2019_2020` (
+CREATE TABLE `fees_2019_2020_second` (
   `fees_id` int(10) NOT NULL AUTO_INCREMENT,
   `std_id` int(10) NOT NULL,
   `surname` varchar(250) NOT NULL,
@@ -294,23 +299,23 @@ CREATE TABLE `fees_2019_2020` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `fees_2019_2020`
+-- Dumping data for table `fees_2019_2020_second`
 --
 
-LOCK TABLES `fees_2019_2020` WRITE;
-/*!40000 ALTER TABLE `fees_2019_2020` DISABLE KEYS */;
-INSERT INTO `fees_2019_2020` VALUES (1,1,'Ojuola','Samuel Kehinde','JSS 2','A','first','20000','20000','1000','19000','5145756465JU','Access  Bank','2019-02-21','2019-02-21 00:59:09'),(2,1,'Ojuola','Samuel Kehinde','JSS 2','A','first','20000','20000','19000','0','5145756465RJP','Access  Bank','2019-02-21','2019-02-21 01:00:06');
-/*!40000 ALTER TABLE `fees_2019_2020` ENABLE KEYS */;
+LOCK TABLES `fees_2019_2020_second` WRITE;
+/*!40000 ALTER TABLE `fees_2019_2020_second` DISABLE KEYS */;
+INSERT INTO `fees_2019_2020_second` VALUES (1,4,'Asuquo','Jeremiah Augustine','JSS 1','A','','','','20000','','2541587hu','Keystone Bank','2019-05-21','2019-05-21 16:13:36'),(2,1,'Afiakinye','Maurice Oscar','JSS 1','A','','','','20000','','5145756465RJO','Keystone Bank','2019-05-21','2019-05-21 16:22:46');
+/*!40000 ALTER TABLE `fees_2019_2020_second` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `fees_debtors_2018_2019`
+-- Table structure for table `fees_debtors`
 --
 
-DROP TABLE IF EXISTS `fees_debtors_2018_2019`;
+DROP TABLE IF EXISTS `fees_debtors`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `fees_debtors_2018_2019` (
+CREATE TABLE `fees_debtors` (
   `fees_id` int(10) NOT NULL AUTO_INCREMENT,
   `std_id` int(10) NOT NULL,
   `surname` varchar(250) NOT NULL,
@@ -318,53 +323,22 @@ CREATE TABLE `fees_debtors_2018_2019` (
   `class` varchar(6) NOT NULL,
   `arm` varchar(2) NOT NULL,
   `term` varchar(10) NOT NULL,
+  `session` varchar(10) NOT NULL,
   `fees` varchar(6) NOT NULL,
-  `amount_due` varchar(6) NOT NULL,
+  `amount_paid` varchar(6) NOT NULL,
   `balance` varchar(6) NOT NULL,
   PRIMARY KEY (`fees_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `fees_debtors_2018_2019`
+-- Dumping data for table `fees_debtors`
 --
 
-LOCK TABLES `fees_debtors_2018_2019` WRITE;
-/*!40000 ALTER TABLE `fees_debtors_2018_2019` DISABLE KEYS */;
-INSERT INTO `fees_debtors_2018_2019` VALUES (1,1,'Ojuola','Samuel Kehinde','jss 1','a','third','','',''),(2,2,'Anthony','Kehinde Ayo','jss 1','a','third','','',''),(3,3,'Oluwole','Taiwo Bami','jss 1','a','third','','',''),(4,1,'Ojuola','Samuel Kehinde','jss 1','a','third','','',''),(5,2,'Anthony','Kehinde Ayo','jss 1','a','third','','',''),(6,3,'Oluwole','Taiwo Bami','jss 1','a','third','','','');
-/*!40000 ALTER TABLE `fees_debtors_2018_2019` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `fees_debtors_2019_2020`
---
-
-DROP TABLE IF EXISTS `fees_debtors_2019_2020`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `fees_debtors_2019_2020` (
-  `fees_id` int(10) NOT NULL AUTO_INCREMENT,
-  `std_id` int(10) NOT NULL,
-  `surname` varchar(250) NOT NULL,
-  `othernames` varchar(400) NOT NULL,
-  `class` varchar(6) NOT NULL,
-  `arm` varchar(2) NOT NULL,
-  `term` varchar(10) NOT NULL,
-  `fees` varchar(6) NOT NULL,
-  `amount_due` varchar(6) NOT NULL,
-  `balance` varchar(6) NOT NULL,
-  PRIMARY KEY (`fees_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `fees_debtors_2019_2020`
---
-
-LOCK TABLES `fees_debtors_2019_2020` WRITE;
-/*!40000 ALTER TABLE `fees_debtors_2019_2020` DISABLE KEYS */;
-INSERT INTO `fees_debtors_2019_2020` VALUES (16,1,'Ojuola','Samuel Kehinde','jss 2','a','first','20000','20000','0'),(17,2,'Anthony','Kehinde Ayo','jss 2','a','first','20000','20000','20000'),(18,3,'Oluwole','Taiwo Bami','jss 2','a','first','20000','20000','20000');
-/*!40000 ALTER TABLE `fees_debtors_2019_2020` ENABLE KEYS */;
+LOCK TABLES `fees_debtors` WRITE;
+/*!40000 ALTER TABLE `fees_debtors` DISABLE KEYS */;
+INSERT INTO `fees_debtors` VALUES (2,2,'Oluwole','Taiwo Bami','jss 1','a','first','2019/2020','20000','0','20000'),(4,2,'Oluwole','Taiwo Bami','jss 1','a','second','2019/2020','20000','0','20000'),(5,3,'Asuquo','Janelle Augustine','jss 1','a','second','2019/2020','20000','0','20000');
+/*!40000 ALTER TABLE `fees_debtors` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -466,7 +440,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (1,'New General Mathematics For Senior Secondary Schools 3',15,1700,1700,0);
+INSERT INTO `products` VALUES (1,'White Board Marker',4,110,110,0);
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -493,13 +467,13 @@ INSERT INTO `psychomotor` VALUES ('LEGIBILITY'),('DEXTERITY'),('DRAWING AND PAIN
 UNLOCK TABLES;
 
 --
--- Table structure for table `res_id_2018_2019_first_jss 1_a`
+-- Table structure for table `res_id_2019_2020_first_jss 1_a`
 --
 
-DROP TABLE IF EXISTS `res_id_2018_2019_first_jss 1_a`;
+DROP TABLE IF EXISTS `res_id_2019_2020_first_jss 1_a`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `res_id_2018_2019_first_jss 1_a` (
+CREATE TABLE `res_id_2019_2020_first_jss 1_a` (
   `std_id` int(10) NOT NULL,
   `surname` varchar(250) NOT NULL,
   `othernames` varchar(400) NOT NULL,
@@ -690,27 +664,27 @@ CREATE TABLE `res_id_2018_2019_first_jss 1_a` (
   `status` varchar(10) NOT NULL,
   PRIMARY KEY (`uid`),
   UNIQUE KEY `std_id` (`std_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `res_id_2018_2019_first_jss 1_a`
+-- Dumping data for table `res_id_2019_2020_first_jss 1_a`
 --
 
-LOCK TABLES `res_id_2018_2019_first_jss 1_a` WRITE;
-/*!40000 ALTER TABLE `res_id_2018_2019_first_jss 1_a` DISABLE KEYS */;
-INSERT INTO `res_id_2018_2019_first_jss 1_a` VALUES (1,'Ojuola','Samuel Kehinde','',7,5,8,7,49,76,25.3,'2nd','',5,8,8,8,57,86,28.7,'3rd','',6,8,4,5,46,69,23,'3rd','',0,5,4,6,47,62,20.7,'3rd','',7,5,4,6,53,75,25,'3rd','',6,5,8,7,58,84,28,'3rd','',5,4,1,2,25,37,12.3,'3rd','',1,5,4,2,50,62,20.7,'3rd','',6,8,9,9,58,90,30,'3rd','',1,5,4,2,55,67,22.3,'3rd','',6,7,5,2,36,56,18.7,'3rd','',5,4,6,7,45,67,22.3,'3rd','',6,2,4,5,50,67,22.3,'3rd','',5,7,4,6,42,64,21.3,'3rd','',5,8,8,8,59,88,29.3,'3rd','',5,8,7,8,55,83,27.7,'3rd','',5,2,3,6,49,65,21.7,'3rd','A','B','A','C','D','C','B','C','E','E','D','E','D','D','E','E','D','B','A','A','C',1198,'2nd',70.5,23.5,'9',1,'09035451968','student1/54756','data/passport/student 81675.jpg',0,'fail'),(2,'Anthony','Kehinde Ayo','',5,5,8,7,49,74,24.7,'3rd','',5,8,8,8,57,86,28.7,'2nd','',6,8,4,5,46,69,23,'2nd','',0,5,4,6,47,62,20.7,'2nd','',7,5,4,6,53,75,25,'2nd','',6,5,8,7,58,84,28,'2nd','',5,4,1,2,25,37,12.3,'2nd','',1,5,4,2,50,62,20.7,'2nd','',6,8,9,9,58,90,30,'2nd','',1,5,4,2,55,67,22.3,'2nd','',6,7,5,2,36,56,18.7,'2nd','',5,4,6,7,45,67,22.3,'2nd','',6,2,4,5,50,67,22.3,'2nd','',5,7,4,6,42,64,21.3,'2nd','',5,8,8,8,59,88,29.3,'2nd','',5,8,7,8,55,83,27.7,'2nd','',5,2,3,6,49,65,21.7,'2nd','E','D','C','D','C','B','A','B','C','B','C','D','B','D','C','E','C','D','C','B','C',1196,'3rd',70.4,46.9,'25',2,'07060605782','student2/93216','data/passport/student 93031.jpg',0,'fail'),(3,'Oluwole','Taiwo Bami','',7,5,8,7,49,76,25.3,'1st','',5,8,8,8,57,86,28.7,'1st','',6,8,4,5,46,69,23,'1st','',0,5,4,6,47,62,20.7,'1st','',7,5,4,6,53,75,25,'1st','',6,5,8,7,58,84,28,'1st','',5,4,1,2,25,37,12.3,'1st','',1,5,4,2,50,62,20.7,'1st','',6,8,9,9,58,90,30,'1st','',1,5,4,2,55,67,22.3,'1st','',6,7,5,2,36,56,18.7,'1st','',5,4,6,7,45,67,22.3,'1st','',6,2,4,5,50,67,22.3,'1st','',5,7,4,6,42,64,21.3,'1st','',5,8,8,8,59,88,29.3,'1st','',5,8,7,8,55,83,27.7,'1st','',5,2,3,6,49,65,21.7,'1st','','','','','','','','','','','','','','','','','','','','','',1198,'1st',70.5,70.4,'21',3,'08022276110','student3/91875','data/passport/student3_91875.jpg',0,'fail');
-/*!40000 ALTER TABLE `res_id_2018_2019_first_jss 1_a` ENABLE KEYS */;
+LOCK TABLES `res_id_2019_2020_first_jss 1_a` WRITE;
+/*!40000 ALTER TABLE `res_id_2019_2020_first_jss 1_a` DISABLE KEYS */;
+INSERT INTO `res_id_2019_2020_first_jss 1_a` VALUES (1,'Afiakinye','Maurice Oscar','',6,6,7,8,58,85,85,'1st','mathematics',2,5,4,6,39,56,56,'1st','',5,4,6,5,39,59,59,'1st','',7,8,4,6,41,66,66,'1st','',5,7,8,8,49,77,77,'1st','',3,5,1,6,25,40,40,'1st','',5,4,7,8,50,74,74,'1st','',5,2,6,4,55,72,72,'1st','',5,4,6,3,35,53,53,'1st','',5,8,7,9,46,75,75,'1st','',2,5,4,7,48,66,66,'1st','',5,7,7,8,52,79,79,'1st','',6,3,4,8,57,78,78,'1st','',3,3,4,5,32,47,47,'1st','',2,5,8,6,49,70,70,'1st','',5,7,5,6,37,60,60,'1st','',6,3,5,8,46,68,68,'1st','A','B','A','B','C','D','C','A','B','C','B','A','C','B','A','B','B','B','A','A','B',1125,'1st',66.2,66.2,'13',1,'09035451968','student1/27717','data/passport/student1_27717.jpg',0,'pass'),(2,'Oluwole','Taiwo Bami','',0,0,0,0,0,0,0,'','mathematics',5,2,6,4,40,0,0,'','',0,0,0,0,0,0,0,'','',0,0,0,0,0,0,0,'','',0,0,0,0,0,0,0,'','',0,0,0,0,0,0,0,'','',0,0,0,0,0,0,0,'','',0,0,0,0,0,0,0,'','',0,0,0,0,0,0,0,'','',0,0,0,0,0,0,0,'','',0,0,0,0,0,0,0,'','',0,0,0,0,0,0,0,'','',0,0,0,0,0,0,0,'','',0,0,0,0,0,0,0,'','',0,0,0,0,0,0,0,'','',0,0,0,0,0,0,0,'','',0,0,0,0,0,0,0,'','A','A','C','B','E','D','C','E','A','A','D','A','B','B','B','C','B','A','A','A','A',0,'',0,0,'',2,'','','',0,'');
+/*!40000 ALTER TABLE `res_id_2019_2020_first_jss 1_a` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `res_id_2018_2019_second_jss 1_a`
+-- Table structure for table `res_id_2019_2020_second_jss 1_a`
 --
 
-DROP TABLE IF EXISTS `res_id_2018_2019_second_jss 1_a`;
+DROP TABLE IF EXISTS `res_id_2019_2020_second_jss 1_a`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `res_id_2018_2019_second_jss 1_a` (
+CREATE TABLE `res_id_2019_2020_second_jss 1_a` (
   `std_id` int(10) NOT NULL,
   `surname` varchar(250) NOT NULL,
   `othernames` varchar(400) NOT NULL,
@@ -901,289 +875,27 @@ CREATE TABLE `res_id_2018_2019_second_jss 1_a` (
   `status` varchar(10) NOT NULL,
   PRIMARY KEY (`uid`),
   UNIQUE KEY `std_id` (`std_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `res_id_2018_2019_second_jss 1_a`
+-- Dumping data for table `res_id_2019_2020_second_jss 1_a`
 --
 
-LOCK TABLES `res_id_2018_2019_second_jss 1_a` WRITE;
-/*!40000 ALTER TABLE `res_id_2018_2019_second_jss 1_a` DISABLE KEYS */;
-INSERT INTO `res_id_2018_2019_second_jss 1_a` VALUES (1,'Ojuola','Samuel Kehinde','applied',3,5,4,6,39,57,19,'3rd','applied',2,5,4,5,49,65,21.7,'3rd','applied',5,2,5,4,28,44,14.7,'3rd','applied',6,6,5,7,49,73,24.3,'3rd','applied',5,8,9,7,58,87,29,'3rd','applied',5,8,7,8,42,70,23.3,'3rd','applied',2,5,4,8,50,69,23,'3rd','applied',6,5,5,7,57,80,26.7,'3rd','applied',6,5,6,6,47,70,23.3,'3rd','applied',2,5,4,6,45,62,20.7,'3rd','applied',2,2,3,4,32,43,14.3,'3rd','applied',3,4,6,5,31,49,16.3,'3rd','applied',6,5,5,5,48,69,23,'3rd','applied',5,4,5,7,36,57,19,'3rd','applied',4,4,5,6,40,59,19.7,'3rd','applied',5,9,5,4,33,56,18.7,'3rd','applied',7,8,5,8,54,82,27.3,'3rd','','','','','','','','','','','','','','','','','','','','','',1092,'3rd',64.2,21.4,'9',1,'09035451968','student1/54756','data/passport/student 81675.jpg',0,'fail'),(3,'Oluwole','Taiwo Bami','applied',3,3,8,4,39,57,19,'2nd','applied',2,5,9,5,49,70,23.3,'2nd','applied',5,2,5,4,28,44,14.7,'2nd','applied',6,6,7,7,49,75,25,'2nd','applied',5,8,9,7,58,87,29,'2nd','applied',5,8,7,8,42,70,23.3,'2nd','applied',6,5,4,8,50,73,24.3,'2nd','applied',6,5,5,7,57,80,26.7,'2nd','applied',6,5,6,6,47,70,23.3,'2nd','applied',8,5,4,6,45,68,22.7,'2nd','applied',5,6,7,4,32,54,18,'2nd','applied',4,4,6,5,31,50,16.7,'2nd','applied',6,5,5,5,48,69,23,'2nd','applied',5,4,5,7,36,57,19,'2nd','applied',4,4,5,6,40,59,19.7,'2nd','applied',5,9,5,4,33,56,18.7,'2nd','applied',7,8,5,8,54,82,27.3,'2nd','','','','','','','','','','','','','','','','','','','','','',1121,'2nd',65.9,43.4,'21',5,'08022276110','student3/91875','data/passport/student3_91875.jpg',0,'fail'),(2,'Anthony','Kehinde Ayo','applied',3,5,8,6,39,61,20.3,'1st','applied',2,5,9,5,49,70,23.3,'1st','applied',5,2,5,4,28,44,14.7,'1st','applied',6,6,7,7,49,75,25,'1st','applied',5,8,9,7,58,87,29,'1st','applied',5,8,7,8,42,70,23.3,'1st','applied',6,5,4,8,50,73,24.3,'1st','applied',6,5,5,7,57,80,26.7,'1st','applied',6,5,6,6,47,70,23.3,'1st','applied',8,5,4,6,45,68,22.7,'1st','applied',5,6,7,4,32,54,18,'1st','applied',4,4,6,5,31,50,16.7,'1st','applied',6,5,5,5,48,69,23,'1st','applied',5,4,5,7,36,57,19,'1st','applied',4,4,5,6,40,59,19.7,'1st','applied',5,9,5,4,33,56,18.7,'1st','applied',7,8,5,8,54,82,27.3,'1st','','','','','','','','','','','','','','','','','','','','','',1125,'1st',66.2,65.5,'25',4,'07060605782','student2/93216','data/passport/student 93031.jpg',0,'fail');
-/*!40000 ALTER TABLE `res_id_2018_2019_second_jss 1_a` ENABLE KEYS */;
+LOCK TABLES `res_id_2019_2020_second_jss 1_a` WRITE;
+/*!40000 ALTER TABLE `res_id_2019_2020_second_jss 1_a` DISABLE KEYS */;
+INSERT INTO `res_id_2019_2020_second_jss 1_a` VALUES (1,'Afiakinye','Maurice Oscar','',5,6,4,7,39,61,68.5,'4th','',5,4,3,5,29,46,55.3,'4th','',7,5,6,5,42,65,61.3,'1st','',5,8,4,5,57,79,76.5,'2nd','',6,7,5,8,53,79,69.3,'2nd','',2,5,3,6,40,56,68,'4th','',8,5,4,8,55,80,75.8,'1st','',5,6,8,6,35,60,58,'3rd','',5,5,4,6,45,65,73,'3rd','',1,5,7,8,47,68,56.8,'2nd','',4,3,3,5,32,47,65.8,'4th','',5,4,2,6,38,55,65.8,'3rd','',3,6,5,4,35,53,64,'4th','',5,4,2,6,41,58,66.5,'4th','',2,3,5,4,51,65,59.3,'1st','',5,4,8,7,45,69,72.3,'4th','',4,5,4,7,47,67,67.8,'3rd','','','','','','','','','','','','','','','','','','','','','',1073,'4th',63.1,66.1,'14',1,'09035451968','student1/27717','data/passport/student1_27717.jpg',0,'pass'),(2,'Oluwole','Taiwo Bami','',5,6,4,8,49,72,68.5,'2nd','',4,8,7,6,42,67,55.3,'1st','',7,5,2,3,41,58,61.3,'4th','',5,7,8,4,45,69,76.5,'4th','',5,8,4,5,58,80,69.3,'1st','',2,5,8,7,47,69,68,'2nd','',5,7,8,4,50,74,75.8,'3rd','',2,5,4,3,32,46,58,'4th','',5,7,4,6,55,77,73,'2nd','',5,2,4,6,18,35,56.8,'4th','',5,5,6,7,54,77,65.8,'2nd','',5,6,8,8,57,84,65.8,'1st','',4,7,8,5,35,59,64,'3rd','',4,7,8,2,42,63,66.5,'3rd','',7,5,8,4,23,47,59.3,'4th','',5,6,4,2,55,72,72.3,'2nd','',8,7,9,8,53,85,67.8,'1st','','','','','','','','','','','','','','','','','','','','','',1134,'3rd',66.7,66.1,'13',2,'08131321343','student2/57185','data/passport/student2_57185.jpg',0,'pass'),(3,'Asuquo','Janelle Augustine','',7,5,3,3,47,65,68.5,'3rd','',4,4,5,5,42,60,55.3,'2nd','',8,6,0,7,40,61,61.3,'3rd','',5,7,9,5,48,74,76.5,'3rd','',5,8,7,5,38,63,69.3,'3rd','',4,3,5,4,40,56,68,'3rd','',7,8,9,5,50,79,75.8,'2nd','',5,3,6,1,45,60,58,'2nd','',8,9,9,9,58,93,73,'1st','',2,6,4,5,29,46,56.8,'3rd','',8,7,5,8,49,77,65.8,'1st','',4,6,5,4,35,54,65.8,'4th','',5,5,5,6,54,75,64,'1st','',9,0,8,7,50,74,66.5,'1st','',4,7,5,4,44,64,59.3,'2nd','',7,5,4,6,48,70,72.3,'3rd','',5,8,4,6,49,72,67.8,'2nd','','','','','','','','','','','','','','','','','','','','','',1143,'2nd',67.2,66.1,'4',3,'09035451968','student3/84141','',0,'pass'),(4,'Asuquo','Jeremiah Augustine','',5,9,8,7,47,76,68.5,'1st','',5,2,4,6,31,48,55.3,'3rd','',2,7,5,4,43,61,61.3,'2nd','',5,8,7,9,55,84,76.5,'1st','',8,7,6,4,30,55,69.3,'4th','',8,7,9,9,58,91,68,'1st','',8,5,4,7,46,70,75.8,'4th','',7,5,8,6,40,66,58,'1st','',3,4,5,2,43,57,73,'4th','',4,7,8,9,50,78,56.8,'1st','',3,8,6,4,41,62,65.8,'3rd','',8,7,5,6,44,70,65.8,'2nd','',8,4,5,6,46,69,64,'2nd','',5,7,4,6,49,71,66.5,'2nd','',5,7,5,5,39,61,59.3,'3rd','',5,8,7,9,49,78,72.3,'1st','',5,2,1,4,35,47,67.8,'4th','','','','','','','','','','','','','','','','','','','','','',1144,'1st',67.3,66.1,'5',4,'09035451968','student4/45135','',0,'pass');
+/*!40000 ALTER TABLE `res_id_2019_2020_second_jss 1_a` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `res_id_2018_2019_third_jss 1_a`
+-- Table structure for table `sales_2019_2020_may`
 --
 
-DROP TABLE IF EXISTS `res_id_2018_2019_third_jss 1_a`;
+DROP TABLE IF EXISTS `sales_2019_2020_may`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `res_id_2018_2019_third_jss 1_a` (
-  `std_id` int(10) NOT NULL,
-  `surname` varchar(250) NOT NULL,
-  `othernames` varchar(400) NOT NULL,
-  `english_language` varchar(50) NOT NULL,
-  `english_language_ca_1` int(2) NOT NULL DEFAULT '0',
-  `english_language_ca_2` int(2) NOT NULL DEFAULT '0',
-  `english_language_ca_3` int(2) NOT NULL DEFAULT '0',
-  `english_language_ca_4` int(2) NOT NULL DEFAULT '0',
-  `english_language_exam` int(3) NOT NULL DEFAULT '0',
-  `english_language_total` int(4) NOT NULL DEFAULT '0',
-  `english_language_average` double NOT NULL DEFAULT '0',
-  `english_language_position` varchar(4) NOT NULL,
-  `mathematics` varchar(50) NOT NULL,
-  `mathematics_ca_1` int(2) NOT NULL DEFAULT '0',
-  `mathematics_ca_2` int(2) NOT NULL DEFAULT '0',
-  `mathematics_ca_3` int(2) NOT NULL DEFAULT '0',
-  `mathematics_ca_4` int(2) NOT NULL DEFAULT '0',
-  `mathematics_exam` int(3) NOT NULL DEFAULT '0',
-  `mathematics_total` int(4) NOT NULL DEFAULT '0',
-  `mathematics_average` double NOT NULL DEFAULT '0',
-  `mathematics_position` varchar(4) NOT NULL,
-  `social_studies` varchar(50) NOT NULL,
-  `social_studies_ca_1` int(2) NOT NULL DEFAULT '0',
-  `social_studies_ca_2` int(2) NOT NULL DEFAULT '0',
-  `social_studies_ca_3` int(2) NOT NULL DEFAULT '0',
-  `social_studies_ca_4` int(2) NOT NULL DEFAULT '0',
-  `social_studies_exam` int(3) NOT NULL DEFAULT '0',
-  `social_studies_total` int(4) NOT NULL DEFAULT '0',
-  `social_studies_average` double NOT NULL DEFAULT '0',
-  `social_studies_position` varchar(4) NOT NULL,
-  `business_studies` varchar(50) NOT NULL,
-  `business_studies_ca_1` int(2) NOT NULL DEFAULT '0',
-  `business_studies_ca_2` int(2) NOT NULL DEFAULT '0',
-  `business_studies_ca_3` int(2) NOT NULL DEFAULT '0',
-  `business_studies_ca_4` int(2) NOT NULL DEFAULT '0',
-  `business_studies_exam` int(3) NOT NULL DEFAULT '0',
-  `business_studies_total` int(4) NOT NULL DEFAULT '0',
-  `business_studies_average` double NOT NULL DEFAULT '0',
-  `business_studies_position` varchar(4) NOT NULL,
-  `home_economics` varchar(50) NOT NULL,
-  `home_economics_ca_1` int(2) NOT NULL DEFAULT '0',
-  `home_economics_ca_2` int(2) NOT NULL DEFAULT '0',
-  `home_economics_ca_3` int(2) NOT NULL DEFAULT '0',
-  `home_economics_ca_4` int(2) NOT NULL DEFAULT '0',
-  `home_economics_exam` int(3) NOT NULL DEFAULT '0',
-  `home_economics_total` int(4) NOT NULL DEFAULT '0',
-  `home_economics_average` double NOT NULL DEFAULT '0',
-  `home_economics_position` varchar(4) NOT NULL,
-  `christian_rel__knowledge` varchar(50) NOT NULL,
-  `christian_rel__knowledge_ca_1` int(2) NOT NULL DEFAULT '0',
-  `christian_rel__knowledge_ca_2` int(2) NOT NULL DEFAULT '0',
-  `christian_rel__knowledge_ca_3` int(2) NOT NULL DEFAULT '0',
-  `christian_rel__knowledge_ca_4` int(2) NOT NULL DEFAULT '0',
-  `christian_rel__knowledge_exam` int(3) NOT NULL DEFAULT '0',
-  `christian_rel__knowledge_total` int(4) NOT NULL DEFAULT '0',
-  `christian_rel__knowledge_average` double NOT NULL DEFAULT '0',
-  `christian_rel__knowledge_position` varchar(4) NOT NULL,
-  `agricultural_science` varchar(50) NOT NULL,
-  `agricultural_science_ca_1` int(2) NOT NULL DEFAULT '0',
-  `agricultural_science_ca_2` int(2) NOT NULL DEFAULT '0',
-  `agricultural_science_ca_3` int(2) NOT NULL DEFAULT '0',
-  `agricultural_science_ca_4` int(2) NOT NULL DEFAULT '0',
-  `agricultural_science_exam` int(3) NOT NULL DEFAULT '0',
-  `agricultural_science_total` int(4) NOT NULL DEFAULT '0',
-  `agricultural_science_average` double NOT NULL DEFAULT '0',
-  `agricultural_science_position` varchar(4) NOT NULL,
-  `basic_technology` varchar(50) NOT NULL,
-  `basic_technology_ca_1` int(2) NOT NULL DEFAULT '0',
-  `basic_technology_ca_2` int(2) NOT NULL DEFAULT '0',
-  `basic_technology_ca_3` int(2) NOT NULL DEFAULT '0',
-  `basic_technology_ca_4` int(2) NOT NULL DEFAULT '0',
-  `basic_technology_exam` int(3) NOT NULL DEFAULT '0',
-  `basic_technology_total` int(4) NOT NULL DEFAULT '0',
-  `basic_technology_average` double NOT NULL DEFAULT '0',
-  `basic_technology_position` varchar(4) NOT NULL,
-  `civic_education` varchar(50) NOT NULL,
-  `civic_education_ca_1` int(2) NOT NULL DEFAULT '0',
-  `civic_education_ca_2` int(2) NOT NULL DEFAULT '0',
-  `civic_education_ca_3` int(2) NOT NULL DEFAULT '0',
-  `civic_education_ca_4` int(2) NOT NULL DEFAULT '0',
-  `civic_education_exam` int(3) NOT NULL DEFAULT '0',
-  `civic_education_total` int(4) NOT NULL DEFAULT '0',
-  `civic_education_average` double NOT NULL DEFAULT '0',
-  `civic_education_position` varchar(4) NOT NULL,
-  `basic_science` varchar(50) NOT NULL,
-  `basic_science_ca_1` int(2) NOT NULL DEFAULT '0',
-  `basic_science_ca_2` int(2) NOT NULL DEFAULT '0',
-  `basic_science_ca_3` int(2) NOT NULL DEFAULT '0',
-  `basic_science_ca_4` int(2) NOT NULL DEFAULT '0',
-  `basic_science_exam` int(3) NOT NULL DEFAULT '0',
-  `basic_science_total` int(4) NOT NULL DEFAULT '0',
-  `basic_science_average` double NOT NULL DEFAULT '0',
-  `basic_science_position` varchar(4) NOT NULL,
-  `creative_arts` varchar(50) NOT NULL,
-  `creative_arts_ca_1` int(2) NOT NULL DEFAULT '0',
-  `creative_arts_ca_2` int(2) NOT NULL DEFAULT '0',
-  `creative_arts_ca_3` int(2) NOT NULL DEFAULT '0',
-  `creative_arts_ca_4` int(2) NOT NULL DEFAULT '0',
-  `creative_arts_exam` int(3) NOT NULL DEFAULT '0',
-  `creative_arts_total` int(4) NOT NULL DEFAULT '0',
-  `creative_arts_average` double NOT NULL DEFAULT '0',
-  `creative_arts_position` varchar(4) NOT NULL,
-  `information___comm__tech_` varchar(50) NOT NULL,
-  `information___comm__tech__ca_1` int(2) NOT NULL DEFAULT '0',
-  `information___comm__tech__ca_2` int(2) NOT NULL DEFAULT '0',
-  `information___comm__tech__ca_3` int(2) NOT NULL DEFAULT '0',
-  `information___comm__tech__ca_4` int(2) NOT NULL DEFAULT '0',
-  `information___comm__tech__exam` int(3) NOT NULL DEFAULT '0',
-  `information___comm__tech__total` int(4) NOT NULL DEFAULT '0',
-  `information___comm__tech__average` double NOT NULL DEFAULT '0',
-  `information___comm__tech__position` varchar(4) NOT NULL,
-  `music` varchar(50) NOT NULL,
-  `music_ca_1` int(2) NOT NULL DEFAULT '0',
-  `music_ca_2` int(2) NOT NULL DEFAULT '0',
-  `music_ca_3` int(2) NOT NULL DEFAULT '0',
-  `music_ca_4` int(2) NOT NULL DEFAULT '0',
-  `music_exam` int(3) NOT NULL DEFAULT '0',
-  `music_total` int(4) NOT NULL DEFAULT '0',
-  `music_average` double NOT NULL DEFAULT '0',
-  `music_position` varchar(4) NOT NULL,
-  `physical___health_education` varchar(50) NOT NULL,
-  `physical___health_education_ca_1` int(2) NOT NULL DEFAULT '0',
-  `physical___health_education_ca_2` int(2) NOT NULL DEFAULT '0',
-  `physical___health_education_ca_3` int(2) NOT NULL DEFAULT '0',
-  `physical___health_education_ca_4` int(2) NOT NULL DEFAULT '0',
-  `physical___health_education_exam` int(3) NOT NULL DEFAULT '0',
-  `physical___health_education_total` int(4) NOT NULL DEFAULT '0',
-  `physical___health_education_average` double NOT NULL DEFAULT '0',
-  `physical___health_education_position` varchar(4) NOT NULL,
-  `french` varchar(50) NOT NULL,
-  `french_ca_1` int(2) NOT NULL DEFAULT '0',
-  `french_ca_2` int(2) NOT NULL DEFAULT '0',
-  `french_ca_3` int(2) NOT NULL DEFAULT '0',
-  `french_ca_4` int(2) NOT NULL DEFAULT '0',
-  `french_exam` int(3) NOT NULL DEFAULT '0',
-  `french_total` int(4) NOT NULL DEFAULT '0',
-  `french_average` double NOT NULL DEFAULT '0',
-  `french_position` varchar(4) NOT NULL,
-  `yoruba` varchar(50) NOT NULL,
-  `yoruba_ca_1` int(2) NOT NULL DEFAULT '0',
-  `yoruba_ca_2` int(2) NOT NULL DEFAULT '0',
-  `yoruba_ca_3` int(2) NOT NULL DEFAULT '0',
-  `yoruba_ca_4` int(2) NOT NULL DEFAULT '0',
-  `yoruba_exam` int(3) NOT NULL DEFAULT '0',
-  `yoruba_total` int(4) NOT NULL DEFAULT '0',
-  `yoruba_average` double NOT NULL DEFAULT '0',
-  `yoruba_position` varchar(4) NOT NULL,
-  `lit__in_english` varchar(50) NOT NULL,
-  `lit__in_english_ca_1` int(2) NOT NULL DEFAULT '0',
-  `lit__in_english_ca_2` int(2) NOT NULL DEFAULT '0',
-  `lit__in_english_ca_3` int(2) NOT NULL DEFAULT '0',
-  `lit__in_english_ca_4` int(2) NOT NULL DEFAULT '0',
-  `lit__in_english_exam` int(3) NOT NULL DEFAULT '0',
-  `lit__in_english_total` int(4) NOT NULL DEFAULT '0',
-  `lit__in_english_average` double NOT NULL DEFAULT '0',
-  `lit__in_english_position` varchar(4) NOT NULL,
-  `attendance` varchar(3) NOT NULL,
-  `attentiveness` varchar(3) NOT NULL,
-  `cooperation` varchar(3) NOT NULL,
-  `creativity` varchar(3) NOT NULL,
-  `curiousity` varchar(3) NOT NULL,
-  `diligence` varchar(3) NOT NULL,
-  `honesty` varchar(3) NOT NULL,
-  `initiative` varchar(3) NOT NULL,
-  `neatness` varchar(3) NOT NULL,
-  `organization` varchar(3) NOT NULL,
-  `perseverance` varchar(3) NOT NULL,
-  `punctuality` varchar(3) NOT NULL,
-  `reliability` varchar(3) NOT NULL,
-  `responsibility` varchar(3) NOT NULL,
-  `self_control` varchar(3) NOT NULL,
-  `legibility` varchar(4) NOT NULL,
-  `dexterity` varchar(4) NOT NULL,
-  `drawing_and_painting` varchar(4) NOT NULL,
-  `musical_skills` varchar(4) NOT NULL,
-  `sports_and_games` varchar(4) NOT NULL,
-  `accuracy` varchar(4) NOT NULL,
-  `total_score` double NOT NULL DEFAULT '0',
-  `position` varchar(5) NOT NULL,
-  `average` double NOT NULL,
-  `class_average` double NOT NULL,
-  `age` varchar(4) NOT NULL,
-  `uid` int(11) NOT NULL AUTO_INCREMENT,
-  `phone_no` varchar(26) NOT NULL,
-  `reg_no` varchar(26) NOT NULL,
-  `passport` varchar(200) NOT NULL,
-  `atd` int(2) NOT NULL,
-  `status` varchar(10) NOT NULL,
-  `english_language_first_term` int(2) NOT NULL DEFAULT '0',
-  `english_language_second_term` int(2) NOT NULL DEFAULT '0',
-  `english_language_cumulative` int(2) NOT NULL DEFAULT '0',
-  `mathematics_first_term` int(2) NOT NULL DEFAULT '0',
-  `mathematics_second_term` int(2) NOT NULL DEFAULT '0',
-  `mathematics_cumulative` int(2) NOT NULL DEFAULT '0',
-  `social_studies_first_term` int(2) NOT NULL DEFAULT '0',
-  `social_studies_second_term` int(2) NOT NULL DEFAULT '0',
-  `social_studies_cumulative` int(2) NOT NULL DEFAULT '0',
-  `business_studies_first_term` int(2) NOT NULL DEFAULT '0',
-  `business_studies_second_term` int(2) NOT NULL DEFAULT '0',
-  `business_studies_cumulative` int(2) NOT NULL DEFAULT '0',
-  `home_economics_first_term` int(2) NOT NULL DEFAULT '0',
-  `home_economics_second_term` int(2) NOT NULL DEFAULT '0',
-  `home_economics_cumulative` int(2) NOT NULL DEFAULT '0',
-  `christian_rel__knowledge_first_term` int(2) NOT NULL DEFAULT '0',
-  `christian_rel__knowledge_second_term` int(2) NOT NULL DEFAULT '0',
-  `christian_rel__knowledge_cumulative` int(2) NOT NULL DEFAULT '0',
-  `agricultural_science_first_term` int(2) NOT NULL DEFAULT '0',
-  `agricultural_science_second_term` int(2) NOT NULL DEFAULT '0',
-  `agricultural_science_cumulative` int(2) NOT NULL DEFAULT '0',
-  `basic_technology_first_term` int(2) NOT NULL DEFAULT '0',
-  `basic_technology_second_term` int(2) NOT NULL DEFAULT '0',
-  `basic_technology_cumulative` int(2) NOT NULL DEFAULT '0',
-  `civic_education_first_term` int(2) NOT NULL DEFAULT '0',
-  `civic_education_second_term` int(2) NOT NULL DEFAULT '0',
-  `civic_education_cumulative` int(2) NOT NULL DEFAULT '0',
-  `basic_science_first_term` int(2) NOT NULL DEFAULT '0',
-  `basic_science_second_term` int(2) NOT NULL DEFAULT '0',
-  `basic_science_cumulative` int(2) NOT NULL DEFAULT '0',
-  `creative_arts_first_term` int(2) NOT NULL DEFAULT '0',
-  `creative_arts_second_term` int(2) NOT NULL DEFAULT '0',
-  `creative_arts_cumulative` int(2) NOT NULL DEFAULT '0',
-  `information___comm__tech__first_term` int(2) NOT NULL DEFAULT '0',
-  `information___comm__tech__second_term` int(2) NOT NULL DEFAULT '0',
-  `information___comm__tech__cumulative` int(2) NOT NULL DEFAULT '0',
-  `music_first_term` int(2) NOT NULL DEFAULT '0',
-  `music_second_term` int(2) NOT NULL DEFAULT '0',
-  `music_cumulative` int(2) NOT NULL DEFAULT '0',
-  `physical___health_education_first_term` int(2) NOT NULL DEFAULT '0',
-  `physical___health_education_second_term` int(2) NOT NULL DEFAULT '0',
-  `physical___health_education_cumulative` int(2) NOT NULL DEFAULT '0',
-  `french_first_term` int(2) NOT NULL DEFAULT '0',
-  `french_second_term` int(2) NOT NULL DEFAULT '0',
-  `french_cumulative` int(2) NOT NULL DEFAULT '0',
-  `yoruba_first_term` int(2) NOT NULL DEFAULT '0',
-  `yoruba_second_term` int(2) NOT NULL DEFAULT '0',
-  `yoruba_cumulative` int(2) NOT NULL DEFAULT '0',
-  `lit__in_english_first_term` int(2) NOT NULL DEFAULT '0',
-  `lit__in_english_second_term` int(2) NOT NULL DEFAULT '0',
-  `lit__in_english_cumulative` int(2) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`uid`),
-  UNIQUE KEY `std_id` (`std_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `res_id_2018_2019_third_jss 1_a`
---
-
-LOCK TABLES `res_id_2018_2019_third_jss 1_a` WRITE;
-/*!40000 ALTER TABLE `res_id_2018_2019_third_jss 1_a` DISABLE KEYS */;
-INSERT INTO `res_id_2018_2019_third_jss 1_a` VALUES (1,'Ojuola','Samuel Kehinde','applied',3,5,4,6,39,57,19,'3rd','applied',2,5,4,5,49,65,21.7,'3rd','applied',5,2,5,4,28,44,14.7,'3rd','applied',6,6,5,7,49,73,24.3,'3rd','applied',5,8,9,7,58,87,29,'3rd','applied',5,8,7,8,42,70,23.3,'3rd','applied',2,5,4,8,50,69,23,'3rd','applied',6,5,5,7,57,80,26.7,'3rd','applied',6,5,6,6,47,70,23.3,'3rd','applied',2,5,4,6,45,62,20.7,'3rd','applied',2,2,3,4,32,43,14.3,'3rd','applied',3,4,6,5,31,49,16.3,'3rd','applied',6,5,5,5,48,69,23,'3rd','applied',5,4,5,7,36,57,19,'3rd','applied',4,4,5,6,40,59,19.7,'3rd','applied',5,9,5,4,33,56,18.7,'3rd','applied',7,8,5,8,54,82,27.3,'3rd','','','','','','','','','','','','','','','','','','','','','',1092,'3rd',64.2,21.4,'9',1,'09035451968','student1/54756','data/passport/student 81675.jpg',0,'pass',76,57,63,86,65,72,69,44,52,62,73,69,75,87,83,84,70,75,37,69,58,62,80,74,90,70,77,67,62,64,56,43,47,67,49,55,67,69,68,64,57,59,88,59,69,83,56,65,65,82,76),(2,'Anthony','Kehinde Ayo','applied',3,5,4,6,39,57,19,'2nd','applied',2,5,4,5,49,65,21.7,'2nd','applied',5,2,5,4,28,44,14.7,'2nd','applied',6,6,5,7,49,73,24.3,'2nd','applied',5,8,9,7,58,87,29,'2nd','applied',5,8,7,8,42,70,23.3,'2nd','applied',2,5,4,8,50,69,23,'2nd','applied',6,5,5,7,57,80,26.7,'2nd','applied',6,5,6,6,47,70,23.3,'2nd','applied',2,5,4,6,45,62,20.7,'2nd','applied',2,2,3,4,32,43,14.3,'2nd','applied',3,4,6,5,31,49,16.3,'2nd','applied',6,5,5,5,48,69,23,'2nd','applied',5,4,5,7,36,57,19,'2nd','applied',4,4,5,6,40,59,19.7,'2nd','applied',5,9,5,4,33,56,18.7,'2nd','applied',7,8,5,8,54,82,27.3,'2nd','','','','','','','','','','','','','','','','','','','','','',1092,'2nd',64.2,42.8,'25',2,'07060605782','student2/93216','data/passport/student 93031.jpg',0,'pass',74,61,64,86,70,74,69,44,52,62,75,70,75,87,83,84,70,75,37,73,60,62,80,74,90,70,77,67,68,66,56,54,51,67,50,55,67,69,68,64,57,59,88,59,69,83,56,65,65,82,76),(3,'Oluwole','Taiwo Bami','applied',3,5,4,6,39,57,19,'1st','applied',2,5,4,5,49,65,21.7,'1st','applied',5,2,5,4,28,44,14.7,'1st','applied',6,6,5,7,49,73,24.3,'1st','applied',5,8,9,7,58,87,29,'1st','applied',5,8,7,8,42,70,23.3,'1st','applied',2,5,4,8,50,69,23,'1st','applied',6,5,5,7,57,80,26.7,'1st','applied',6,5,6,6,47,70,23.3,'1st','applied',2,5,4,6,45,62,20.7,'1st','applied',2,2,3,4,32,43,14.3,'1st','applied',3,4,6,5,31,49,16.3,'1st','applied',6,5,5,5,48,69,23,'1st','applied',5,4,5,7,36,57,19,'1st','applied',4,4,5,6,40,59,19.7,'1st','applied',5,9,5,4,33,56,18.7,'1st','applied',7,8,5,8,54,82,27.3,'1st','','','','','','','','','','','','','','','','','','','','','',1092,'1st',64.2,64.2,'21',3,'08022276110','student3/91875','data/passport/student3_91875.jpg',0,'pass',76,57,63,86,70,74,69,44,52,62,75,70,75,87,83,84,70,75,37,73,60,62,80,74,90,70,77,67,68,66,56,54,51,67,50,55,67,69,68,64,57,59,88,59,69,83,56,65,65,82,76);
-/*!40000 ALTER TABLE `res_id_2018_2019_third_jss 1_a` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `sales_2019_2020_feb`
---
-
-DROP TABLE IF EXISTS `sales_2019_2020_feb`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `sales_2019_2020_feb` (
+CREATE TABLE `sales_2019_2020_may` (
   `sales_id` int(11) NOT NULL AUTO_INCREMENT,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `product_name` varchar(200) NOT NULL,
@@ -1193,51 +905,47 @@ CREATE TABLE `sales_2019_2020_feb` (
   `discount` int(11) NOT NULL,
   `price_with_discount` int(11) NOT NULL,
   `amount_paid` int(11) NOT NULL,
-  `balance` int(11) NOT NULL,
   PRIMARY KEY (`sales_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `sales_2019_2020_feb`
+-- Dumping data for table `sales_2019_2020_may`
 --
 
-LOCK TABLES `sales_2019_2020_feb` WRITE;
-/*!40000 ALTER TABLE `sales_2019_2020_feb` DISABLE KEYS */;
-INSERT INTO `sales_2019_2020_feb` VALUES (1,'2019-02-20 20:59:37','New General Mathematics For Senior Secondary Schools 3','Afiakinye, Maurice Oscar',1,1700,0,1700,1700,0),(2,'2019-02-20 23:46:46','New General Mathematics For Senior Secondary Schools 3','Taiwo Taiwo',1,1700,0,1700,1700,0),(3,'2019-02-20 23:50:46','New General Mathematics For Senior Secondary Schools 3','Silva Effiong',1,1700,0,1700,1700,0),(4,'2019-02-20 23:55:11','New General Mathematics For Senior Secondary Schools 3','Silva Effiong',1,1700,0,1700,1700,0),(5,'2019-02-20 23:57:36','New General Mathematics For Senior Secondary Schools 3','Silva Effiong',1,1700,0,1700,1700,0),(6,'2019-02-21 00:01:46','New General Mathematics For Senior Secondary Schools 3','Silva Effiong',1,1700,0,1700,1700,0),(7,'2019-02-21 00:04:00','New General Mathematics For Senior Secondary Schools 3','Silva Effiong',1,1700,0,1700,1700,0),(8,'2019-02-21 00:06:17','New General Mathematics For Senior Secondary Schools 3','Mama Taiwo',1,1700,0,1700,1700,0),(9,'2019-02-20 23:00:00','first term 2019/2020 school fees','Ojuola, Samuel Kehinde',0,0,0,0,10000,0),(10,'2019-02-20 23:00:00','first term 2019/2020 school fees','Ojuola, Samuel Kehinde',0,0,0,0,1000,0),(11,'2019-02-20 23:00:00','first term 2019/2020 school fees','Ojuola, Samuel Kehinde',0,0,0,0,19000,0);
-/*!40000 ALTER TABLE `sales_2019_2020_feb` ENABLE KEYS */;
+LOCK TABLES `sales_2019_2020_may` WRITE;
+/*!40000 ALTER TABLE `sales_2019_2020_may` DISABLE KEYS */;
+INSERT INTO `sales_2019_2020_may` VALUES (1,'2019-05-06 20:44:15','White Board Marker','Taiwo Taiwo',1,110,0,110,110),(2,'2019-05-06 20:45:03','White Board Marker','Mama Taiwo',1,110,0,110,90),(3,'2019-05-06 20:46:40','Debt payment for White Board Marker','Mama Taiwo',0,0,0,0,20),(4,'2019-05-05 23:00:00','first term 2019/2020 school fees','Afiakinye, Maurice Oscar',0,0,0,0,20000),(5,'2019-05-05 23:00:00','first term 2019/2020 school fees','Afiakinye, Maurice Oscar',0,0,0,0,15000),(6,'2019-05-12 20:34:30','White Board Marker','Aishat Rufus',1,110,0,110,110),(7,'2019-05-12 20:36:11','White Board Marker','Aishat Rufus',3,110,0,330,330),(8,'2019-05-12 20:41:11','White Board Marker','Silva Effiong',2,110,0,220,220),(9,'2019-05-20 23:00:00','second term 2019/2020 school fees','Asuquo, Jeremiah Augustine',0,0,0,0,20000),(10,'2019-05-20 23:00:00','first term 2019/2020 school fees','Afiakinye, Maurice Oscar',0,0,0,0,5000),(11,'2019-05-20 23:00:00','second term 2019/2020 school fees','Afiakinye, Maurice Oscar',0,0,0,0,20000);
+/*!40000 ALTER TABLE `sales_2019_2020_may` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `sales_2019_2020_mar`
+-- Table structure for table `sales_debtors`
 --
 
-DROP TABLE IF EXISTS `sales_2019_2020_mar`;
+DROP TABLE IF EXISTS `sales_debtors`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `sales_2019_2020_mar` (
-  `sales_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `sales_debtors` (
+  `debtors_id` int(11) NOT NULL AUTO_INCREMENT,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `product_name` varchar(200) NOT NULL,
   `client` varchar(400) NOT NULL,
   `quantity` int(11) NOT NULL,
   `price` int(11) NOT NULL,
-  `discount` int(11) NOT NULL,
-  `price_with_discount` int(11) NOT NULL,
   `amount_paid` int(11) NOT NULL,
   `balance` int(11) NOT NULL,
-  PRIMARY KEY (`sales_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`debtors_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `sales_2019_2020_mar`
+-- Dumping data for table `sales_debtors`
 --
 
-LOCK TABLES `sales_2019_2020_mar` WRITE;
-/*!40000 ALTER TABLE `sales_2019_2020_mar` DISABLE KEYS */;
-INSERT INTO `sales_2019_2020_mar` VALUES (1,'2019-03-23 19:25:45','New General Mathematics For Senior Secondary Schools 3','Ojuola, Samuel Kehinde',1,1700,0,1700,1700,0);
-/*!40000 ALTER TABLE `sales_2019_2020_mar` ENABLE KEYS */;
+LOCK TABLES `sales_debtors` WRITE;
+/*!40000 ALTER TABLE `sales_debtors` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sales_debtors` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -1253,6 +961,9 @@ CREATE TABLE `school_info` (
   `code_name` varchar(20) DEFAULT NULL,
   `school_address` varchar(100) DEFAULT NULL,
   `motto` varchar(100) DEFAULT NULL,
+  `license_start` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `license_end` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `setup_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `password` varchar(40) DEFAULT NULL,
   `no_of_ca` int(2) DEFAULT NULL,
   `no_of_std_per_class` int(2) DEFAULT NULL,
@@ -1268,38 +979,8 @@ CREATE TABLE `school_info` (
 
 LOCK TABLES `school_info` WRITE;
 /*!40000 ALTER TABLE `school_info` DISABLE KEYS */;
-INSERT INTO `school_info` VALUES (1,'Detip Model School','dmc','Agueri, Atan, Ota, Ogun State, Nigeria','learning is key','detipcollege',4,30,40,60);
+INSERT INTO `school_info` VALUES (1,'Detip Model College','dmc','Agueri, Atan, Ota, Ogun State, Nigeria','learning is key','0000-00-00 00:00:00','2020-09-05 23:00:00','2019-05-05 15:55:48','detipcollege',4,30,40,60);
 /*!40000 ALTER TABLE `school_info` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `sent_messages`
---
-
-DROP TABLE IF EXISTS `sent_messages`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `sent_messages` (
-  `msg_id` int(11) NOT NULL AUTO_INCREMENT,
-  `type` varchar(20) DEFAULT NULL,
-  `subject` varchar(100) DEFAULT NULL,
-  `to` varchar(100) DEFAULT NULL,
-  `data` text,
-  `body` text,
-  `date` datetime DEFAULT CURRENT_TIMESTAMP,
-  `status` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`msg_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `sent_messages`
---
-
-LOCK TABLES `sent_messages` WRITE;
-/*!40000 ALTER TABLE `sent_messages` DISABLE KEYS */;
-INSERT INTO `sent_messages` VALUES (1,'email','Notice of Mid-Term break','some_parents','mauriceoscar58@gmail.com,mauriceafiakinye@gmail.com,,','This is to inform you of our mid-term break holding as follows:\r\nDate: Thursday 21st Feb. 2019 through Monday 25th Feb. 2019\r\n\r\n   You are expected to resume with your ward(s) fees if you are yet to do so.\r\nThanks.\r\n\r\n\r\nManagement.','2019-02-20 21:32:27','sent'),(2,'text_message','Notice of Mid-Term break','some_parents','','','2019-02-21 00:45:47','sent');
-/*!40000 ALTER TABLE `sent_messages` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -1318,7 +999,7 @@ CREATE TABLE `session_info` (
   `next_term_begins` date NOT NULL,
   `next_term_ends` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1327,7 +1008,7 @@ CREATE TABLE `session_info` (
 
 LOCK TABLES `session_info` WRITE;
 /*!40000 ALTER TABLE `session_info` DISABLE KEYS */;
-INSERT INTO `session_info` VALUES (1,'2019/2020','first','2019-01-07','2019-04-12','2019-04-29','2019-08-09');
+INSERT INTO `session_info` VALUES (2,'2019/2020','first','2019-09-16','2019-12-20','2020-01-13','2020-04-10');
 /*!40000 ALTER TABLE `session_info` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1343,7 +1024,7 @@ CREATE TABLE `ss 1` (
   `subjects` varchar(30) NOT NULL,
   `type` varchar(20) NOT NULL DEFAULT 'general',
   PRIMARY KEY (`subject_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1352,7 +1033,7 @@ CREATE TABLE `ss 1` (
 
 LOCK TABLES `ss 1` WRITE;
 /*!40000 ALTER TABLE `ss 1` DISABLE KEYS */;
-INSERT INTO `ss 1` VALUES (1,'ENGLISH LANGUAGE','general'),(2,'MATHEMATICS','general'),(3,'LIT. IN ENGLISH','art'),(4,'ECONOMICS','general'),(5,'DATA PROCESSING','general'),(6,'CHRISTIAN REL. STUDIES','art'),(7,'AGRICULTURAL SCIENCE','science'),(8,'FRENCH','art'),(9,'MUSIC','art'),(10,'PHYSICS','science'),(11,'CHEMISTRY','science'),(12,'CIVIC EDUCATION','general'),(13,'BIOLOGY','general'),(14,'GOVERNMENT','art & comm'),(15,'COMMERCE','commercial'),(16,'ACCOUNTING','commercial'),(17,'ANIMAL HUSBANDRY','general'),(18,'FURTHER MATHEMATICS','science'),(19,'YORUBA','general'),(20,'GEOGRAPHY','science'),(21,'HISTORY','art'),(22,'BOOK KEEPING','commercial');
+INSERT INTO `ss 1` VALUES (1,'ENGLISH LANGUAGE','general'),(2,'MATHEMATICS','general'),(3,'LIT. IN ENGLISH','art'),(4,'ECONOMICS','general'),(5,'DATA PROCESSING','general'),(6,'CHRISTIAN REL. STUDIES','art'),(7,'AGRICULTURAL SCIENCE','science'),(8,'FRENCH','art'),(9,'MUSIC','art'),(10,'PHYSICS','science'),(11,'CHEMISTRY','science'),(12,'CIVIC EDUCATION','general'),(13,'BIOLOGY','general'),(14,'GOVERNMENT','art & comm'),(15,'COMMERCE','commercial'),(16,'ACCOUNTING','commercial'),(17,'ANIMAL HUSBANDRY','general'),(18,'FURTHER MATHEMATICS','science'),(20,'GEOGRAPHY','science'),(21,'HISTORY','art'),(22,'BOOK KEEPING','commercial'),(23,'EFIK','GENERAL');
 /*!40000 ALTER TABLE `ss 1` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1453,7 +1134,7 @@ CREATE TABLE `staff` (
   `passport` varchar(40) NOT NULL,
   `class` varchar(10) NOT NULL,
   PRIMARY KEY (`staff_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1462,7 +1143,7 @@ CREATE TABLE `staff` (
 
 LOCK TABLES `staff` WRITE;
 /*!40000 ALTER TABLE `staff` DISABLE KEYS */;
-INSERT INTO `staff` VALUES (1,'System','Administrator','M','2019-01-18','Nigerian','Akwa Ibom','Mbo','','','09035451968','08080350144','mauriceoscar58@gmail.com','Atan, Otta','','','','','','','','','','','','','','admin','','0000-00-00','','','','','admin','$2y$12$Qoq8i1Ojq9w3nI0BhyxpLeLWUerw7nkDXXx96Ftd8IM/Hrc3nbrCC','',''),(2,'Etim','Edet Effiong','Male','1991-02-13','Nigerian','Akwa Ibom','Oron','','','09065390874','','edetetim34@gmail.com','Akilo street, oron','','AA','A+','','','','','','','','','','active','class_teacher','secretary','2019-03-15','','','','','staff2/03851','$2y$12$6HMdSpcgvG2vkk2lKbkU4OxuoIelM3QF7ZsFiZTZp4e4P39rlUQIi','data/passport/staff2_03851.jpg','jss 2_a');
+INSERT INTO `staff` VALUES (1,'System','Administrator','M','2019-01-18','Nigerian','Akwa Ibom','Mbo','','','09035451968','08080350144','mauriceoscar58@gmail.com','Atan, Otta','','','','','','','','','','','','','','admin','','0000-00-00','','','','','admin','$2y$12$Qoq8i1Ojq9w3nI0BhyxpLeLWUerw7nkDXXx96Ftd8IM/Hrc3nbrCC','',''),(2,'Afiakinye','Maurice Oscar','Male','2000-09-09','Nigerian','Akwa Ibom','Mbo','Anne Oscar Afiakinye','Sister','09035451968','08080350144','mauriceoscar58@gmail.com','Atan, Ota','Afiakinye\'s House, Osu-Ebughu, Mbo LGA, Akwa Ibom State, Nigeria','AA','B+','None','None','','','','','','B. Eng (Petroleum Engineering)','','active','class_teacher','secretary','2019-05-05','Keystone Bank','6017326317','Afiakinye, Maurice Oscar','100000','staff2/73517','$2y$12$ieW4vHuJ7CgaMQj2i6UBj.KHxqDvOYAnIgL3Ivqze08aGXhdCGLLO','data/passport/staff2_73517.jpg','jss 1_a'),(3,'polol','Kehinde Ayo','Female','1990-06-12','Nigerian','Osun','Osun','','','08022276110','','antoniopuyol43@yahoo.com','Osun','','de','de','','','','','','','','','','active','teaching_staff','cashier','2019-05-10','','','','50000','staff3/00705','$2y$12$B6zZavqMhoAh1KAhq/aw3ekieQ7A7nuZvHJ6rIkOpPDjLee1TDEee','data/passport/staff3_00705.jpg','default_de'),(4,'Etim','Peace Asukwo','Female','1995-09-19','Nigerian','Akwa Ibom','Oron','','','09094915917','','peaceetim90@gmail.com','10 Akilo street, Oron','','de','de','','','','','','','','','','active','teaching_staff','vp_admin','2019-05-10','','','','100000','staff4/72241','$2y$12$nb210ZjAtn6NXRMYyO6F0uWQ154t29OXKp3Xgza6TpSr.OI1cpReO','','default_de');
 /*!40000 ALTER TABLE `staff` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1480,7 +1161,7 @@ CREATE TABLE `staff_class` (
   `subject` varchar(30) NOT NULL,
   `arm` varchar(10) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1489,6 +1170,7 @@ CREATE TABLE `staff_class` (
 
 LOCK TABLES `staff_class` WRITE;
 /*!40000 ALTER TABLE `staff_class` DISABLE KEYS */;
+INSERT INTO `staff_class` VALUES (1,2,'jss 1','MATHEMATICS','a'),(2,2,'ss 1','MATHEMATICS','a'),(3,2,'ss 2','PHYSICS','a'),(4,2,'ss 3','MATHEMATICS','a'),(5,2,'jss 2','MATHEMATICS','a'),(6,2,'jss 3','MATHEMATICS','a'),(7,2,'ss 2','MATHEMATICS','A'),(8,3,'jss 1','BASIC TECHNOLOGY','a'),(9,4,'jss 1','BUSINESS STUDIES','a');
 /*!40000 ALTER TABLE `staff_class` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1520,7 +1202,7 @@ CREATE TABLE `stocks` (
 
 LOCK TABLES `stocks` WRITE;
 /*!40000 ALTER TABLE `stocks` DISABLE KEYS */;
-INSERT INTO `stocks` VALUES (1,'2019-02-20 20:59:02','New General Mathematics For Senior Secondary Schools 3',20,30000,1700,0,1700,34000,4000);
+INSERT INTO `stocks` VALUES (1,'2019-05-06 20:43:34','White Board Marker',12,1200,110,0,110,1320,120);
 /*!40000 ALTER TABLE `stocks` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1575,7 +1257,7 @@ CREATE TABLE `student` (
 
 LOCK TABLES `student` WRITE;
 /*!40000 ALTER TABLE `student` DISABLE KEYS */;
-INSERT INTO `student` VALUES (1,'Ojuola','Samuel Kehinde','Male','2009-02-18','Nigerian','Ogun','Ota','data/passport/student1_54756.jpg','Mr. Ojuola','09035451968','','mauriceoscar58@gmail.com','Ota','','de','de','','','','','','','','','','','','2019-02-10','student1/54756','science','','active'),(2,'Anthony','Kehinde Ayo','Male','1993-06-15','Nigerian','Ogun','Ota','data/passport/student2_93216.jpg','Mrs./Mrs. Anthony','07060605782','','mauriceafiakinye@gmail.com','Ota','','de','de','','','','','','','','','','','','2019-02-10','student2/93216','arts','','active'),(3,'Oluwole','Taiwo Bami','Female','1997-03-20','Nigerian','Kwara','Illorin','data/passport/student3_91875.jpg','Mrs./Mrs. Oluwole','08022276110','','taiwooluwole@gmail.com','Ota','','de','de','','','','','','','','','','','','2019-02-10','student3/91875','commercial','','active'),(4,'Oseni','Kehinde Olamide','Male','1999-04-21','Nigerian','Ogun','Ota','data/passport/student4_71054.jpg','Mr./ Mrs. Oseni','09035451968','','kehindeoseni45@gmail.com','ota','','de','de','','','','','','','','','','','','2019-04-08','student4/71054','science','','active');
+INSERT INTO `student` VALUES (1,'Afiakinye','Maurice Oscar','Male','2005-06-06','Nigerian','Ogun','Ota','data/passport/student1_27717.jpg','Mrs./Mrs. Oscar Asuquo Afiakinye','09035451968','','mauriceoscar58@gmail.com','Atan, Ota','','de','de','','','','','','','','','','','','2019-05-05','student1/27717','science','','active'),(2,'Oluwole','Taiwo Bami','Male','2006-02-14','Nigerian','Ogun','Abeokuta','data/passport/student2_57185.jpg','Mr./Mrs. Oluwole Bami','08131321343','','','Atan, Ota','','AA','B-','','','','','','','','','','','','2019-05-06','student2/57185','science','','active'),(3,'Asuquo','Janelle Augustine','Female','2015-02-15','Nigerian','Akwa Ibom','Mbo','','Mrs./Mrs. Augustine Asuquo','09035451968','','mauriceoscar58@gmail.com','Estate Road, Oron','','de','de','','','','','','','','','','','','2019-05-21','student3/84141','science','','active'),(4,'Asuquo','Jeremiah Augustine','Male','2014-02-15','Nigerian','Akwa Ibom','Mbo','','Mrs./Mrs. Augustine Asuquo','09035451968','','mauriceoscar58@gmail.com','Estate Road, Oron','','de','de','','','','','','','','','','','','2019-05-21','student4/45135','science','','active');
 /*!40000 ALTER TABLE `student` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1605,8 +1287,35 @@ CREATE TABLE `student_class` (
 
 LOCK TABLES `student_class` WRITE;
 /*!40000 ALTER TABLE `student_class` DISABLE KEYS */;
-INSERT INTO `student_class` VALUES (1,'jss 1','2018/2019','2019/2020','first','jss 2','a','default'),(2,'jss 1','2018/2019','2019/2020','first','jss 2','a','default'),(3,'jss 1','2018/2019','2019/2020','first','jss 2','a','default'),(4,'jss 2','2019/2020','2019/2020','first','jss 2','a','Blue');
+INSERT INTO `student_class` VALUES (1,'jss 1','2019/2020','2019/2020','first','jss 1','a','Blue'),(2,'jss 1','2019/2020','2019/2020','first','jss 1','a','Blue'),(3,'jss 1','2019/2020','2019/2020','first','jss 1','a','Blue'),(4,'jss 1','2019/2020','2019/2020','first','jss 1','a','Blue');
 /*!40000 ALTER TABLE `student_class` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tmp`
+--
+
+DROP TABLE IF EXISTS `tmp`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tmp` (
+  `product_name` varchar(200) NOT NULL,
+  `client` varchar(400) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `price` int(11) NOT NULL,
+  `amount_paid` int(11) NOT NULL,
+  `balance` int(11) NOT NULL,
+  `receipt_no` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tmp`
+--
+
+LOCK TABLES `tmp` WRITE;
+/*!40000 ALTER TABLE `tmp` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tmp` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -1618,4 +1327,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-04-08  2:07:33
+-- Dump completed on 2019-10-12 15:56:54

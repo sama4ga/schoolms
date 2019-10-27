@@ -13,17 +13,17 @@
 		
 		echo "Result upload in progress.<br/>Please wait....";
 		
-		$url = "localhost/schoolms/samaservices/dmc/backup_result.php";
+		$url = "localhost/samaservices/samaservices_new/secondary/ijins/upload_result.php";
 		$dir = __DIR__."/data/";
 		send_file($dir,$url);
 
 
 		// scan for old backup files
 		$file = scandir(__DIR__."/backup");
-		
+//var_dump($file);
 
 		// backup the database
-		$dir = __DIR__."/backup/backup".date("ymd",time()).".sql";
+		$dir = __DIR__."/backup/backup".date("ymdhis",time()).".sql";
 		$res=system("mysqldump -u $uname -p $upas $dbname > $dir ");
 		
 
@@ -38,6 +38,18 @@
 		}	
 		
 		
+
+		function curl_handle($url){
+			// initialize the curl var
+			$ch = curl_init();
+	
+			// get the response form curl
+			$state = curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+	
+			// set the url
+			$url_state = curl_setopt($ch, CURLOPT_URL,$url);
+	
+		}
 
 
 
@@ -60,12 +72,13 @@
 	
 			// execute the request
 			$response = curl_exec($ch);
-			//print($response);
-			if ($response == "done") {						
+			var_dump($response);
+
+			/* if ($response == "done") {						
 				echo "Result has been successfully uploaded<br/>";
 			}else {
 				echo "There was an error uploading result ".$response."<br/>";
-			}
+			} */
 
 		}
 

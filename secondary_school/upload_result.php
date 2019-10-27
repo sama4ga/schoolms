@@ -13,14 +13,40 @@
 		$upas='';
 		
 		
-		echo "Result upload in progress.<br/>Please wait....";
+		echo "Result upload in progress.<br/>Please wait....<br/>";
 		
 		/* $upas= exo_get_protstring("str2");
 	$uname= exo_get_protstring("str1");
 	$dbname= exo_get_protstring("str0");
  */
 
- 
+function send_file($dir,$url,$filename){
+
+	// initialize the curl var
+	$ch = curl_init();
+
+	// get the response form curl
+	$state = curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+
+	// set the url
+	$url_state = curl_setopt($ch, CURLOPT_URL,$url);
+
+	// create a post array with the file init
+	$postData = array(
+		$filename => $dir,
+	);
+	$post_state = curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
+
+	// execute the request
+	$response = curl_exec($ch);
+	return $response;
+
+
+}
+
+
+
+
 
 	if (isset($_REQUEST['session'])) {
 		$session = $_REQUEST['session'];
@@ -77,42 +103,57 @@
 			}
 		}else {
 			echo "<div>Results have not been prepared for $term term $session academic session ".$con->error."</div>";
+			exit();
 		}
 
 		
 		// add other tables to be uploaded
-		//$others = ["baa_orig","psychomotor","existing_result_sheets","student","student_class","staff","staff_class"];
-		$others = ["session_info","existing_result_sheets","student","student_class","staff","staff_class"];
-		$file = array_merge($file,$atd,$class_data,$others);
+		$others = ["arm","jss 1","jss 2","jss 3","ss 1","ss 2"," ss 3","baa_orig","psychomotor","session_info","existing_result_sheets","student","student_class","staff","staff_class"];
+		$file = array_merge($file,$others);
 
-		$dir = __DIR__."/dump/result/result.sql";
+		$dir = __DIR__."/dump/result/result".date("ymdhis").".sql";
 
 		$file_to_upload = "";
 		for ($i=0; $i < count($file); $i++) {
 
-			$file_to_upload .= '$file[$i]'." ";
+			$file_to_upload .= "\"".$file[$i]."\" ";
 			
 		}
 
+		//echo $file_to_upload;
+//exit();
+
 		// send result
-		$url = "localhost/schoolms/samaservices/dmc/backup_result.php";
-		$res=system("mysqldump -u root $dbname \"$file_to_upload\" > \"$dir\"");
-		echo send_file($dir,$url,"result");
+		$url = "localhost/samaservices/samaservices_new/secondary/ijins/upload_result.php";
+		$res=system("mysqldump -u root $dbname $file_to_upload > \"$dir\"");
+		//echo("mysqldump -u root $dbname $file_to_upload > \"$dir\"");
+//exit();
+		$status = send_file($dir,$url,"result");
+		
+	if ($status == "done") {						
+		echo "Results have been successfully uploaded<br/>";
+	}else {
+		echo $status."<br/>";
+	}
 
 
+//exit();
 
 		// send passports
-		$dir = __DIR__."/data/passport/";
+		$dir = __DIR__."/data/passport";
+		//echo $dir;exit();
 		$file = scandir($dir);
 		foreach ($file as $key => $value) {
 			if ($key > 1) {				
-				$msg[] = send_file($value,$url,"passport");
+				$status = send_file($dir."/".$value,$url,"passport");
+				if ($status !== "done"){
+					echo $status."<br/>";
+				}else {
+					echo "Passport $value has been successfully uploaded<br/>";
+				}
 			}
 		}
 
-		if (!empty($msg)) {
-			echo "There was an error uploading result ".$response."<br/>";
-		}
 
 	
 		// backup the database
@@ -127,7 +168,7 @@
 				unlink("backup/".$old_backup_files[$i]);  
 			}
 			for ($i=2; $i < count($old_dump_files); $i++) {				
-				unlink("dump/result/".$old_dump_files)[$i];  
+				unlink("dump/result/".$old_dump_files[$i]);  
 			}
 
 
@@ -137,33 +178,7 @@
 
 
 
-		function send_file($dir,$url,$filename){
-
-			// initialize the curl var
-			$ch = curl_init();
 	
-			// get the response form curl
-			$state = curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
-	
-			// set the url
-			$url_state = curl_setopt($ch, CURLOPT_URL,$url);
-	
-			// create a post array with the file init
-			$postData = array(
-				'$filename' => $dir,
-			);
-			$post_state = curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
-	
-			// execute the request
-			$response = curl_exec($ch);
-			//print($response);
-			if ($response == "done") {						
-				return "Result has been successfully uploaded<br/>";
-			}else {
-				return "There was an error uploading result ".$response."<br/>";
-			}
-
-		}
 
 		
 

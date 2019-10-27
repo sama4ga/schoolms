@@ -63,16 +63,16 @@ if ($result) {
 
 ?>
 
-<div class="container">
+<div class="container" style="margin-bottom:25px;">
   <h3>View Student Data Portal</h3>
   
     <fieldset><legend>Personal Details</legend>
       
-      <div style="display: flex;">
+      <div class="row">
 
 
 
-        <div style="width: 80%;">
+        <div class="col-8">
 
           <div class="row">
             <div class="col-5">Surname</div>
@@ -119,23 +119,20 @@ if ($result) {
 
 
 
-        <div style="width: 20%;">
+        <div class="col-4">
 
-          <div>
             <?php  
               if ($passport) {
-                echo "<div><img src=".$passport."></div>";
+                echo "<div><img src=".$passport." width='200px' height='150px'></div>";
               }else{
-                echo "<div><img src='../images/passport.png'></div>";
+                echo "<div><img src='../images/passport.png' width='200px' height='150px'></div>";
               }
             ?>
-          </div>          
+        </div>          
           
-        </div>
-
-
-
       </div>
+
+
     </fieldset>
 
 
@@ -336,7 +333,7 @@ if ($result) {
 
       <div class="row">
           <div class="col-5">Previous school attended (if any)</div>
-          <div class="col-7"><?php echo $previous_school; ?></div></div>
+          <div class="col-7"><?php echo $previous_school; ?></div>
       </div>
     </fieldset>
 
@@ -346,8 +343,8 @@ if ($result) {
       <a href="javascript:history.back()" class="btn-lg btn-warning">Back</a>
       <a href="javascript:window.print()" class="btn-lg btn-success">Print</a>
     </div>
-        
-  </form>
+
+
 </div>
 
 

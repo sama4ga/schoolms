@@ -23,6 +23,7 @@ if ($_SESSION['priviledge'] != "admin" ) {
         <li><a href="#" onclick="javascript:document.getElementById('display').src='change_resumption_date.php'">Change Resumption and Closing Dates</a></li>
         <li><a href="/samaservices/samaservices/login_action.php?username=dmc&password=detipcollege" target="_blank" >Go online</a></li>
         <li><a href="#" onclick="javascript:document.getElementById('display').src='add_arm.php'" >Add Arm </a></li>
+        <li><a href="#" onclick="javascript:document.getElementById('display').src='edit_arm.php'" >Edit Arm </a></li>
         <li><a href="#" onclick="javascript:document.getElementById('class_div').style='display:block';" id='view_cat_class'>Edit Subjects</a>
 
           <div style="display:none;" id='class_div'>

@@ -151,6 +151,7 @@ if (isset($_POST['submit'])) {
 
         rename("setup.php","setup_done.php");
         header("location:secondary_school/index.php");
+        exit();
       }else {
         echo "Could not insert session data ".$con->error."<br/>";
       }

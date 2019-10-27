@@ -1,5 +1,9 @@
 <?php
-session_start();
+include_once("auth.php");
+if ($priviledge !== "account" || $priviledge !== "admin") {
+  header("location:forbidden.php");
+   exit();
+}
 require_once("connect.php");
 include_once("head.php");
 

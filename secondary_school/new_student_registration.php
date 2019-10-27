@@ -208,7 +208,7 @@ if ($result) {
 
 ?>
 
-<div class="container">
+<div class="container" style="margin-bottom:25px;">
   <h2>Student Registration Portal</h2>
   <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data">
   

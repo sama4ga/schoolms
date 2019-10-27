@@ -8,6 +8,7 @@ if (file_exists("setup.php")) {
 
   if ($cleared == "true") {    
     header("location:secondary_school/index.php");
+    exit();
   }
 }
 

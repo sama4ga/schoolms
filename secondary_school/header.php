@@ -6,7 +6,7 @@ $status="";
 
 if (isset($_SESSION)) {
   $name=$_SESSION['name'];
-  $status=$_SESSION['priviledge'];
+  $status=ucwords(str_replace("_"," ",$_SESSION['priviledge']));
   $school_name=$_SESSION['school_name'];
   $school_address=$_SESSION['school_address'];
   $motto=$_SESSION['motto'];
