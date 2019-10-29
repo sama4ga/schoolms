@@ -1,6 +1,6 @@
 <?php
-session_start();
-ini_set('display_errors', 0);
+// session_start();
+// ini_set('display_errors', 0);
 
 $username = 'Guest';
 $user = 'Guest';
@@ -37,5 +37,5 @@ $auth= 'false';
 
 
 //flush();
-mysqli_close($con);
+//mysqli_close($con);
 ?>

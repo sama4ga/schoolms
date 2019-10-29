@@ -1,11 +1,12 @@
 <?php
+include_once("connect.php");
+include_once("header.php");
+
 include_once("auth.php");
 if ($auth == 'true' && ($priviledge !== 'teaching_staff')) {
   header("location:forbidden.php");
    exit();
 }
-include_once("connect.php");
-include_once("header.php");
 
 $msg=array();
 
