@@ -2,6 +2,13 @@
 include_once "header.php";
 require_once "connect.php";
 
+include_once("auth.php");
+//echo $priviledge;exit;
+if ($priviledge !== "class_teacher" && $priviledge !== "admin" ) {
+  header("location:forbidden.php");
+   exit();
+}
+
 $class=strtolower($_GET['class']);
 $arm=strtolower($_GET['arm']);
 //$subject=strtolower(str_replace(" ","_",$_GET['subject']));

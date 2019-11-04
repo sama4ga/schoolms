@@ -3,6 +3,12 @@ session_start();
 require_once("connect.php");
 include_once("head.php");
 
+include_once("auth.php");
+if ($priviledge !== "class_teacher" || $priviledge !== "admin" ) {
+  header("location:forbidden.php");
+   exit();
+}
+
 $class=strtolower($_GET['class']);
 $arm=strtolower($_GET['arm']);
 
@@ -212,6 +218,7 @@ if ($result) {
           $student_status[$x]="fail";
         }
 
+        //$student_status[$x]="pass";
 
       $con->query("UPDATE `$res_id` SET `total_score`='$student_total[$x]',
                   `average`='$student_avg[$x]',
@@ -343,7 +350,7 @@ if ($result) {
 
 
 
-   // add details for cumulative
+   // add details for third term cumulative
    if (preg_match("/third/",$res_id)) {
 
     for ($x=0; $x < $num_students; $x++) {

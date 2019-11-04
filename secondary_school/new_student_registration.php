@@ -180,9 +180,10 @@ if ($result) {
         if ($con->query("DESCRIBE `$res_id`")) {
           $con->query("INSERT INTO `$res_id`(`std_id`,`surname`,`othernames`)
                         VALUES('$std_id','$surname','$othernames')");
+
+          include_once("add_name_in_resultsheet.php");
         }
         
-        include_once("add_name_in_resultsheet.php");
 
 
         

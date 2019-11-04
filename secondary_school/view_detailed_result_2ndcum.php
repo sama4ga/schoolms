@@ -1,5 +1,13 @@
 <?php
+session_start();
 require_once("connect.php");
+
+include_once("auth.php");
+if ($priviledge !== "class_teacher" && $priviledge !== "admin" ) {
+  header("location:forbidden.php");
+   exit();
+}
+
 
 $today = date('d M, Y');
 
@@ -54,6 +62,21 @@ $today = date('d M, Y');
 	$total_age = 0;
 	$no_of_res=0;
 
+
+	// get no of ca, ca score and exam score
+$result = $con->query("SELECT * FROM `school_info`;");
+if ($result) {
+  if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+      $no_of_ca = $row['no_of_ca'];
+      $ca_score = $row['ca_score'];
+      $exam_score = $row['exam_score'];
+    }
+  }
+}
+
+
+
 	//calculate average age
 	$get_all_res = $con->query("SELECT * FROM `$result_id` ");
 
@@ -92,7 +115,7 @@ if($get_all_res)
 					$next_term_ends = $row['next_term_ends'];
 					//$ntf = $row['ntf'];
  
-					//$max_atd = $row['max_atd'];
+					$max_atd = $row['max_atd'];
 					//$atd_max = $row['max_atd'];
 
 					//$show_pos = $row['show_pos'];
@@ -545,46 +568,44 @@ if(strlen($aoi) > 4){$aoi = "The student needs to improve in ".$aoi;}
 
 //get class highest score and lowest score
 								
-   
-	
-	for($x=1; $x<=$no_of_subs; $x++)
-			{
- 
+		
+$subjects_chs_value[$x]=0;
+$subjects_cls_value[$x]=0;
+
+for($x=1; $x<=$no_of_subs; $x++)
+		{
+
+		
+		
 			
 			
-			  $dft=0;
-				
-				$get_chal[$x] = $con->query("SELECT * FROM `$result_id` ORDER BY $subjects_total[$x] DESC");
-				$no_of_chal[$x] = $get_chal[$x]->num_rows;
-				
-				 
- 
-				while($row = $get_chal[$x]->fetch_array())
-					{
-					$dft++;
- 						$la_score[0] = 0;
-						$la_score[$dft] = $row[$subjects_total[$x]];
-						
+			$get_chal[$x] = $con->query("SELECT `$subjects_total[$x]` FROM `$result_id` ORDER BY $subjects_total[$x] DESC");
+			$no_of_chal[$x] = $get_chal[$x]->num_rows;
+			
+			 
+			 
+			 $dft=0;
+			while($row = $get_chal[$x]->fetch_array())
+				{
+					$la_score[$dft] = $row[$subjects_total[$x]];						
+					$dft++; 						
+					 //break;
+				}
+								
+			
 
-						$subjects_chs_value[$x]=0;
-						$subjects_cls_value[$x]=0;
- 
-							if($dft == 1 && $la_score[$dft] > $la_score[$dft-1] && $la_score[$dft] <= 100){$subjects_chs_value[$x] = $la_score[$dft];}
-							if($la_score[$dft] < $la_score[$dft-1] && $la_score[$dft] >0){$subjects_cls_value[$x] = $la_score[$dft];}
- 						
- //break;
-					}
-									
-		  
-				
+				$subjects_chs_value[$x] = $la_score[0];
+				$subjects_cls_value[$x] = end($la_score);
+					 
+			
 
-					if($subjects_chs_value[$x]==0){$subjects_chs_value[$x]='';}		
-					if($subjects_cls_value[$x]==0 || $subjects_cls_value[$x]==100){$subjects_cls_value[$x]='';}		
+			/* 	if($subjects_chs_value[$x]==0){$subjects_chs_value[$x]='';}		
+				if($subjects_cls_value[$x]==0 || $subjects_cls_value[$x]==100){$subjects_cls_value[$x]='';}		
+			 */
+			
+			
 
-				
-				
-
-			}
+		}
  
 	
 	
@@ -603,457 +624,336 @@ if(strlen($aoi) > 4){$aoi = "The student needs to improve in ".$aoi;}
 	//	$ranv_avg = number_format($ranv_avg, 1, '.','');
 	//	$pvs_avg = number_format($pvs_avg, 1, '.','');
 
-	include "det_std_for_res.php";
+	//include "det_std_for_res.php";
 	
 
-	$max_atd = $no_of_atd;
+	//$max_atd = $no_of_atd;
 	//$max_atd =20;
 
-		//render html
-	echo("<html   xmlns='http://www.w3.org/1999/xhtml'
-			      xmlns:og='http://ogp.me/ns#'
-			      xmlns:fb='http://www.facebook.com/2008/fbml'>
+
+	//render html
+?>
+
+<!DOCTYPE html>
+<html>			
+	<head>
+		<title>--</title>			
+		<meta http-equiv='Content-Language' content='en-us'>
+		<meta http-equiv='Content-Type' content='text/html; charset=windows-1252'>
+		<link rel='stylesheet' href='../scripts/bootstrap/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='../scripts/bootstrap/css/main.css'>
+	</head>
 			
-			<head>
-				<title>
-				--</title>
-			
-				<meta http-equiv='Content-Language' content='en-us'>
-				<meta http-equiv='Content-Type' content='text/html; charset=windows-1252'>
-				<link rel='stylesheet' href='print.css' type='text/css' media='screen'>
-				<link rel='stylesheet' href='print_2.css' type='text/css' media='print'>
-				<script src='scripts/extra_commands.js' type='text/javascript' language ='javascript'></script>
-			</head>
-			
-	<body style=\"width:800px;  background-image:url('../images/bg_res.jpg');\">
+	<body style="width:800px;background-image:url('../images/bg_res.jpg');">
 
- 
-	<div >
- 
-	");
-	
+		<div class="row">
 
- 
+			<div class="col-12">
+				<img src='../images/header.png' width="100%" height="100px">
+			</div>
 
-echo("
-<div align='center'>
+			<div class="col-12" style="padding:0 15px;">
 
+				<div class="row" style="margin:0;padding:0;">
 
-
-
-<div align=center style=\"width:150px; height:100px; float:right; \">
-
-	<div align=center style='width:150px; height:200px; float:right; overflow:hidden; background-color: #DFDFDF' valign=middle>
-		
-		<table border='0' width='100%' cellspacing='0' cellpadding='1' height='100%'>
-			<tr>
-				<td valign='middle' align='center'>
-					<img src='$pp' border='0' height='100%' width='100%'>
-				</td>
-			</tr>
-		</table>
-		
-	</div>
-	
-</div>
-
-
-<div align=center style='width:650px; height:100px; float:left;'>
-	<img src='../images/header.png'>
-</div>
-
-
-
-<div style='width:800px; height:100px;' align='left'>
-
-<div style='width:450px; height:94px; float:RIGHT;' align=left>
-
-<table border='0' width='298' cellspacing='1' cellpadding='3' style='border: 1px solid #EBEBEB' height='70'>
-	<tr>
-		<td   bgcolor='#F5F5F5'><b>Reg. No.</b></td>
-		<td style='border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom: 1px solid #EBEBEB' width='264' >
-		<b>$adm_no</b></td>
-	</tr>
-	<tr>
-		<td   bgcolor='#F5F5F5'><b>Exam No.</b></td>
-		<td style='border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom: 1px solid #EBEBEB' width='264' >
-		<b>$exam_no</b></td>
-	</tr>
-
- 
-	<tr>
-		<td bgcolor='#F5F5F5'><b>Attendance:</b></td>
-		<td style='border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom: 1px solid #EBEBEB' width='155' >
-		<b>$atd out of $max_atd</b></td>
-	</tr>
-	
-<!--<tr>
-		<td   bgcolor='#F5F5F5'><b>Term Ends</b></td>
-		<td style='border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom: 1px solid #EBEBEB' width='155' >
-		<b>$term_ends</b></td>
-	</tr>-->
-	
-	<tr>
-		<td bgcolor='#F5F5F5' width=220><b>Next Term Begins</b></td>
-		<td style='border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom: 1px solid #EBEBEB' width='155' >
-		<b>$next_term_begins</b></td>
-	</tr>
-	
-</table>
-
-</div>
-
-<div style='width:350px; height:94px; float:left; ' align=left>
-
-	<table border='0' width='348' cellspacing='1' cellpadding='3' style='border: 1px solid #EBEBEB' height='70'>
-		<tr>
-			<td width='67' bgcolor='#F5F5F5'><b>Name:</b></td>
-			<td style='border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom: 1px solid #EBEBEB' width='264' >
-			<b>$surname,&nbsp; $other_names</b></td>
-		</tr>
-		<tr>
-			<td  bgcolor='#F5F5F5'><b>Class:</b></td>
-			<td style='border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom: 1px solid #EBEBEB' width='138'>
-			<b>$class_formatted</b></td>
-		 
-		</tr>
-		<tr>
-			<td  bgcolor='#F5F5F5'><b>Term:</b></td>
-			<td style='border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom: 1px solid #EBEBEB' width='138'>
-			<b>$term</b></td>
-		 
-		</tr>
-		
-	<tr>
-		<td  bgcolor='#F5F5F5'><b>Session:</b></td>
-		<td style='border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom: 1px solid #EBEBEB' width='264' >
-		<b>$session</b></td>
-	</tr>	
-	
-		
-	</table>
-
-</div>
-</div>
-
-
- 
-&nbsp;
-  <br>
- 
- 
--
-</div>
- 
-<div align='center'>
-
-<table border='0' cellpadding=1 cellspacing=0 >
-	<tr>
-		<td  valign=top>
-	
-	<table cellspacing=0  border='0' style='border: 1px solid #3A3A3A' id=grade_table width='800px'>
-		<tr style='border: 1px solid #3A3A3A'>
-			<td style='border: 1px solid #3A3A3A' colspan=2   HEIGHT=100 align=center> <b>PART A: <BR>COGNITIVE</b> </td>
-			<td valign=bottom style='border: 1px solid #3A3A3A' width='20' align='center'><IMG SRC='../subjects/ca1.png' border=0></td>
-			<td valign=bottom style='border: 1px solid #3A3A3A' width='20' align='center'><IMG SRC='../subjects/ca2.png' border=0></td>
-			<td valign=bottom style='border: 1px solid #3A3A3A' width='20' align='center'><IMG SRC='../subjects/ca3.png' border=0></td>
-			<td valign=bottom style='border: 1px solid #3A3A3A' width='20' align='center'><IMG SRC='../subjects/ca4.png' border=0></td>
-			<!--<td valign=bottom style='border: 1px solid #3A3A3A' width='20' align='center'><IMG SRC='../subjects/ca3_sec.png' border=0></td>-->
-
-			<td valign=bottom width='5'  align='center' >&nbsp;</td>
-			
-			<td valign=bottom style='border: 1px solid #3A3A3A' width='25' align='center'><IMG SRC='../subjects/exam.png' border=0></td>
-			<td valign=bottom style='border: 1px solid #3A3A3A' width='25' align='center'><IMG SRC='../subjects/TOTAL.jpg' border=0></td>
-			<td valign=bottom style='border: 1px solid #3A3A3A' width='25' align='center'><IMG SRC='../subjects/POSITION.jpg' border=0></td>
- 
- 
- 
- 		   <td valign=bottom style='border: 1px solid #3A3A3A' width='30' align='center'><IMG SRC='../subjects/chs.jpg' border=0></td>
-			   <td valign=bottom style='border: 1px solid #3A3A3A' width='30' align='center'><IMG SRC='../subjects/cls.jpg' border=0></td>
-
-			<td valign=bottom style='border: 1px solid #3A3A3A' width='35' align='center'><IMG SRC='../subjects/CAS.jpg' border=0></td>
-		 
-					");
-			 
-			
-			
-			
-									
-if(preg_match("/third/", $result_id))	
-	{						
-					
-		echo("	
-
-
-			<td valign=bottom width='5'  align='center' rowspan='24'>&nbsp;</td>
-					
-				<td bgcolor='#FFFFD2' valign=bottom style='border: 1px solid #3A3A3A' width='25' align='center'><IMG SRC='../subjects/fts.jpg' border=0></td>
-				<td bgcolor='#D2FFFF'  valign=bottom style='border: 1px solid #3A3A3A' width='25' align='center'><IMG SRC='../subjects/sts.jpg' border=0></td>
-				<td bgcolor='#FFD2FF' valign=bottom style='border: 1px solid #3A3A3A' width='25' align='center'><IMG SRC='../subjects/tts.jpg' border=0></td>
-				<td bgcolor='#EFEFEF' valign=bottom style='border: 1px solid #3A3A3A' width='25' align='center'><IMG SRC='../subjects/cts.jpg' border=0></td>
-			
-			<td valign=bottom width='5'  align='center' rowspan='24'>&nbsp;</td>
-			
-			");
-	}elseif(preg_match("/second/", $result_id))	
-	{						
-					
-		echo("	
-
-
-			<td valign=bottom width='5'  align='center' rowspan='24'>&nbsp;</td>
-					
-				<td bgcolor='#FFFFD2' valign=bottom style='border: 1px solid #3A3A3A' width='25' align='center'><IMG SRC='../subjects/fts.jpg' border=0></td>
-				<td bgcolor='#D2FFFF'  valign=bottom style='border: 1px solid #3A3A3A' width='25' align='center'><IMG SRC='../subjects/sts.jpg' border=0></td>
-				<td bgcolor='#EFEFEF' valign=bottom style='border: 1px solid #3A3A3A' width='25' align='center'><IMG SRC='../subjects/cts.jpg' border=0></td>
-			
-			<td valign=bottom width='5'  align='center' rowspan='24'>&nbsp;</td>
-			
-			");
-	}
-		
-			
-			
-			
-			
-			
-		echo("
-			<td valign=bottom style='border: 1px solid #3A3A3A' width='25' align='center'><IMG SRC='../subjects/GRADE.jpg' border=0></td>
-
-			<td valign=bottom style='border: 1px solid #3A3A3A'  align='center'><IMG SRC='../subjects/REMARK.jpg' border=0></td>
- 
-			
-		</tr>	
-		
- 
-		
-		");
-	
-
-
-
-
-//first category
-	
-	for($x=1; $x<=$no_of_subs; $x++)
-		{
-			if($total[$x] < 40)
-				{
-				
-					$color[$x] = '<font color=red>';
-					
-				}else{
-						$color[$x] = '';
-					}
-		
-	
-			
-	if($total[$x] > 0){
-			
-			$count++;
-			//$bsat_total = $bsat_total + $total[$x];
-			
-			//if($subject_orig[$x] == 'Hhandwriting'){$subject_orig[$x] = 'Handwriting';}
-			
-				echo("
-					
-							<tr height=22  >
-							 	<td align=right width=15>
-							 	$count.
-							 	</td>					
-								<td style='border: 1px solid #3A3A3A' >
-								<div style='width:180px; overflow:visible;'>&nbsp;$subject_orig[$x]</div></td>
-	 
-								<td style='border: 1px solid #3A3A3A' align='center'>$color[$x]$score_ca_1[$x]</td>
-								<td style='border: 1px solid #3A3A3A' align='center'>$color[$x]$score_ca_2[$x]</td>
-								<td style='border: 1px solid #3A3A3A' align='center'>$color[$x]$score_ca_3[$x]</td>
-								<td style='border: 1px solid #3A3A3A' align='center'>$color[$x]$score_ca_4[$x]</td>
-
-								
-								<td valign=bottom width='5'  align='center'>&nbsp;</td>
-								<td style='border: 1px solid #3A3A3A' align='center'>$color[$x]$score_exams[$x]</td>
-								<td style='border: 1px solid #3A3A3A' align='center'><b>$color[$x]$total[$x]</b></td>
-								<td style='border: 1px solid #3A3A3A' align='center'>$color[$x]$subjects_position_score[$x]</td>
-
-
-
-								<td style='border: 1px solid #3A3A3A' align='center'>$subjects_chs_value[$x]</td>
-								<td style='border: 1px solid #3A3A3A' align='center'>$subjects_cls_value[$x]</td>
-
-			 
- 								<td style='border: 1px solid #3A3A3A' align='center'>$color[$x]$subjects_average_score[$x]</td>
- 
-								");
-								
-								
-								
- if(preg_match("/third/", $result_id))	
-	{										
-		echo("	
-			<td bgcolor='#FFFFD2' valign=bottom style='border: 1px solid #3A3A3A' width='25' align='center'>$score_ca_first_term[$x]</td>
-			<td  bgcolor='#D2FFFF' valign=bottom style='border: 1px solid #3A3A3A' width='25' align='center'>$score_ca_second_term[$x]</td>
-			<td  bgcolor='#FFD2FF' valign=bottom style='border: 1px solid #3A3A3A' width='25' align='center'>$color[$x]$total[$x]</td>
-			<td  bgcolor='#EFEFEF' valign=bottom style='border: 1px solid #3A3A3A' width='25' align='center'><b>$color[$x]$cumulative[$x]</b></td>
-			");
-								
-	}elseif(preg_match("/second/", $result_id))	
-	{										
-		echo("	
-			<td bgcolor='#FFFFD2' valign=bottom style='border: 1px solid #3A3A3A' width='25' align='center'>$score_ca_first_term[$x]</td>
-			<td  bgcolor='#FFD2FF' valign=bottom style='border: 1px solid #3A3A3A' width='25' align='center'>$color[$x]$total[$x]</td>
-			<td  bgcolor='#EFEFEF' valign=bottom style='border: 1px solid #3A3A3A' width='25' align='center'><b>$color[$x]$cumulative[$x]</b></td>
-			");
-								
-	}			
-	
-
-echo("
-								<td style='border: 1px solid #3A3A3A' align='center'>$color[$x]$grade[$x]</td>
-
-								<td style='border: 1px solid #3A3A3A' align='center'>$color[$x]$remark[$x]</td>
+					<div class="col-4" style="padding:0;width:100%;margin:0;">
+						<table border='0' width='300' cellspacing='1' cellpadding='3.5' style='border: 1px solid #EBEBEB' height='100%'>
+							<tr>
+								<td width='67' bgcolor='#F5F5F5' style="text-align:left;"><b>Name:</b></td>
+								<td style='text-align:left; border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom: 1px solid #EBEBEB' width='264' >
+								<?php echo "<b>$surname,&nbsp; $other_names</b>"; ?></td>
 							</tr>
-					
-					");
-}
- 
-
- 
- }
-
-
- 
-
-
- 
-		
-	echo("
-		</tr>
-		
-	</table>
-</div><br><br>
-<!--<img src='../images/key2.png'>-->
-	
-		</td>
-
-	</tr>
-	<tr>
-		<td valign=top >
-		
-			
-
-		");
-		
-
-
-
-
-
-
-
-
-
-
-
-
-
-		
-		
-	//place affective here	
-	echo("
-	 <tr height=23>
-	<td colspan=17 style='border: 1px solid #3A3A3A' align=justify width=20><br>
-	<img src='../images/caption.png'>
-	
-	
-	<div></div>
-<div style='width:265px; height:280px; float:left'> 
-	<table border='0' id='grade_table' cellspacing='0'  style='border: 1px solid #3A3A3A'>
-			<tr>
-				<td width='95' height=50 style='border-style: solid; border-width: 1px' rowspan='2' align='center'>
-					 TRAITS
-				</td>
-				<td style='border-style: solid; border-width: 1px' colspan='5' align='center'>
-				<p align='center'><b>RATINGS</td>
-			</tr>
-			
-			<tr>
-				<td style='border: 1px solid #3A3A3A' width='25' align='center'><b>A</td>
-				<td style='border: 1px solid #3A3A3A' width='25' align='center'><b>B</td>
-				<td style='border: 1px solid #3A3A3A' width='25' align='center'><b>C</td>
-				<td style='border: 1px solid #3A3A3A' width='25' align='center'><b>D</td>
-				<td style='border: 1px solid #3A3A3A' width='25' align='center'><b>E</td>
-			</tr>
-	
-	");
-	
-	
-	
-
-		
-		for($y=1; $y<=$no_of_baa; $y++)
-			{
-			if($behaviour_orig[$y] != '-')
+							<tr>
+								<td  bgcolor='#F5F5F5' style="text-align:left;"><b>Class:</b></td>
+								<td style='text-align:left; border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom: 1px solid #EBEBEB' width='138'>
+								<?php echo "<b>$class_formatted</b>"; ?></td>
+								
+							</tr>
+							<tr>
+								<td  bgcolor='#F5F5F5' style="text-align:left;"><b>Term:</b></td>
+								<td style='text-align:left;border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom: 1px solid #EBEBEB' width='138'>
+								<?php echo "<b>$term</b>"; ?></td>
+								
+							</tr>
 							
-				echo("
-				
-					<tr height=23>
+						<tr>
+							<td  bgcolor='#F5F5F5' style="text-align:left;"><b>Session:</b></td>
+							<td style='text-align:left;border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom: 1px solid #EBEBEB' width='264' >
+							<?php echo "<b>$session</b>"; ?></td>
+						</tr>						
+							
+						</table>
+					</div>
+
+
+					<div class="col-4" style="padding:0;width:100%;margin:0;">
+						<table border='0' width='300' cellspacing='1' cellpadding='3' style='border: 1px solid #EBEBEB' height='100%'>
+							<tr>
+								<td   bgcolor='#F5F5F5' style="text-align:left;"><b>Reg. No.</b></td>
+								<td style='text-align:left;border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom: 1px solid #EBEBEB' width='264' >
+								<?php echo "<b>$adm_no</b>"; ?></td>
+							</tr>
+							<tr>
+								<td   bgcolor='#F5F5F5' style="text-align:left;"><b>Exam No.</b></td>
+								<td style='text-align:left;border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom: 1px solid #EBEBEB' width='264' >
+								<?php echo "<b>$exam_no</b>"; ?></td>
+							</tr>
 						
-						<td style='border: 1px solid #3A3A3A'  align='left'><div style='width:165px;'>&nbsp;$behaviour_orig[$y]</div></td>
+							
+							<tr>
+								<td bgcolor='#F5F5F5' style="text-align:left;"><b>Attendance:</b></td>
+								<td style='text-align:left;border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom: 1px solid #EBEBEB' width='155' >
+								<?php echo "<b>$atd out of $max_atd</b>"; ?></td>
+							</tr>
+							
+							<tr>
+								<td bgcolor='#F5F5F5' width=220 style="text-align:left;"><b>Next Term Begins</b></td>
+								<td style='text-align:left;border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom: 1px solid #EBEBEB' width='155' >
+								<?php echo "<b>$next_term_begins</b>"; ?></td>
+							</tr>
+							
+						</table>
+					</div>
+
+					<div class="col-4" style="padding:0;margin:0;">
+							<img src='<?php echo $pp; ?>' border='0' height='149px' width='100%'>
+					</div>
+					
+				</div>
+			</div>
+
+		</div>
+
+
+		
+		<div style="width:100%;">
+
+			<table border='0' cellpadding=1 cellspacing=0 style="margin-top:20px;width:100%;">
+				<tr>	
+					<table cellspacing=0  border='0' style='border: 1px solid #3A3A3A' id=grade_table width='800px'>
+						<tr style='border: 1px solid #3A3A3A'>
+							<td style='border: 1px solid #3A3A3A' colspan=2   HEIGHT=100 align=center> <b>PART A: <BR>COGNITIVE</b> </td>
+
+							<?php
+
+										for ($z=1; $z <= $no_of_ca; $z++) { 
+											echo "<td valign=bottom style='border: 1px solid #3A3A3A' width='' align='center'><IMG SRC='../images/ca_".$z.".png' border=0  style='padding-bottom:5px;'></td>";
+										}
+							?>
+
+
+							<td valign=bottom width='5'  align='center' >&nbsp;</td>
+							
+							<td valign=bottom style='border: 1px solid #3A3A3A' width='' align='center'><IMG SRC='../images/exam.png' border=0 style="padding-bottom:5px;"></td>
+							<td valign=bottom style='border: 1px solid #3A3A3A' width='' align='center'><IMG SRC='../images/total.png' border=0 style="padding-bottom:5px;"></td>
+							<td valign=bottom style='border: 1px solid #3A3A3A' width='' align='center'><IMG SRC='../images/position.png' border=0 style='padding-bottom:5px;'></td>
+
+
+
+							<td valign=bottom style='border: 1px solid #3A3A3A' width='' align='center'><IMG SRC='../images/chs.png' border=0 height="150px" style='padding-bottom:5px;'></td>
+							<td valign=bottom style='border: 1px solid #3A3A3A' width='' align='center'><IMG SRC='../images/cls.png' border=0 height="150px" style='padding-bottom:5px;'></td>
+
+							<td valign=bottom style='border: 1px solid #3A3A3A' width='' align='center'><IMG SRC='../images/cas.png' border=0 height="150px" style='padding-bottom:5px;'></td>
+		
+		
+		
+							<?php									
+							if(preg_match("/third/", $result_id))	
+								{						
+							?>					
+										
+
+
+										<td valign=bottom width='5'  align='center' rowspan='24'>&nbsp;</td>
+												
+											<td bgcolor='#FFFFD2' valign=bottom style='border: 1px solid #3A3A3A' width='' align='center'><IMG SRC='../images/fts.png' border=0 height='150px' style='padding-bottom:5px;'></td>
+											<td bgcolor='#D2FFFF'  valign=bottom style='border: 1px solid #3A3A3A' width='' align='center'><IMG SRC='../images/sts.png' border=0 height='150px' style='padding-bottom:5px;'></td>
+											<td bgcolor='#FFD2FF' valign=bottom style='border: 1px solid #3A3A3A' width='' align='center'><IMG SRC='../images/tts.png' border=0 height='150px' style='padding-bottom:5px;'></td>
+											<td bgcolor='#EFEFEF' valign=bottom style='border: 1px solid #3A3A3A' width='' align='center'><IMG SRC='../images/cs.png' border=0 height='150px' style='padding-bottom:5px;'></td>
+										
+										<td valign=bottom width='5'  align='center' rowspan='24'>&nbsp;</td>
+										
+								<?php
+								}elseif(preg_match("/second/", $result_id))	
+								{						
+								?>	
+
+
+										<td valign=bottom width='5'  align='center' rowspan='24'>&nbsp;</td>
+												
+											<td bgcolor='#FFFFD2' valign=bottom style='border: 1px solid #3A3A3A' width='' align='center'><IMG SRC='../images/fts.png' border=0 height='150px' style='padding-bottom:5px;'></td>
+											<td bgcolor='#D2FFFF'  valign=bottom style='border: 1px solid #3A3A3A' width='' align='center'><IMG SRC='../images/sts.png' border=0 height='150px' style='padding-bottom:5px;'></td>
+											<td bgcolor='#EFEFEF' valign=bottom style='border: 1px solid #3A3A3A' width='' align='center'><IMG SRC='../images/cs.png' border=0 height='150px' style='padding-bottom:5px;'></td>
+										
+										<td valign=bottom width='5'  align='center' rowspan='24'>&nbsp;</td>
+										
+								<?php
+								}
+								?>
+		
+
+								<td valign=bottom style='border: 1px solid #3A3A3A' width='' align='center'><IMG SRC='../images/grade.png' border=0 style='padding-bottom:5px;'></td>
+
+								<td valign=bottom style='border: 1px solid #3A3A3A'  align='center'><IMG SRC='../images/remarks.png' border=0 style='padding-bottom:5px;'></td>
+
+		
+							</tr>	
+
+
+
+
+						<?php
+							//first category
+								
+							for($x=1; $x<=$no_of_subs; $x++){
+
+								if($total[$x] < 40){
+									
+									$color[$x] = '<font color=red>';
+									
+								}else{
+
+										$color[$x] = '';
+								}
+							
 						
-						<td style='border: 1px solid #3A3A3A'  align='center'> $tick5[$y]</td>
-						<td style='border: 1px solid #3A3A3A'   align='center'> $tick4[$y]</td>
-						<td style='border: 1px solid #3A3A3A' align='center'> $tick3[$y]</td>
-						<td style='border: 1px solid #3A3A3A'   align='center'> $tick2[$y]</td>
-						<td style='border: 1px solid #3A3A3A'  align='center'> $tick1[$y]</td>
+								
+								if($total[$x] > 0){
+										
+									$count++;
+
+									echo ("
+														
+									<tr height=22  >
+										<td align=right width=15>
+										$count.
+										</td>					
+										<td style='border: 1px solid #3A3A3A' >
+										<div style='width:180px; overflow:visible;'>&nbsp;$subject_orig[$x]</div></td>
+			
+										<td style='border: 1px solid #3A3A3A' align='center'>$color[$x]$score_ca_1[$x]</td>
+										<td style='border: 1px solid #3A3A3A' align='center'>$color[$x]$score_ca_2[$x]</td>
+										<td style='border: 1px solid #3A3A3A' align='center'>$color[$x]$score_ca_3[$x]</td>
+										<td style='border: 1px solid #3A3A3A' align='center'>$color[$x]$score_ca_4[$x]</td>
+
+										
+										<td valign=bottom width='5'  align='center'>&nbsp;</td>
+										<td style='border: 1px solid #3A3A3A' align='center'>$color[$x]$score_exams[$x]</td>
+										<td style='border: 1px solid #3A3A3A' align='center'><b>$color[$x]$total[$x]</b></td>
+										<td style='border: 1px solid #3A3A3A' align='center'>$color[$x]$subjects_position_score[$x]</td>
+
+
+
+										<td style='border: 1px solid #3A3A3A' align='center'>$subjects_chs_value[$x]</td>
+										<td style='border: 1px solid #3A3A3A' align='center'>$subjects_cls_value[$x]</td>
+
+					
+										<td style='border: 1px solid #3A3A3A' align='center'>$color[$x]$subjects_average_score[$x]</td>
+		
+										");
+									
+									
+																				
+										if(preg_match("/third/", $result_id))	
+											{										
+												echo("	
+													<td bgcolor='#FFFFD2' valign=bottom style='border: 1px solid #3A3A3A' width='25' align='center'>$score_ca_first_term[$x]</td>
+													<td  bgcolor='#D2FFFF' valign=bottom style='border: 1px solid #3A3A3A' width='25' align='center'>$score_ca_second_term[$x]</td>
+													<td  bgcolor='#FFD2FF' valign=bottom style='border: 1px solid #3A3A3A' width='25' align='center'>$color[$x]$total[$x]</td>
+													<td  bgcolor='#EFEFEF' valign=bottom style='border: 1px solid #3A3A3A' width='25' align='center'><b>$color[$x]$cumulative[$x]</b></td>
+													");
+																		
+											}elseif(preg_match("/second/", $result_id))	
+											{										
+												echo("	
+													<td bgcolor='#FFFFD2' valign=bottom style='border: 1px solid #3A3A3A' width='25' align='center'>$score_ca_first_term[$x]</td>
+													<td  bgcolor='#FFD2FF' valign=bottom style='border: 1px solid #3A3A3A' width='25' align='center'>$color[$x]$total[$x]</td>
+													<td  bgcolor='#EFEFEF' valign=bottom style='border: 1px solid #3A3A3A' width='25' align='center'><b>$color[$x]$cumulative[$x]</b></td>
+													");
+																		
+											}			
+													
+
+											echo("
+														<td style='border: 1px solid #3A3A3A' align='center'>$color[$x]$grade[$x]</td>
+
+														<td style='border: 1px solid #3A3A3A' align='center'>$color[$x]$remark[$x]</td>
+													</tr>
+													
+													");
+								}
+												
+
+												
+							}										
+							?>
+
 					</tr>
 					
-				");
-				
-				
-				
-				if($y==8 || $y==18)
-					{
-					if($behaviour_orig[$y] != '-')
+				</table>
 
-						
-						echo("
-						</table>
-						</div>
-						<div style='width:265px; height:280px; float:left'> 
-							<table border='0' id='grade_table' cellspacing='0'  style='border: 1px solid #3A3A3A'>
-								<tr>
-									<td width='95' height=50 style='border-style: solid; border-width: 1px' rowspan='2' align='center'>
-										TRAITS
-									</td>
-									<td style='border-style: solid; border-width: 1px' colspan='5' align='center'>
-									<p align='center'><b>RATINGS</td>
-								</tr>
-								
-								<tr>
-								 
-									<td style='border: 1px solid #3A3A3A' width='25' align='center'><b>A</td>
-									<td style='border: 1px solid #3A3A3A' width='25' align='center'><b>B</td>
-									<td style='border: 1px solid #3A3A3A' width='25' align='center'><b>C</td>
-									<td style='border: 1px solid #3A3A3A' width='25' align='center'><b>D</td>
-									<td style='border: 1px solid #3A3A3A' width='25' align='center'><b>E</td>
-								</tr>
+			</tr>
 
-						
-						");					
+			<!-- place affective here -->	
+<tr height=23>				
+	<td colspan=17 style='border: 1px solid #3A3A3A' align=justify width='100%'><br>
+	<img src='../images/caption.png' width='100%'>
+	
+	
+	<div class="row">
+
+			<?php
+			$upper_baa = round($no_of_baa/2);
+			$lower_baa = $upper_baa + 1;
+			?>
+
+		<div class="col-4"> 
+			<table border='0' id='grade_table' cellspacing='0'  style='border: 1px solid #3A3A3A'>
+					<tr>
+						<td width='95' height=50 style='border-style: solid; border-width: 1px' rowspan='2' align='center'>
+							 TRAITS
+						</td>
+						<td style='border-style: solid; border-width: 1px' colspan='5' align='center'>
+						<p align='center'><b>RATINGS</td>
+					</tr>
 					
-					}
-				
-				
-			}
+					<tr>
+						<td style='border: 1px solid #3A3A3A' width='25' align='center'><b>A</td>
+						<td style='border: 1px solid #3A3A3A' width='25' align='center'><b>B</td>
+						<td style='border: 1px solid #3A3A3A' width='25' align='center'><b>C</td>
+						<td style='border: 1px solid #3A3A3A' width='25' align='center'><b>D</td>
+						<td style='border: 1px solid #3A3A3A' width='25' align='center'><b>E</td>
+					</tr>
 
- 
+					<?php
+					$upper_baa = round($no_of_baa/2);
+					$lower_baa = $upper_baa + 1;
+					for($y=1; $y<=$upper_baa; $y++)
+						{
+						if($behaviour_orig[$y] != '-')
+										
+							echo("
+							
+								<tr>
+									
+									<td style='border: 1px solid #3A3A3A'  align='left'><div style='width:165px;'>&nbsp;$behaviour_orig[$y]</div></td>
+									
+									<td style='border: 1px solid #3A3A3A'  align='center'> $tick5[$y]</td>
+									<td style='border: 1px solid #3A3A3A'   align='center'> $tick4[$y]</td>
+									<td style='border: 1px solid #3A3A3A' align='center'> $tick3[$y]</td>
+									<td style='border: 1px solid #3A3A3A'   align='center'> $tick2[$y]</td>
+									<td style='border: 1px solid #3A3A3A'  align='center'> $tick1[$y]</td>
+								</tr>
+								
+							");
 
-	 
-
-echo("
-						</table>
+						}
+						?>							
+									
+							</table>
 						</div>
-						<div style='width:265px; height:280px; float:left'> 
+
+						<div class="col-4"> 
 							<table border='0' id='grade_table' cellspacing='0'  style='border: 1px solid #3A3A3A'>
 								<tr>
 									<td width='95' height=50 style='border-style: solid; border-width: 1px' rowspan='2' align='center'>
@@ -1064,7 +964,7 @@ echo("
 								</tr>
 								
 								<tr>
-								 
+								
 									<td style='border: 1px solid #3A3A3A' width='25' align='center'><b>A</td>
 									<td style='border: 1px solid #3A3A3A' width='25' align='center'><b>B</td>
 									<td style='border: 1px solid #3A3A3A' width='25' align='center'><b>C</td>
@@ -1072,75 +972,98 @@ echo("
 									<td style='border: 1px solid #3A3A3A' width='25' align='center'><b>E</td>
 								</tr>
 
-						
-					");
 
+								<?php
+								for($y=$lower_baa; $y<=$no_of_baa; $y++){
+									if($behaviour_orig[$y] != '-'){
 
-
-		
-		for($z=1; $z<=$no_of_psy; $z++)
-			{
-			
+										echo("
+				
+										<tr>
+											
+											<td style='border: 1px solid #3A3A3A'  align='left'><div style='width:165px;'>&nbsp;$behaviour_orig[$y]</div></td>
+											
+											<td style='border: 1px solid #3A3A3A'  align='center'> $tick5[$y]</td>
+											<td style='border: 1px solid #3A3A3A'   align='center'> $tick4[$y]</td>
+											<td style='border: 1px solid #3A3A3A' align='center'> $tick3[$y]</td>
+											<td style='border: 1px solid #3A3A3A'   align='center'> $tick2[$y]</td>
+											<td style='border: 1px solid #3A3A3A'  align='center'> $tick1[$y]</td>
+										</tr>
+										
+									");				
 							
-				echo("<tr height=23>
+										}
+										
+										
+										
+										
+									}
+									?>
+
+					</table>
+				</div>
+
+
+				<div class="col-4"> 
+					<table border='0' id='grade_table' cellspacing='0'  style='border: 1px solid #3A3A3A'>
+						<tr>
+							<td width='95' height=50 style='border-style: solid; border-width: 1px' rowspan='2' align='center'>
+								TRAITS
+							</td>
+							<td style='border-style: solid; border-width: 1px' colspan='5' align='center'>
+							<p align='center'><b>RATINGS</td>
+						</tr>
 						
-						<td style='border: 1px solid #3A3A3A'  align='left'><div style='width:165px;'>&nbsp;$behaviour_orig_psy[$z]</div></td>
+						<tr>
 						 
-						<td style='border: 1px solid #3A3A3A'  align='center'> $tick5_psy[$z]</td>
-						<td style='border: 1px solid #3A3A3A'   align='center'> $tick4_psy[$z]</td>
-						<td style='border: 1px solid #3A3A3A' align='center'> $tick3_psy[$z]</td>
-						<td style='border: 1px solid #3A3A3A'   align='center'> $tick2_psy[$z]</td>
-						<td style='border: 1px solid #3A3A3A'  align='center'> $tick1_psy[$z]</td>
-					</tr>
-					
-				");
-				
-				
-				
-				
-				
-			}
+							<td style='border: 1px solid #3A3A3A' width='25' align='center'><b>A</td>
+							<td style='border: 1px solid #3A3A3A' width='25' align='center'><b>B</td>
+							<td style='border: 1px solid #3A3A3A' width='25' align='center'><b>C</td>
+							<td style='border: 1px solid #3A3A3A' width='25' align='center'><b>D</td>
+							<td style='border: 1px solid #3A3A3A' width='25' align='center'><b>E</td>
+						</tr>
+			
+			
+			
+						<?php
+						for($z=1; $z<=$no_of_psy; $z++)
+						{
+						
+								
+						echo("<tr height=23>
+							
+							<td style='border: 1px solid #3A3A3A'  align='left'><div style='width:165px;'>&nbsp;$behaviour_orig_psy[$z]</div></td>
+							
+							<td style='border: 1px solid #3A3A3A'  align='center'> $tick5_psy[$z]</td>
+							<td style='border: 1px solid #3A3A3A'   align='center'> $tick4_psy[$z]</td>
+							<td style='border: 1px solid #3A3A3A' align='center'> $tick3_psy[$z]</td>
+							<td style='border: 1px solid #3A3A3A'   align='center'> $tick2_psy[$z]</td>
+							<td style='border: 1px solid #3A3A3A'  align='center'> $tick1_psy[$z]</td>
+						</tr>
+						
+						");
+						
+						
+						}
+						?>
+			
+			
+					</table>
+				</div>
 
- 
 
-		 
+			</div>
 	
 	
-echo("	
-		</table>
-	</div>
-");
-
-
-
-
-
-
-
-//if($show_pos == '0'){ $position = '-'; }
-	
-
-echo("
-
-		
-		</td>
-		<td>
-		
-
-		
-		</td>
-	</tr>
+		</tr>
 </table>
 
-</div>
 
- 
-<div >
-
- 
-<table border='0' width='100%'>
+<?php
+echo ("
+<table border='0' width='100%' style='margin-top:20px;'>
 		<tr height=35>
-			<td  width=130><b>Total Score:</td>
+			<td  width=150><b>Total Score:</td>
 			<td width=100 style='border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-style: solid; border-bottom-width: 1px' align='center'>
 			$my_total</td>
 			<td width='10'>&nbsp;</td>
@@ -1175,13 +1098,13 @@ echo("
 		<table border='0' width='70%'>
 
 				<tr height=35>
-					<td width=20><b>Form Master's Comments:</b></td>
+					<td width=200><b>Form Master's Comments:</b></td>
 					<td style='border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-style: solid; border-bottom-width: 1px'  align='justify'>
 					<font face='lhnd'>$remark_overall</font></td>
 				</tr>
 
 				<tr height=35>
-					<td width=20><b>Principal's Comments:</b></td>
+					<td width=200><b>Principal's Comments:</b></td>
 					<td style='border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-style: solid; border-bottom-width: 1px'  align='justify'>
 						<font face='lhnd'>$aoi</font>
 					</td>
@@ -1197,12 +1120,13 @@ echo("
 
 	
 </div>
+");
+?>
 
 
+<div class="row" style='margin-top:30px;padding-left:30px;'>
 
-<div style='display:flex;'>
-
-	<table border='0' cellspacing='0'  style='border: 1px solid #3A3A3A'>
+	<table border='0' cellspacing='0'  style='border: 1px solid #3A3A3A' class="col-3">
 		<tr>
 			<th colspan='3' width='25' height='25' style='border-style: solid; border-width: 1px' align='center'>
 				Grading Table
@@ -1210,8 +1134,8 @@ echo("
 		</tr>
 		<tr>
 			<th width='25' height='25' style='border-style: solid; border-width: 1px' align='center'>Grade</th>
-			<th width='95' height='25' style='border-style: solid; border-width: 1px' align='center'>Score</th>
-			<th width='95' height='25' style='border-style: solid; border-width: 1px' align='center'>Remark</th>
+			<th width='60' height='25' style='border-style: solid; border-width: 1px' align='center'>Score</th>
+			<th width='75' height='25' style='border-style: solid; border-width: 1px' align='center'>Remark</th>
 		</tr>
 		<tr>
 			<td style='border: 1px solid #3A3A3A' width='25' align='center'>A</td>
@@ -1246,7 +1170,7 @@ echo("
 	</table>
 
 
-	<table border='0' cellspacing='0'  style='border: 1px solid #3A3A3A'>
+	<table border='0' cellspacing='0'  style='border: 1px solid #3A3A3A' class="col-6">
 		<tr>
 			<th width='50' height=25 style='border-style: solid; border-width: 1px' align='center' colspan='3'>
 				Traits Grade
@@ -1291,11 +1215,12 @@ echo("
 	</table>
 
 
-	<table border='0' cellspacing='5' cellpadding='5'>
+	<table border='0' cellspacing='5' cellpadding='5' class="col-3">
 		<tr>
 			<th colspan='2'>Subject Statistics</th>
 		</tr>
-
+<?php
+echo "
 		<tr>
 			<td>Subjects Taken</td>
 			<td>$no_of_sub_std</td>
@@ -1308,7 +1233,8 @@ echo("
 			<td>Subjects Failed</td>
 			<td>$no_of_sub_failed</td>
 		</tr>
-
+	";
+	?>
 	</table>
 
 </div>
@@ -1316,13 +1242,8 @@ echo("
  
 
 </div>
-");
 
-
-//include "share_bar.php";
-//include "msg_bar.php";
-
-
+<?php
 	flush();
 	mysqli_close($con);
 

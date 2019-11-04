@@ -1,6 +1,12 @@
 <?php
-require_once("connect.php");
 include_once("header.php");
+require_once("connect.php");
+
+include_once("auth.php");
+if ($priviledge !== "class_teacher" && $priviledge !== "admin") {
+  header("location:forbidden.php");
+   exit();
+}
 
 $res_id=$_GET['resid'];
 $class=$_GET['class'];

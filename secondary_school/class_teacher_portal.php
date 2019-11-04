@@ -238,18 +238,18 @@ $result=$con->query("SELECT `class`,`subject`,`arm` FROM `staff_class`
     $count=0;
     
     while ($row=$result->fetch_assoc()) {
-      $class[$count]=$row['class'];
+      $_class[$count]=$row['class'];
       $arm[$count]=$row['arm'];
       $subject[$count]=$row['subject'];
 
       echo "<tr>
       
               <td>
-                <input type='checkbox' name='info' value='".$class[$count].'_'.$arm[$count].'_'.$subject[$count]."'>
+                <input type='checkbox' name='info' value='".$_class[$count].'_'.$arm[$count].'_'.$subject[$count]."'>
               </td>
 
               <td>".
-                strtoupper($class[$count])
+                strtoupper($_class[$count])
               ."</td>
 
               <td>".

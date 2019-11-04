@@ -1,6 +1,13 @@
 <?php
+session_start();
 require_once("connect.php");
 include_once("head.php");
+
+include_once("auth.php");
+if ($priviledge !== "admin") {
+  header("location:forbidden.php");
+   exit();
+}
 
 $atd_id = $_REQUEST['atd_id'];
 
@@ -47,6 +54,7 @@ if($result){
   exit();
 }
 
+//var_dump($staff_id);exit;
 
 // get attendance details
 $result = $con->query("SELECT * FROM `$atd_id`");

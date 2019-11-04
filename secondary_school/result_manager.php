@@ -30,7 +30,7 @@ if (isset($_POST['submit'])) {
     
     switch ($action) {
       case 'compute_result':
-      header("location:compute_result(copy).php?class=$class&arm=$arm&session=$session&term=$term");
+      header("location:compute_result_2ndcum.php?class=$class&arm=$arm&session=$session&term=$term");
         break;
 
       case 'record_scores':
@@ -54,7 +54,7 @@ if (isset($_POST['submit'])) {
         break;
 
       case 'spreadsheet':
-        header("location:result_spreadsheet(copy).php?class=$class&resid=$res_id");
+        header("location:result_spreadsheet(copy).php?class=$class&res_id=$res_id");
         break;
 
       case 'view_available_result_sheets':
@@ -79,6 +79,7 @@ if (isset($_POST['submit'])) {
 
 ?>
 
+<div style="margin-bottom:25px;">
 <h2 align='center'>Result Manager</h2>
 <form method="POST" action="">
   <ul style='color:red;'>
@@ -130,8 +131,8 @@ if (isset($_POST['submit'])) {
       <option value="2015/2016">2015/2016</option>
       <option value="2016/2017">2016/2017</option>
       <option value="2017/2018">2017/2018</option>
-      <option value="2018/2019" selected>2018/2019</option>
-      <option value="2019/2020">2019/2020</option>
+      <option value="2018/2019">2018/2019</option>
+      <option value="2019/2020" selected>2019/2020</option>
       <option value="2020/2021">2020/2021</option>
       <option value="2021/2022">2021/2022</option>
       <option value="2022/2023">2022/2023</option>
@@ -181,6 +182,7 @@ if (isset($_POST['submit'])) {
   </div>
 
 </form>
+</div>
 
 <?php
 

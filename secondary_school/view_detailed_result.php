@@ -1,6 +1,12 @@
 <?php
+session_start();
 require_once("connect.php");
 
+include_once("auth.php");
+if ($priviledge !== "class_teacher" && $priviledge !== "admin" ) {
+  header("location:forbidden.php");
+   exit();
+}
 $today = date('d M, Y');
 
  // Header('Cache-Control: no-cache');
@@ -94,7 +100,7 @@ if($get_all_res)
 					$term_ends = $row['next_term_ends'];
 					//$ntf = $row['ntf'];
  
-					//$max_atd = $row['max_atd'];
+					$max_atd = $row['max_atd'];
 					//$atd_max = $row['max_atd'];
 
 					//$show_pos = $row['show_pos'];
@@ -529,46 +535,44 @@ if(strlen($aoi) > 4){$aoi = "The student needs to improve in ".$aoi;}
 
 //get class highest score and lowest score
 								
-   
-	
-	for($x=1; $x<=$no_of_subs; $x++)
-			{
- 
+		
+$subjects_chs_value[$x]=0;
+$subjects_cls_value[$x]=0;
+
+for($x=1; $x<=$no_of_subs; $x++)
+		{
+
+		
+		
 			
 			
-			  $dft=0;
-				
-				$get_chal[$x] = $con->query("SELECT * FROM `$result_id` ORDER BY $subjects_total[$x] DESC");
-				$no_of_chal[$x] = $get_chal[$x]->num_rows;
-				
-				 
- 
-				while($row = $get_chal[$x]->fetch_array())
-					{
-					$dft++;
- 						$la_score[0] = 0;
-						$la_score[$dft] = $row[$subjects_total[$x]];
-						
+			$get_chal[$x] = $con->query("SELECT `$subjects_total[$x]` FROM `$result_id` ORDER BY $subjects_total[$x] DESC");
+			$no_of_chal[$x] = $get_chal[$x]->num_rows;
+			
+			 
+			 
+			 $dft=0;
+			while($row = $get_chal[$x]->fetch_array())
+				{
+					$la_score[$dft] = $row[$subjects_total[$x]];						
+					$dft++; 						
+					 //break;
+				}
+								
+			
 
-						$subjects_chs_value[$x]=0;
-						$subjects_cls_value[$x]=0;
- 
-							if($dft == 1 && $la_score[$dft] > $la_score[$dft-1] && $la_score[$dft] <= 100){$subjects_chs_value[$x] = $la_score[$dft];}
-							if($la_score[$dft] < $la_score[$dft-1] && $la_score[$dft] >0){$subjects_cls_value[$x] = $la_score[$dft];}
- 						
- //break;
-					}
-									
-		  
-				
+				$subjects_chs_value[$x] = $la_score[0];
+				$subjects_cls_value[$x] = end($la_score);
+					 
+			
 
-					if($subjects_chs_value[$x]==0){$subjects_chs_value[$x]='-';}		
-					if($subjects_cls_value[$x]==0 || $subjects_cls_value[$x]==100){$subjects_cls_value[$x]='-';}		
+			/* 	if($subjects_chs_value[$x]==0){$subjects_chs_value[$x]='';}		
+				if($subjects_cls_value[$x]==0 || $subjects_cls_value[$x]==100){$subjects_cls_value[$x]='';}		
+			 */
+			
+			
 
-				
-				
-
-			}
+		}
  
 	
 	
@@ -587,10 +591,10 @@ if(strlen($aoi) > 4){$aoi = "The student needs to improve in ".$aoi;}
 	//	$ranv_avg = number_format($ranv_avg, 1, '.','');
 	//	$pvs_avg = number_format($pvs_avg, 1, '.','');
 
-	include "det_std_for_res.php";
+	//include "det_std_for_res.php";
 	
 
-	$max_atd = $no_of_atd;
+	//$max_atd = $no_of_atd;
 	//$max_atd =20;
 
 		//render html
@@ -738,24 +742,25 @@ echo("
 	<table cellspacing=0  border='0' style='border: 1px solid #3A3A3A' id=grade_table width='800px'>
 		<tr style='border: 1px solid #3A3A3A'>
 			<td style='border: 1px solid #3A3A3A' colspan=2   HEIGHT=100 align=center> <b>PART A: <BR>COGNITIVE</b> </td>
-			<td valign=bottom style='border: 1px solid #3A3A3A' width='20' align='center'><IMG SRC='../subjects/ca1.png' border=0></td>
-			<td valign=bottom style='border: 1px solid #3A3A3A' width='20' align='center'><IMG SRC='../subjects/ca2.png' border=0></td>
-			<td valign=bottom style='border: 1px solid #3A3A3A' width='20' align='center'><IMG SRC='../subjects/ca3.png' border=0></td>
-			<td valign=bottom style='border: 1px solid #3A3A3A' width='20' align='center'><IMG SRC='../subjects/ca4.png' border=0></td>
+			
+			<td valign=bottom style='border: 1px solid #3A3A3A' width='20' align='center'><IMG SRC='../images/ca_1.png' border=0></td>
+			<td valign=bottom style='border: 1px solid #3A3A3A' width='20' align='center'><IMG SRC='../images/ca_2.png' border=0></td>
+			<td valign=bottom style='border: 1px solid #3A3A3A' width='20' align='center'><IMG SRC='../images/ca_3.png' border=0></td>
+			<td valign=bottom style='border: 1px solid #3A3A3A' width='20' align='center'><IMG SRC='../images/ca_4.png' border=0></td>
 			<!--<td valign=bottom style='border: 1px solid #3A3A3A' width='20' align='center'><IMG SRC='../subjects/ca3_sec.png' border=0></td>-->
 
 			<td valign=bottom width='5'  align='center' >&nbsp;</td>
 			
-			<td valign=bottom style='border: 1px solid #3A3A3A' width='25' align='center'><IMG SRC='../subjects/exam.png' border=0></td>
-			<td valign=bottom style='border: 1px solid #3A3A3A' width='25' align='center'><IMG SRC='../subjects/TOTAL.jpg' border=0></td>
-			<td valign=bottom style='border: 1px solid #3A3A3A' width='25' align='center'><IMG SRC='../subjects/POSITION.jpg' border=0></td>
+			<td valign=bottom style='border: 1px solid #3A3A3A' width='25' align='center'><IMG SRC='../images/exam.png' border=0></td>
+			<td valign=bottom style='border: 1px solid #3A3A3A' width='25' align='center'><IMG SRC='../images/total.png' border=0></td>
+			<td valign=bottom style='border: 1px solid #3A3A3A' width='25' align='center'><IMG SRC='../images/position.png' border=0></td>
  
  
  
- 		   <td valign=bottom style='border: 1px solid #3A3A3A' width='30' align='center'><IMG SRC='../subjects/chs.jpg' border=0></td>
-			   <td valign=bottom style='border: 1px solid #3A3A3A' width='30' align='center'><IMG SRC='../subjects/cls.jpg' border=0></td>
+ 		   <td valign=bottom style='border: 1px solid #3A3A3A' width='30' align='center'><IMG SRC='../images/chs.png' border=0></td>
+			   <td valign=bottom style='border: 1px solid #3A3A3A' width='30' align='center'><IMG SRC='../images/cls.png' border=0></td>
 
-			<td valign=bottom style='border: 1px solid #3A3A3A' width='35' align='center'><IMG SRC='../subjects/CAS.jpg' border=0></td>
+			<td valign=bottom style='border: 1px solid #3A3A3A' width='35' align='center'><IMG SRC='../images/cas.png' border=0></td>
 		 
 					");
 			 
@@ -771,10 +776,10 @@ if(preg_match("/third/", $result_id))
 
 			<td valign=bottom width='5'  align='center' rowspan='24'>&nbsp;</td>
 					
-				<td bgcolor='#FFFFD2' valign=bottom style='border: 1px solid #3A3A3A' width='25' align='center'><IMG SRC='../subjects/fts.jpg' border=0></td>
-				<td bgcolor='#D2FFFF'  valign=bottom style='border: 1px solid #3A3A3A' width='25' align='center'><IMG SRC='../subjects/sts.jpg' border=0></td>
-				<td bgcolor='#FFD2FF' valign=bottom style='border: 1px solid #3A3A3A' width='25' align='center'><IMG SRC='../subjects/tts.jpg' border=0></td>
-				<td bgcolor='#EFEFEF' valign=bottom style='border: 1px solid #3A3A3A' width='25' align='center'><IMG SRC='../subjects/cts.jpg' border=0></td>
+				<td bgcolor='#FFFFD2' valign=bottom style='border: 1px solid #3A3A3A' width='25' align='center'><IMG SRC='../images/fts.png' border=0></td>
+				<td bgcolor='#D2FFFF'  valign=bottom style='border: 1px solid #3A3A3A' width='25' align='center'><IMG SRC='../images/sts.png' border=0></td>
+				<td bgcolor='#FFD2FF' valign=bottom style='border: 1px solid #3A3A3A' width='25' align='center'><IMG SRC='../images/tts.png' border=0></td>
+				<td bgcolor='#EFEFEF' valign=bottom style='border: 1px solid #3A3A3A' width='25' align='center'><IMG SRC='../images/cs.png' border=0></td>
 			
 			<td valign=bottom width='5'  align='center' rowspan='24'>&nbsp;</td>
 			
@@ -787,9 +792,9 @@ if(preg_match("/third/", $result_id))
 			
 			
 		echo("
-			<td valign=bottom style='border: 1px solid #3A3A3A' width='25' align='center'><IMG SRC='../subjects/GRADE.jpg' border=0></td>
+			<td valign=bottom style='border: 1px solid #3A3A3A' width='25' align='center'><IMG SRC='../images/grade.png' border=0></td>
 
-			<td valign=bottom style='border: 1px solid #3A3A3A'  align='center'><IMG SRC='../subjects/REMARK.jpg' border=0></td>
+			<td valign=bottom style='border: 1px solid #3A3A3A'  align='center'><IMG SRC='../images/remarks.png' border=0></td>
  
 			
 		</tr>	

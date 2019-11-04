@@ -2,7 +2,7 @@
 require_once("connect.php");
 include_once("header.php");
 
-$res_id=$_GET['resid'];
+$res_id=$_GET['res_id'];
 $class=$_GET['class'];
 
 

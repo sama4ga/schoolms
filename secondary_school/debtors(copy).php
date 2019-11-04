@@ -3,6 +3,12 @@ session_start();
 require_once("connect.php");
 include_once("head.php");
 
+include_once("auth.php");
+if ($priviledge !== "account" && $priviledge !== "admin") {
+  header("location:forbidden.php");
+   exit();
+}
+
 $_term=strtolower($_SESSION['term']);//echo $term;
 $session=$_SESSION['session'];
 $session=str_replace("/","_",$session);

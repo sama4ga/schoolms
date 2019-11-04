@@ -1,6 +1,13 @@
 <?php
+session_start();
 require_once("connect.php");
 include_once("head.php");
+
+include_once("auth.php");
+if ($priviledge !== "admin") {
+  header("location:forbidden.php");
+   exit();
+}
 
   
   $result=$con->query("SELECT * FROM `staff` WHERE `staff_id`<>'1'");

@@ -2,6 +2,12 @@
 include_once "header.php";
 require_once("connect.php");
 
+include_once("auth.php");
+if ($priviledge !== "class_teacher" && $priviledge !== "admin" ) {
+  header("location:forbidden.php");
+   exit();
+}
+
 $std_id=$_GET['stdid'];
 $res_id=$_GET['resid'];
 $full_name=$_GET['name'];
@@ -44,17 +50,21 @@ if (isset($_POST['submit'])) {
   $sql="";
 
   for($z=1; $z<=$no_of_baa; $z++){
-    $behaviour_value[$z] = $_POST[$behaviour[$z]];
-    $sql .="`".$behaviour[$z]."` = '".$behaviour_value[$z]."',";
+    if (isset($_POST[$behaviour[$z]])) {      
+      $behaviour_value[$z] = $_POST[$behaviour[$z]];
+      $sql .="`".$behaviour[$z]."` = '".$behaviour_value[$z]."',";
+    }
   }
 
 
   for($z=1; $z<=$no_of_psy; $z++){
-    $behaviour_psy_value[$z]=$_POST[$behaviour_psy[$z]];
-    if ($z == $no_of_psy) {
-      $sql .="`".$behaviour_psy[$z]."` = '".$behaviour_psy_value[$z]."'";      
-    }else{
-    $sql .="`".$behaviour_psy[$z]."` = '".$behaviour_psy_value[$z]."',";
+    if (isset($_POST[$behaviour_psy[$z]])) {      
+      $behaviour_psy_value[$z]=$_POST[$behaviour_psy[$z]];
+      if ($z == $no_of_psy) {
+        $sql .="`".$behaviour_psy[$z]."` = '".$behaviour_psy_value[$z]."'";      
+      }else{
+      $sql .="`".$behaviour_psy[$z]."` = '".$behaviour_psy_value[$z]."',";
+      }
     }
   }
 

@@ -1,5 +1,12 @@
 <?php
 include_once("header.php");
+include_once("connect.php");
+
+include_once("auth.php");
+if ($priviledge !== "admin" ) {
+  header("location:forbidden.php");
+   exit();
+}
 
 ?>
 

@@ -8,6 +8,7 @@ $get_subs = $con->query("SELECT * FROM `$class_admitted` ");
 if($get_subs)
   {
     $no_of_subs = $get_subs->num_rows;
+    $x = 0;
     while($row = $get_subs->fetch_array())
       {
       

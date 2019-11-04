@@ -3,6 +3,12 @@ session_start();
 require_once("connect.php");
 include("head.php");
 
+include_once("auth.php");
+if ($priviledge !== "admin" ) {
+  header("location:forbidden.php");
+   exit();
+}
+
 $msg=array();
 
 $std_id=intval($_GET['id']);

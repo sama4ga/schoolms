@@ -2,6 +2,13 @@
 session_start();
 require_once("connect.php");
 include("head.php");
+
+include_once("auth.php");
+if ($priviledge !== "admin" ) {
+  header("location:forbidden.php");
+   exit();
+}
+
 include("sanitize.php");
 
 $msg=array();
@@ -156,7 +163,10 @@ if (isset($_POST['submit'])) {
         if ($con->query("DESCRIBE `$res_id`")) {
           $result=$con->query("INSERT INTO `$res_id`(`std_id`,`surname`,`othernames`)
                               VALUES('$std_id','$surname','$othernames')");
-  
+
+          $class_admitted = $class;
+          include_once("add_name_in_resultsheet.php");
+          
           if (!$result) {
             $msg[]="could not add record to result sheet ".$con->error;
           }

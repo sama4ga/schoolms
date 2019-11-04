@@ -3,6 +3,12 @@ session_start();
 require_once("connect.php");
 include_once("head.php");
 
+include_once("auth.php");
+if ($priviledge !== "class_teacher" && $priviledge !== "admin" ) {
+  header("location:forbidden.php");
+   exit();
+}
+
 $class=strtolower($_GET['class']);
 $arm=strtolower($_GET['arm']);
 
@@ -31,6 +37,20 @@ if (!$con->query("DESCRIBE `$res_id`")) {
 }
 
 
+// get no of ca, ca score and exam score
+$result = $con->query("SELECT * FROM `school_info`;");
+if ($result) {
+  if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+      $no_of_ca = $row['no_of_ca'];
+      $ca_score = $row['ca_score'];
+      $exam_score = $row['exam_score'];
+    }
+  }
+}
+
+
+
 $result=$con->query("SELECT * FROM `$class`");
 
 if ($result) {
@@ -48,10 +68,14 @@ if ($result) {
     for ($i=0; $i < count($subjects); $i++) { 
 
       $subject_orig[$i]=$subjects[$i];
-      $subject_ca_1[$i]=strtolower(str_replace(" ","_",$subjects[$i])."_ca_1");
+      for ($x=1; $x <= $no_of_ca; $x++) { 
+        $subject_ca[$i][$x]=strtolower(str_replace(" ","_",$subjects[$i])."_ca_".$x);
+      }
+      /* $subject_ca_1[$i]=strtolower(str_replace(" ","_",$subjects[$i])."_ca_1");
       $subject_ca_2[$i]=strtolower(str_replace(" ","_",$subjects[$i])."_ca_2");
       $subject_ca_3[$i]=strtolower(str_replace(" ","_",$subjects[$i])."_ca_3");
-      $subject_ca_4[$i]=strtolower(str_replace(" ","_",$subjects[$i])."_ca_4");
+      $subject_ca_4[$i]=strtolower(str_replace(" ","_",$subjects[$i])."_ca_4"); 
+      */
       $subject_exams[$i]=strtolower(str_replace(" ","_",$subjects[$i])."_exam");
       $subject_total[$i]=strtolower(str_replace(" ","_",$subjects[$i])."_total");        
       $subject_average[$i]=strtolower(str_replace(" ","_",$subjects[$i])."_average");        
@@ -61,6 +85,7 @@ if ($result) {
 			$subjects_cumulative[$i] = strtolower(str_replace(" ","_",$subjects[$i])."_cumulative");
 
     }
+    
 
   }
 }
@@ -90,10 +115,14 @@ if ($result) {
         
         if ($rows[$subjects[$i]] != "N/A") {
 
-          $sub_ca_1[$i]=$rows[$subject_ca_1[$i]];
+          for ($z=1; $z <= $no_of_ca; $z++) { 
+            $sub_ca[$i][$z]=$rows[$subject_ca[$i][$z]];
+          }
+          /* $sub_ca_1[$i]=$rows[$subject_ca_1[$i]];
           $sub_ca_2[$i]=$rows[$subject_ca_2[$i]];
           $sub_ca_3[$i]=$rows[$subject_ca_3[$i]];
           $sub_ca_4[$i]=$rows[$subject_ca_4[$i]];
+           */
           $sub_exams[$i]=$rows[$subject_exams[$i]];
 
           $no_of_subjects_std[$x]=$no_of_subjects_std[$x]+1;
@@ -110,16 +139,18 @@ if ($result) {
 
         }else{
 
-          $sub_ca_1[$i]=0;
-          $sub_ca_2[$i]=0;
-          $sub_ca_3[$i]=0;
-          $sub_ca_4[$i]=0;
+          for ($z=1; $z <= $no_of_ca; $z++) { 
+            $sub_ca[$i][$z]=0;
+          }
           $sub_exams[$i]=0;
 
         }
 
-
-        $sub_total[$i] = $sub_ca_1[$i] + $sub_ca_2[$i] + $sub_ca_3[$i] + $sub_ca_4[$i] + $sub_exams[$i] ;
+        $sub_total[$i] = 0;
+        for ($z=1; $z <= $no_of_ca; $z++) {           
+          $sub_total[$i] += $sub_ca[$i][$z];
+        }
+        $sub_total[$i] += $sub_exams[$i];
         
         
       }

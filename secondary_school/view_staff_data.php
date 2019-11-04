@@ -2,6 +2,13 @@
 session_start();
 require_once("connect.php");
 include("head.php");
+
+include_once("auth.php");
+if ($priviledge !== "admin") {
+  header("location:forbidden.php");
+   exit();
+}
+
 include("sanitize.php");
 
 $msg=array();

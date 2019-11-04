@@ -3,16 +3,16 @@ include_once("header.php");
 require_once("connect.php");
 
 include_once("auth.php");
-if ($priviledge !== "account" || $priviledge !== "admin") {
+if ($priviledge !== "account" && $priviledge !== "admin") {
   header("location:forbidden.php");
    exit();
 }
 
- //echo $status;
+/*  //echo $status;
 if ($status !== "admin" && $status !== "account") {
   header("location:forbidden.php"); 
   exit();
-}
+} */
 
 
 ?>

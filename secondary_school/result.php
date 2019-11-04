@@ -85,6 +85,7 @@ if ($result) {
     $surname[$x]=$row['surname'];
     $othernames[$x]=$row['othernames'];
     $std_id[$x]=$row['std_id'];
+    $specialization[$x] = $row['specialization'];
     $x++;
   }
     
@@ -141,19 +142,110 @@ if (!$con->query("DESCRIBE `$res_id`")) {
                   "; 
   //var_dump($std_id);echo "<div/>"; var_dump($sid); 
   for ($i=0; $i < $num_record ; $i++) {
-    if ($std_id[$i] == $sid[$i]) {
-      $value_ca_1[$i]=$subjects_ca_1[$i];
-      $value_ca_2[$i]=$subjects_ca_2[$i];
-      $value_ca_3[$i]=$subjects_ca_3[$i];
-      $value_ca_4[$i]=$subjects_ca_4[$i];
-      $value_exam[$i]=$subjects_exam[$i];
-    }else {
+    
+    if (!array_key_exists($i,$sid)) {
+      //student is a member of the class but name is not in the result sheet. 
+      // this only occurs due to failure to add record during registration, promotion, or change of subject
+      // Add name and process subjects
+      $con->query("INSERT INTO `$res_id`(`std_id`,`surname`,`othernames`)
+                        VALUES('$std_id[$i]','$surname[$i]','$othernames[$i]')");
+
+      // get subjects
+      $get_subs = $con->query("SELECT * FROM `$class` ");
+        
+      if($get_subs)
+        {
+          $no_of_subs = $get_subs->num_rows;
+          $x = 0;
+          while($row = $get_subs->fetch_array())
+            {
+            
+              $x++;
+              $subjects[$x] =  strtolower(preg_replace("/[^A-Za-z0-9_-]/", "_", $row['subjects']));
+              $subject_type[$x]=$row['type'];
+              
+            }
+
+        }
+
+
+        // add subjects for student based on specialization
+      if ($specialization[$i] == "science") {	
+              
+        for ($j=1; $j <= $no_of_subs; $j++) {
+          
+          if ($subject_type[$j] == 'art' || $subject_type[$j] == 'commercial' || $subject_type[$j] == 'art & commercial') {
+            
+            $con->real_query("UPDATE `$res_id` SET `$subjects[$j]`='N/A' WHERE `std_id`='$std_id[$i]'");
+            
+          }elseif ($subject_type[$j] == 'art & science' || $subject_type[$j] == 'commercial & science' || $subject_type[$j] == 'science' ){
+
+            $con->real_query("UPDATE `$res_id` SET `$subjects[$j]`='applied' WHERE `std_id`='$std_id[$i]'");
+
+          }
+
+
+        }
+      }elseif ($specialization[$i] == "art") {	
+        
+        for ($j=1; $j <= $no_of_subs; $j++) {
+          
+          if ($subject_type[$j] == 'science' || $subject_type[$j] == 'commercial' || $subject_type[$j] == 'commercial & science') {
+            
+            $con->real_query("UPDATE `$res_id` SET `$subjects[$j]`='N/A' WHERE `std_id`='$std_id[$i]'");
+            
+          }elseif ($subject_type[$j] == 'art & science' || $subject_type[$j] == 'art & commercial' || $subject_type[$j] == 'art' ){
+            
+            $con->real_query("UPDATE `$res_id` SET `$subjects[$j]`='applied' WHERE `std_id`='$std_id[$i]'");
+
+          }
+
+
+        }
+      }elseif ($specialization[$i] == "commercial") {	
+        
+        for ($j=1; $j <= $no_of_subs; $j++) {
+          
+          if ($subject_type[$j] == 'science' || $subject_type[$j] == 'art' || $subject_type[$j] == 'art & science') {
+            
+            $con->real_query("UPDATE `$res_id` SET `$subjects[$j]`='N/A' WHERE `std_id`='$std_id[$i]'");
+            
+          }elseif ($subject_type[$j] == 'art & commercial' || $subject_type[$j] == 'commercial & science' || $subject_type[$j] == 'commercial' ){
+            
+            $con->real_query("UPDATE `$res_id` SET `$subjects[$j]`='applied' WHERE `std_id`='$std_id[$i]'");
+
+          }
+
+
+        }
+      }
+
+      // add id in result id
+      $sid[$i] = $std_id[$i];
+
+      // add scores
       $value_ca_1[$i]='';
       $value_ca_2[$i]='';
       $value_ca_3[$i]='';
       $value_ca_4[$i]='';
       $value_exam[$i]='';
+    }else {
+      
+      if ($std_id[$i] == $sid[$i]) {
+        $value_ca_1[$i]=$subjects_ca_1[$i];
+        $value_ca_2[$i]=$subjects_ca_2[$i];
+        $value_ca_3[$i]=$subjects_ca_3[$i];
+        $value_ca_4[$i]=$subjects_ca_4[$i];
+        $value_exam[$i]=$subjects_exam[$i];
+      }else {
+        $value_ca_1[$i]='';
+        $value_ca_2[$i]='';
+        $value_ca_3[$i]='';
+        $value_ca_4[$i]='';
+        $value_exam[$i]='';
+      }
     }
+
 
     echo "<tr>
             <td style='width:300px;'>".$surname[$i].", ".$othernames[$i]."</td>

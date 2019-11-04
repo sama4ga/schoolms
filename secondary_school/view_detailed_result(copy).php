@@ -1,6 +1,12 @@
 <?php
+session_start();
 require_once("connect.php");
 
+include_once("auth.php");
+if ($priviledge !== "class_teacher" && $priviledge !== "admin" ) {
+  header("location:forbidden.php");
+   exit();
+}
 $today = date('d M, Y');
 
  // Header('Cache-Control: no-cache');
@@ -611,9 +617,9 @@ if(strlen($aoi) > 4){$aoi = "The student needs to improve in ".$aoi;}
  						
 				
 
-					if($subjects_chs_value[$x]==0){$subjects_chs_value[$x]='';}		
+				/* 	if($subjects_chs_value[$x]==0){$subjects_chs_value[$x]='';}		
 					if($subjects_cls_value[$x]==0 || $subjects_cls_value[$x]==100){$subjects_cls_value[$x]='';}		
-
+ 				*/
 				
 				
 

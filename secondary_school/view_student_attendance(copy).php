@@ -1,6 +1,13 @@
 <?php
+session_start();
 require_once("connect.php");
 include_once("head.php");
+
+include_once("auth.php");
+if ($priviledge !== "class_teacher" && $priviledge !== "admin" ) {
+  header("location:forbidden.php");
+   exit();
+}
 
 $atd_id = $_REQUEST['atd_id'];
 
@@ -32,7 +39,9 @@ $result = $con->query("SELECT * FROM `student` s LEFT JOIN `student_class` sc
 
 
 if($result){
-  if ($result->num_rows > 0) {
+  $no_of_std = $result->num_rows;
+  //echo $no_of_std;
+  if ($no_of_std > 0) {
     $x = 0;
     while ($row = $result->fetch_assoc()) {
       $std_id[$x] = $row['std_id']; 
@@ -60,10 +69,27 @@ $result = $con->query("SELECT * FROM `$atd_id` order by `dd`");
 if($result){
   if ($result->num_rows > 0) {
     $i = 0;
-    while ($row = $result->fetch_assoc()) {
+    while ($row = $result->fetch_array()) {
       $date[$i] = $row['dd']; 
-      for ($x=0; $x < count($std_id); $x++) {        
-        $present[$std_id[$x]][$i] = $row[$std_id[$x]]; 
+      for ($x=0; $x < count($std_id); $x++) {
+
+        // check if the student is in the attendance sheet
+        if (!array_key_exists($std_id[$x],$row)) {
+
+          // not found, add student          
+          $_result=$con->query("ALTER TABLE `$atd_id` ADD `$std_id[$x]` VARCHAR(2) NOT NULL DEFAULT '0'");
+          
+          if (!$_result) {
+            $msg[]="could not add record of $surname[$x], $othernames[$x] to the attendance sheet ".$con->error;
+          }else {
+            $present[$std_id[$x]][$i] = "0";
+          }
+
+
+        }else { 
+          // found, continue         
+          $present[$std_id[$x]][$i] = $row[$std_id[$x]]; 
+        }        
       }
       $i++;
     }
@@ -271,7 +297,7 @@ function cal_day_of_week($day_of_week){
 
 
 <!--div class="container" -->
-<h2 style="text-align:center;">Displaying  Student Attendance Record for <?php echo strtoupper($class).strtoupper($arm)." for ".$session." academic session."; ?></h2>
+<h2 style="text-align:center;">Displaying  Student Attendance Record for <?php echo strtoupper($class).strtoupper($arm)." for ".ucwords($term)." term ".$session." academic session."; ?></h2>
 <div style="margin-top:50px;">
   <table class="data" border="1">
     <tr>

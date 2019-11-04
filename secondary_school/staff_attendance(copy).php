@@ -1,14 +1,16 @@
 <?php
-include_once("auth.php");
+session_start();
+include_once("connect.php");
+include_once("head.php");
 
+include_once("auth.php");
 // attendance by marking
 if ($priviledge !== "admin") {
   header("location:forbidden.php");
    exit();
 }
+
 ini_set("TIME_ZONE","AFRICA/LAGOS");
-include_once("connect.php");
-include_once("head.php");
 include_once("sanitize.php");
 
 $msg=array();
