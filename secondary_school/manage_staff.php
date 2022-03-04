@@ -50,7 +50,7 @@ if ($_SESSION['priviledge'] != "admin" ) {
         <li><a href="#" onclick="javascript:document.getElementById('display').src='change_staff_subject.php'">Change Staff Subject</a></li>
         <li>
         <li class="divider"><a href="#" onclick="javascript:document.getElementById('display').src='view_staff_list.php'">View List of Staff</a></li>
-          <a href="#" onclick="javascript:document.getElementById('filter').style='display:block';">
+        <li><a href="#" onclick="javascript:document.getElementById('filter').style='display:block';">
             View Statistics of Staffs
           </a>
           <div id="filter" style="display:none;">Filter by:
@@ -77,6 +77,22 @@ if ($_SESSION['priviledge'] != "admin" ) {
 
 </div>
 
+
+<script>
+  var menus = document.querySelectorAll(".nav li a");
+  for (let index = 0; index < menus.length; index++) {
+    menus[index].addEventListener("click", function(){menu_clicked(menus[index]);});    
+  }
+
+  function menu_clicked(menu_item){
+    menus = document.querySelectorAll(".nav li a");
+    for (let index = 0; index < menus.length; index++) {
+      menus[index].className = "";    
+    }
+    menu_item.className = "active";
+
+  }
+</script>
 <?php
 include_once("footer.php");
 

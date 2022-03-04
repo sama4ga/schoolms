@@ -142,7 +142,7 @@ if (isset($_POST['submit'])) {
 
 <?php
 
-include_once("footer.php");
+include_once("foot.php");
 
 
 

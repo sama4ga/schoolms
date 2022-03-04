@@ -507,7 +507,7 @@ if ($result) {
 
     <div class="input-group">
       <input type="submit" name="submit" class="btn btn-success form-control" value="Register">
-      <input name="back" type="submit" formaction="back.php" value="Back" class="btn btn-warning form-control">
+      <a href="back.php" class="btn btn-warning form-control">Back</a>
     </div>
         
   </form>

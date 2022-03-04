@@ -49,6 +49,11 @@ table.data tr:hover{
     background-color: #ceeeae;
 }
 
+table.data th{
+    background-color: green;
+    font-weight: bold;
+}
+
 table.menu tr{
     height: 150px;
 }
@@ -68,8 +73,8 @@ table.menu tr td{
     background-color: #ffc107;
 }
 
-.nav li a:active{
-    color: #28a745;
+active{
+    color: #ffffff;
     background-color: #28a745;
 }
 
@@ -77,6 +82,7 @@ iframe{
     border: 0px;
     height: 100%;
     width: 100%;
+    min-width: 200px;
 }
 
 
